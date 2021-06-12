@@ -100,7 +100,7 @@ def cls():
     Clears all currently displayed content from the screen / display.
 
 
-    Category: Hub / Miscellaneous
+    Category: Rover / Miscellaneous
 
 
     Returns None
@@ -121,6 +121,14 @@ def forward(distance:float):
     
     Returns an array / list: [grid_distance, distance]
     """
+    try:
+        float(distance)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "distance")) from None
+    if(distance > 2147483648 or distance < 0):
+        print(errormsg_range(0, 2147483648, "distance"))
+        return
+
     cm:float = distance * 10
     print("Moving the rover forward by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
     return [distance, cm]
@@ -137,6 +145,27 @@ def backward(distance:float):
     
     Returns an array / list: [grid_distance, distance]
     """
+    try:
+        float(distance)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "distance")) from None
+    if(distance > 2147483648 or distance < 0):
+        print(errormsg_range(0, 2147483648, "distance"))
+        return
+
     cm:float = distance * 10
     print("Moving the rover backwards by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
     return [distance, cm]
+
+###########################################################################################
+
+def left(degrees:float):
+    """
+    Turns the rover left by the specified amount of degrees
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [degrees]
+    """

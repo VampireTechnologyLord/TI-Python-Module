@@ -7,3 +7,13 @@ This repository is mainly about two files: `ti_hub.py` and `ti_rover.py`. These 
 ## How to use this
 
 Using this feature is very simple. You just download both files into your workspace. Then you just have to import both files like shown in `example.py`. Then, you can just start writing code. Please note, that many functions return an array / a list or values. You can use these for internal debugging purposes, but they will NOT work, when you copy your file to the Calculator itself, since these are just from the moduels and not integrated in the actual function itself.
+
+
+## Recommendation
+
+As an IDE, I personally recommend you choosing between the following two IDEs depending on your use case.
+ - Faster Use:
+    - Microsoft Visual Studio Code
+
+ - More Intense and deeper Use
+    - IntelliJ Idea
