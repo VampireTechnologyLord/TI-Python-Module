@@ -3,8 +3,6 @@ Class containing all TI-Rover commands. Used for debugging
 """
 
 
-from typing import List
-
 
 def errormsg_type(requiredDataType: str, parameter: str):
     msg = "ERROR: Parameter <" + parameter + \
@@ -18,3 +16,94 @@ def errormsg_range(rangeMin: float, rangeMax: float, parameter: str):
     return msg
 
 ###########################################################################################
+
+def text_at(line: int, text: str, align: str):
+    """
+    Displays text at the given line (ranging between 1 and 13) and with the given alignment ('left' or 'center' or 'right').
+
+
+    Category: Rover / Miscellaneous
+
+
+    Returns an array / list: [text, line, align]
+    """
+    try:
+        int(line)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "line")) from None
+
+    try:
+        str(text)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "text")) from None
+
+    try:
+        str(align)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "align")) from None
+
+    if(align == "left" or align == "center" or align == "left"):
+        if(line > 0 and line < 14):
+            print("Showing text '" + text + "' at line " +
+                  str(line) + " with alignement '" + align + "' !")
+            return [text, line, align]
+        else:
+            print(errormsg_range(1, 13, "line"))
+            return
+    else:
+        print("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
+        return
+
+###########################################################################################
+
+def sleep(seconds: float):
+    """
+    Waits for the given amount of time in seconds, until the script continues to run.
+
+
+    Category: Rover / Miscellaneous
+
+
+    Returns an array / list: [seconds]
+    """
+    try:
+        float(seconds)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "seconds")) from None
+
+    if(seconds > 0):
+        print("Waiting for " + str(seconds) + " seconds")
+        return [seconds]
+    else:
+        print("ERROR: Parameter <seconds> has to be greater then 0!")
+        return
+
+###########################################################################################
+
+def get_key():
+    """
+    Gets the pressed key.
+
+
+    Category: Rover / Miscellaneous
+
+
+    Returns None
+    """
+    print("Getting Pressed key")
+    return None
+
+###########################################################################################
+
+def cls():
+    """
+    Clears all currently displayed content from the screen / display.
+
+
+    Category: Hub / Miscellaneous
+
+
+    Returns None
+    """
+    print("Clearing screen / display")
+    return None
