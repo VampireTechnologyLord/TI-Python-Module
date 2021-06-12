@@ -107,3 +107,36 @@ def cls():
     """
     print("Clearing screen / display")
     return None
+
+
+###########################################################################################
+
+def forward(distance:float):
+    """
+    Moves Rover forward the specified distance in grid units. 1 Grid Unit = 10cm.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [grid_distance, distance]
+    """
+    cm:float = distance * 10
+    print("Moving the rover forward by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
+    return [distance, cm]
+
+###########################################################################################
+
+def backward(distance:float):
+    """
+    Moves Rover backwards the specified distance in grid units. 1 Grid Unit = 10cm.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [grid_distance, distance]
+    """
+    cm:float = distance * 10
+    print("Moving the rover backwards by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
+    return [distance, cm]
