@@ -169,3 +169,171 @@ def left(degrees:float):
     
     Returns an array / list: [degrees]
     """
+    try:
+        float(degrees)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "degrees")) from None
+    print("Turning rover left by '" + str(degrees) + "' degrees")
+    return [degrees]
+
+###########################################################################################
+
+def right(degrees:float):
+    """
+    Turns the rover right by the specified amount of degrees
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [degrees]
+    """
+    try:
+        float(degrees)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "degrees")) from None
+    print("Turning rover right by '" + str(degrees) + "' degrees")
+    return [degrees]
+
+###########################################################################################
+
+def stop():
+    """
+    Stops any current movement immediately. Pending commands will be executed.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns None
+    """
+    print("Stopping Rover Movement")
+    return None
+
+###########################################################################################
+
+def stop_clear():
+    """
+    Stops any current movement immediately. Pending commands will cleared.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns None
+    """
+    print("Stopping Rover Movement and clearing all pending commands")
+    return None
+
+###########################################################################################
+
+def resume():
+    """
+    Resumes the processing of commands, that are pending.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns None
+    """
+    print("Resuming Rover Movement")
+    return None
+
+###########################################################################################
+
+def stay(time:int=30):
+    """
+    Rover stays in place for the specified amount of time in seconds (optional). If no time is specified, the Rover stays for 30 seconds
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [degrees]
+    """
+    try:
+        int(time)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "time")) from None
+    print("Rover stays at current location for '" + str(time) + "' seconds")
+    return [time]
+
+###########################################################################################
+
+def to(x:float, y:float):
+    """
+    Moves Rover to coordinate position (x,y) on virtual grid. Distance in GridUnits.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [x (gridUnits), y (gridUnits), x (cm), y (cm)]
+    """
+    try:
+        float(x)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "x")) from None
+    try:
+        float(y)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "y")) from None
+    
+    print("Rover moves to '(" + str(x) + " | " + str(y) + ")' on the virtual grid.")
+    return [x, y, x*10, y*10]
+
+###########################################################################################
+
+def to_polar(radius:float, theta_degrees:float):
+    """
+    Moves Rover to polar coordinate position (r, theta) on virtual grid. The angle is specified in degrees.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [radius, theta_degrees]
+    """
+    try:
+        float(radius)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "radius")) from None
+    try:
+        float(theta_degrees)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "theta_degrees")) from None
+    
+    print("Rover moves to polar with radius '" + str(radius) + "' and '" + str(theta_degrees) + "' degrees")
+    return [radius, theta_degrees]
+
+###########################################################################################
+
+def to_angle(degrees:float, unit:str):
+    """
+    Spins Rover to the specified angle in the virtual grid. The angle is relative to a zero angle which points down the x-axis in the virtual grid.
+
+
+    Valid Units: 'degrees', 'radians', 'gradians'
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [degrees, unit]
+    """
+    try:
+        float(degrees)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "degrees")) from None
+    try:
+        str(unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "unit")) from None
+    
+    if(unit == "degrees" or unit == "radians" or unit == "gradians"):
+        print("Rover turns by angle '" + str(degrees) + "' with unit type '" + unit + "' degrees")
+        return [degrees, unit]
+    else:
+        raise ValueError("Parameter <unit> can only be 'degrees', 'radians', 'gradians'")
+        

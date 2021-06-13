@@ -46,15 +46,14 @@ def text_at(line: int, text: str, align: str):
 
     if(align == "left" or align == "center" or align == "left"):
         if(line > 0 and line < 14):
-            print("Showing text '" + text + "' at line " +
-                  str(line) + " with alignement '" + align + "' !")
+            print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "' !")
             return [text, line, align]
         else:
-            print(errormsg_range(1, 13, "line"))
-            return
+            raise ValueError(errormsg_range(1, 13, "line"))
+            
     else:
-        print("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
-        return
+        raise ValueError("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
+        
 
 ###########################################################################################
 
@@ -77,8 +76,8 @@ def sleep(seconds: float):
         print("Waiting for " + str(seconds) + " seconds")
         return [seconds]
     else:
-        print("ERROR: Parameter <seconds> has to be greater then 0!")
-        return
+        raise ValueError("ERROR: Parameter <seconds> has to be greater then 0!")
+        
 
 ###########################################################################################
 
@@ -149,14 +148,14 @@ class colour():
             raise ValueError(errormsg_type("int", "blue")) from None
 
         if(red > 255 or red < 0):
-            print(errormsg_range(0, 255, "red"))
-            return
+            raise ValueError(errormsg_range(0, 255, "red"))
+            
         if(green > 255 or green < 0):
-            print(errormsg_range(0, 255, "green"))
-            return
+            raise ValueError(errormsg_range(0, 255, "green"))
+            
         if(blue > 255 or blue < 0):
-            print(errormsg_range(0, 255, "blue"))
-            return
+            raise ValueError(errormsg_range(0, 255, "blue"))
+            
 
         print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
         return [red, green, blue]
@@ -187,11 +186,11 @@ class colour():
             raise ValueError(errormsg_type("float", "time")) from None
 
         if(frequency > 20 or frequency < 0.1):
-            print(errormsg_range(0.1, 20, "frequency"))
-            return
+            raise ValueError(errormsg_range(0.1, 20, "frequency"))
+            
         if(time > 100 or time < 0.1):
-            print(errormsg_range(0.1, 100, "time"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "time"))
+            
 
         print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
         return [frequency, time, time * frequency]
@@ -283,11 +282,11 @@ class light():
             raise ValueError(errormsg_type("float", "time")) from None
 
         if(frequency > 20 or frequency < 0.1):
-            print(errormsg_range(0.1, 20, "frequency"))
-            return
+            raise ValueError(errormsg_range(0.1, 20, "frequency"))
+            
         if(time > 100 or time < 0.1):
-            print(errormsg_range(0.1, 100, "time"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "time"))
+            
 
         print("Blinking the Light-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
         return [frequency, time, time * frequency]
@@ -328,11 +327,11 @@ class sound():
             raise ValueError(errormsg_type("float", "duration")) from None
 
         if(frequency > 8000 or frequency < 0):
-            print(errormsg_range(0.1, 20, "frequency"))
-            return
+            raise ValueError(errormsg_range(0.1, 20, "frequency"))
+            
         if(duration > 100 or duration < 0.1):
-            print(errormsg_range(0.1, 100, "duration"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "duration"))
+            
 
         print("Setting the speakers frequency to " + str(frequency) + "Hz for " + str(duration) + " seconds")
         return [frequency, duration]
@@ -365,8 +364,8 @@ class sound():
             raise ValueError(errormsg_type("float", "duration")) from None
 
         if(duration > 100 or duration < 0.1):
-            print(errormsg_range(0.1, 100, "duration"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "duration"))
+            
 
         print("Playing the note " + note + "for " + str(duration) + " seconds")
         return [note, duration]
@@ -450,8 +449,8 @@ def dht(port:str):
         print("Setting port for input device 'dht' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
+        
 
 ###########################################################################################
 
@@ -477,8 +476,8 @@ def ranger(port:str):
         print("Setting port for input device 'ranger' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
+        
 
 ###########################################################################################
 
@@ -505,8 +504,8 @@ def light_level(port:str):
         print("Setting port for input device 'light_level' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -535,8 +534,8 @@ def temperature(port:str):
         print("Setting port for input device 'temperature' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -563,8 +562,8 @@ def moisture(port:str):
         print("Setting port for input device 'moisture' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -592,8 +591,8 @@ def magnetic(port:str):
         print("Setting port for input device 'magnetic' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -631,11 +630,11 @@ def vernier(port:str, sensor_type:str):
             print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
             return [port]
         else:
-            print("ERROR: Parameter <sensor_type> needs to be on of these: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'")
-            return
+            raise ValueError("ERROR: Parameter <sensor_type> needs to be on of these: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'")
+            
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -664,8 +663,8 @@ def analog_in(port:str):
         print("Setting port for input device 'analog_in' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'")
+        
 
 ###########################################################################################
 
@@ -693,8 +692,8 @@ def digital(port:str):
         print("Setting port for input device 'digital' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports:  'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports:  'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
+        
 
 ###########################################################################################
 
@@ -722,8 +721,8 @@ def potentiometer(port:str):
         print("Setting port for input device 'potentiometer' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
+        
 
 ###########################################################################################
 
@@ -751,8 +750,8 @@ def thermistor(port:str):
         print("Setting port for input device 'thermistor' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
+        
 
 ###########################################################################################
 
@@ -779,8 +778,8 @@ def loudness(port:str):
         print("Setting port for input device 'loudness' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
+        
 
 ###########################################################################################
 
@@ -858,8 +857,8 @@ class colour_input():
         
             return #[port]
         else:
-            print("ERROR: This device only accepts these Ports: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
+            
     
 
     def colour_number(self):
@@ -943,8 +942,8 @@ class bb_port():
             print("Setting mask for input device 'bb_port' to '" + str(mask) + "'")
             return 
         else:
-            print("ERROR: This device only accepts mask values between 0 and 1023")
-            return
+            raise ValueError("ERROR: This device only accepts mask values between 0 and 1023")
+            
 
     def read_port(self):
         """
@@ -1025,20 +1024,20 @@ class rgb_array():
             raise ValueError(errormsg_type("int", "blue")) from None
 
         if(position > 15 or position < 0):
-            print(errormsg_range(0, 15, "position"))
-            return
+            raise ValueError(errormsg_range(0, 15, "position"))
+            
 
         if(red > 255 or red < 0):
-            print(errormsg_range(0, 255, "red"))
-            return
+            raise ValueError(errormsg_range(0, 255, "red"))
+            
         
         if(green > 255 or green < 0):
-            print(errormsg_range(0, 255, "green"))
+            raise ValueError(errormsg_range(0, 255, "green"))
             return
         
         if(blue > 255 or blue < 0):
-            print(errormsg_range(0, 255, "blue"))
-            return
+            raise ValueError(errormsg_range(0, 255, "blue"))
+            
 
         print("[RGB-Array] Setting the LED-Position to '" + str(position) + "' with the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
         return [position, red, green, blue]
@@ -1068,16 +1067,16 @@ class rgb_array():
 
 
         if(red > 255 or red < 0):
-            print(errormsg_range(0, 255, "red"))
-            return
+            raise ValueError(errormsg_range(0, 255, "red"))
+            
         
         if(green > 255 or green < 0):
-            print(errormsg_range(0, 255, "green"))
+            raise ValueError(errormsg_range(0, 255, "green"))
             return
         
         if(blue > 255 or blue < 0):
-            print(errormsg_range(0, 255, "blue"))
-            return
+            raise ValueError(errormsg_range(0, 255, "blue"))
+            
 
         print("[RGB-Array] Setting all LEDs to the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
         return [red, green, blue]
@@ -1117,8 +1116,8 @@ class rgb_array():
             raise ValueError(errormsg_type("int", "value")) from None
 
         if(value > 65536 or value < 0):
-            print(errormsg_range(0, 65536, "value"))
-            return
+            raise ValueError(errormsg_range(0, 65536, "value"))
+            
         
         print("[RGB-Array] Turning on pixels from binary value '" + value + "' (1 => on ; 0 => off)")
         return [value]
@@ -1147,8 +1146,8 @@ def led(port:str):
         print("Setting port for output device 'led' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
+        
 
 ###########################################################################################
 
@@ -1174,8 +1173,8 @@ def rgb(port:str):
         print("Setting port for output device 'rgb' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
+        
 
 ###########################################################################################
 
@@ -1203,8 +1202,8 @@ def speaker(port:str):
         print("Setting port for output device 'speaker' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
+        
 
 ###########################################################################################
 
@@ -1253,8 +1252,8 @@ class power():
             print("Setting port for output device 'power' to '" + port + "'")
             return
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3'")
+            
 
     def set(self, value:int):
         """
@@ -1270,8 +1269,8 @@ class power():
             raise ValueError(errormsg_type("int", "value")) from None
 
         if(value > 100 or value < 0):
-            print(errormsg_range(0, 100, "value"))
-            return
+            raise ValueError(errormsg_range(0, 100, "value"))
+            
 
         print("[Power] Setting the powerlevel to '" + str(value) + "'")
         return [value]
@@ -1342,8 +1341,8 @@ class continous_servo():
             print("Setting port for output device 'continous_servo' to '" + port + "'")
             return
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 3'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 3'")
+            
 
 
     def set_cw(self, speed:int, time:float):
@@ -1364,11 +1363,11 @@ class continous_servo():
             raise ValueError(errormsg_type("float", "time")) from None
         
         if(speed > 255 or speed < 0):
-            print(errormsg_range(0, 255, "speed"))
-            return
+            raise ValueError(errormsg_range(0, 255, "speed"))
+            
         if(time > 100 or time < 0.1):
-            print(errormsg_range(0.1, 100, "time"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "time"))
+            
         
         print("[Continuous Servo] Spinning the servo clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
         return [speed, time]
@@ -1391,11 +1390,11 @@ class continous_servo():
             raise ValueError(errormsg_type("float", "time")) from None
         
         if(speed > 255 or speed < 0):
-            print(errormsg_range(0, 255, "speed"))
-            return
+            raise ValueError(errormsg_range(0, 255, "speed"))
+            
         if(time > 100 or time < 0.1):
-            print(errormsg_range(0.1, 100, "time"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "time"))
+            
         
         print("[Continuous Servo] Spinning the servo anti-clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
         return [speed, time]
@@ -1434,8 +1433,8 @@ def analog_out(port:str):
         print("Setting port for output device 'analog_out' to '" + port + "'")
         return [port]
     else:
-        print("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
-        return
+        raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
+        
 
 class vibration_monitor():
     """
@@ -1480,8 +1479,8 @@ class vibration_monitor():
             print("Setting port for output device 'vibration_motor' to '" + port + "'")
             return
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 3'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 3'")
+            
 
     def set(self, value:int):
         """
@@ -1496,8 +1495,8 @@ class vibration_monitor():
             raise ValueError(errormsg_type("int", "value")) from None
         
         if(value > 255 or value < 0):
-            print(errormsg_range(0, 255, "value"))
-            return
+            raise ValueError(errormsg_range(0, 255, "value"))
+            
 
         print("[Vibration Motor] Setting the intensity of the vibration motor to '" + str(value) + "'")
         return [value]
@@ -1565,8 +1564,8 @@ class relay():
             print("Setting port for output device 'relay' to '" + port + "'")
             return
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 3'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 3'")
+            
 
     def on(self):
         """
@@ -1631,8 +1630,8 @@ class servo():
             print("Setting port for output device 'servo' to '" + port + "'")
             return
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 3'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 3'")
+            
 
     def set_position(self, pos:int):
         """
@@ -1647,8 +1646,8 @@ class servo():
             raise ValueError(errormsg_type("int", "pos")) from None
         
         if(pos > 90 or pos < -90):
-            print(errormsg_range(-90, 90, "pos"))
-            return
+            raise ValueError(errormsg_range(-90, 90, "pos"))
+            
         
         print("[Servo] Setting the servo position to '" + str(pos) + "'")
         return [pos]
@@ -1704,8 +1703,8 @@ class squarewave():
             print("Setting port for output device 'squarewave' to '" + port + "'")
             return 
         else:
-            print("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
-            return
+            raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
+            
 
     def set(self, frequency:int, duty:int, time:float):
         """
@@ -1730,14 +1729,14 @@ class squarewave():
         except ValueError:
             raise ValueError(errormsg_type("float", "time")) from None
         if(frequency > 500 or frequency < 1):
-            print(errormsg_range(1, 500, "frequency"))
-            return
+            raise ValueError(errormsg_range(1, 500, "frequency"))
+            
         if(duty > 100 or duty < 0):
-            print(errormsg_range(0, 100, "duty"))
-            return
+            raise ValueError(errormsg_range(0, 100, "duty"))
+            
         if(time > 100 or time < 0.1):
-            print(errormsg_range(0.1, 100, "time"))
-            return
+            raise ValueError(errormsg_range(0.1, 100, "time"))
+            
         print("[Square Wave] Setting the frequency to '" + str(frequency) + "Hz', the duty to '" + str(duty) + "%' and the duration to '" + str(time) + "' seconds")
         return [frequency, duty, time]
 
@@ -1752,4 +1751,4 @@ class squarewave():
         return None
 
 ##digital - out
-##bb_port - func
+##bb_port - out
