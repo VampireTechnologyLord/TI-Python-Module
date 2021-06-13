@@ -48,8 +48,8 @@ def text_at(line: int, text: str, align: str):
                   str(line) + " with alignement '" + align + "' !")
             return [text, line, align]
         else:
-            print(errormsg_range(1, 13, "line"))
-            return
+            raise ValueError(errormsg_range(1, 13, "line"))
+            
     else:
         print("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
         return
@@ -111,51 +111,108 @@ def cls():
 
 ###########################################################################################
 
-def forward(distance:float):
+def forward(distance:float, distance_unit:str = "units", speed:float = 1, speed_unit:str = "units/s"):
     """
-    Moves Rover forward the specified distance in grid units. 1 Grid Unit = 10cm.
+    Moves Rover forward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
+
+    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
+
+
+    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
     
     
     Category: Rover / Driving
     
     
-    Returns an array / list: [grid_distance, distance]
+    Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
     try:
         float(distance)
     except ValueError:
         raise ValueError(errormsg_type("float", "distance")) from None
+    try:
+        str(distance_unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "distance_unit")) from None
+    try:
+        float(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "speed")) from None
+    try:
+        str(speed_unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "speed_unit")) from None
+    
     if(distance > 2147483648 or distance < 0):
-        print(errormsg_range(0, 2147483648, "distance"))
-        return
+        raise ValueError(errormsg_range(0, 2147483648, "distance"))
+    
+    if(speed > 10 or speed < 0.1):
+        raise ValueError(errormsg_range(0.1, 10, "speed"))
 
-    cm:float = distance * 10
-    print("Moving the rover forward by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
-    return [distance, cm]
+    if(distance_unit == "units" or distance_unit == "m" or distance_unit == "revs"):
+
+        if(speed_unit == "units/s" or speed_unit == "m/s" or speed_unit == "revs/s"):
+
+            print("Moving Rover forward by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
+            return [distance, distance_unit, speed, speed_unit]
+        
+        else:
+            raise ValueError("ERROR: Parameter <speed_unit> has to be one of these: 'units/s', 'm/s', 'revs/s'")
+    else:
+        raise ValueError("ERROR: Parameter <distance_units> has to be one of these: 'units', 'm', 'revs'")
 
 ###########################################################################################
 
-def backward(distance:float):
+def backward(distance:float, distance_unit:str = "units", speed:float = 1, speed_unit:str = "units/s"):
     """
-    Moves Rover backwards the specified distance in grid units. 1 Grid Unit = 10cm.
+    Moves Rover backward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
+
+    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
+
+
+    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
     
     
     Category: Rover / Driving
     
     
-    Returns an array / list: [grid_distance, distance]
+    Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
     try:
         float(distance)
     except ValueError:
         raise ValueError(errormsg_type("float", "distance")) from None
+    try:
+        str(distance_unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "distance_unit")) from None
+    try:
+        float(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "speed")) from None
+    try:
+        str(speed_unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "speed_unit")) from None
+    
     if(distance > 2147483648 or distance < 0):
-        print(errormsg_range(0, 2147483648, "distance"))
-        return
+        raise ValueError(errormsg_range(0, 2147483648, "distance"))
+    
+    if(speed > 10 or speed < 0.1):
+        raise ValueError(errormsg_range(0.1, 10, "speed"))
 
-    cm:float = distance * 10
-    print("Moving the rover backwards by '" + str(distance) + "' griduntis (" + str(cm) + ") cm")
-    return [distance, cm]
+    if(distance_unit == "units" or distance_unit == "m" or distance_unit == "revs"):
+
+        if(speed_unit == "units/s" or speed_unit == "m/s" or speed_unit == "revs/s"):
+
+            print("Moving Rover backwards by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
+            return [distance, distance_unit, speed, speed_unit]
+        
+        else:
+            raise ValueError("ERROR: Parameter <speed_unit> has to be one of these: 'units/s', 'm/s', 'revs/s'")
+    else:
+        raise ValueError("ERROR: Parameter <distance_units> has to be one of these: 'units', 'm', 'revs'")
+
 
 ###########################################################################################
 
@@ -337,3 +394,83 @@ def to_angle(degrees:float, unit:str):
     else:
         raise ValueError("Parameter <unit> can only be 'degrees', 'radians', 'gradians'")
         
+###########################################################################################
+
+def backward_time(time:float, speed:float = 1, unit:str = "units/s"):
+    """
+    Moves Rover backward for the specified time at the specified speed. The speed can be specified in grid units/s, meters/s, or wheel revolutions/s.\n
+    Valid Arguments for <unit>: 'units/s', 'm/s', 'revs/s'
+
+
+    Default Values: speed = 1; unit = units/s
+    
+    
+    Category: Rover / Driving / Driving With Options
+    
+    
+    Returns an array / list: [time, speed, unit]
+    """
+
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+    try:
+        float(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "speed")) from None
+    try:
+        str(unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "unit")) from None
+
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+    if(speed > 10 or speed < 0.1):
+        raise ValueError(errormsg_range(0.1, 10, "speed"))
+    if(unit == "units/s" or unit == "m/s" or unit == "revs/s"):
+        print("Moving the rover backwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
+        return [time, speed, unit]
+    else:
+        raise ValueError("ERROR: Parameter <unit> can only be one of these: 'units/s', 'm/s', 'revs/s'")
+
+###########################################################################################
+
+def forward_time(time:float, speed:float = 1, unit:str = "units/s"):
+    """
+    Moves Rover forward for the specified time at the specified speed. The speed can be specified in grid units/s, meters/s, or wheel revolutions/s.\n
+    Valid Arguments for <unit>: 'units/s', 'm/s', 'revs/s'
+
+
+    Default Values: speed = 1; unit = units/s
+    
+    
+    Category: Rover / Driving / Driving With Options
+    
+    
+    Returns an array / list: [time, speed, unit]
+    """
+
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+    try:
+        float(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "speed")) from None
+    try:
+        str(unit)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "unit")) from None
+
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+    if(speed > 10 or speed < 0.1):
+        raise ValueError(errormsg_range(0.1, 10, "speed"))
+    if(unit == "units/s" or unit == "m/s" or unit == "revs/s"):
+        print("Moving the rover forwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
+        return [time, speed, unit]
+    else:
+        raise ValueError("ERROR: Parameter <unit> can only be one of these: 'units/s', 'm/s', 'revs/s'")
+

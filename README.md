@@ -1,12 +1,23 @@
 # TI-Python-Module
 
-## Info
+## License
 
 This repository is mainly about two files: `ti_hub.py` and `ti_rover.py`. These files are made by me, as a community member, which means, that TI-Nspire™ and I are both not responsible for any changes, deprecations or invalid content!
 
-## How to use this
+## How to install this feature / module
+How to use these modules properly:
+### Accessing the module
 
-Using this feature is very simple. You just download both files into your workspace. Then you just have to import both files like shown in `example.py`. Then, you can just start writing code. Please note, that many functions return an array / a list or values. You can use these for internal debugging purposes, but they will NOT work, when you copy your file to the Calculator itself, since these are just from the moduels and not integrated in the actual function itself.
+1. Download the file `ti_hub.py` and `ti_rover.py`
+2. Copy both files into your workspace
+3. Create an additional python file
+4. Import both files (example shown in `example.py`)
+
+### Putting the program on the calculator / rover
+
+1. Check, if you have used any of the returned values from the methods. Since these are NOT implemented on the TI-CAS itself, these won't work. Just comment them out, so you will be able to use them again, when editing the program later again
+2. Save the python file
+3. Copy ONLY your python file to the calculator
 
 ## Known Problems / Issues
 
@@ -16,8 +27,11 @@ Using this feature is very simple. You just download both files into your worksp
 
 As an IDE, I personally recommend you choosing between the following two IDEs depending on your use case.
 
- - Faster Use:
-    - Microsoft Visual Studio Code
+ - Microsoft Visual Studio Code
+   - Faster Use
+   - Easier showing of function or class description
 
- - More Intense and deeper Use
-    - IntelliJ Idea
+
+ - IntelliJ Idea
+   - More Intense and deeper Use
+   - Easier coding of complex programms
