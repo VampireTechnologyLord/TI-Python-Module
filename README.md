@@ -10,7 +10,7 @@ Using this feature is very simple. You just download both files into your worksp
 
 ## Known Problems / Issues
 
-- The functions `digital` and `bb_port` are registered each two times in the calculator. If you enter these via the calculators menu, the software is able to differentiate between both of them. If you enter these commands via the keyboard, the system won't know, whether you are choosing the one from category "Add Output Device" or the one from "Add Input Device". Due to pythons programming, I am unable to add these functions two times with different arguments, processing ... with the same name. Therefore, only the ones from "Add Inout Device" are currently registered.
+- The functions `digital` and `bb_port` are registered each two times in the calculator. If you enter these via the calculators menu, the software is able to differentiate between both of them. If you enter these commands via the keyboard, the system won't know, whether you are choosing the one from category "Add Output Device" or the one from "Add Input Device". Due to pythons programming, I am unable to add these functions two times with different arguments, processing ... with the same name. Therefore, only the ones from "Add Input Device" are currently registered.
 
 ## Recommendated IDEs
 
