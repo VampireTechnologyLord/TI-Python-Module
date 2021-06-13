@@ -2,7 +2,7 @@
 
 ## License
 
-This repository is mainly about two files: `ti_hub.py` and `ti_rover.py`. These files are made by me, as a community member, which means, that TI-Nspire™ and I are both not responsible for any changes, deprecations or invalid content!
+This repository is mainly about two files: `ti_hub.py` and `ti_rover.py`. These files are made by me, as a community member, which means, that TI-Nspire™ and I are both not responsible for any changes, deprecations or invalid content! Do not redistribute these files without my permission!
 
 ## How to install this feature / module
 How to use these modules properly:
@@ -35,3 +35,18 @@ As an IDE, I personally recommend you choosing between the following two IDEs de
  - IntelliJ Idea
    - More Intense and deeper Use
    - Easier coding of complex programms
+
+
+## FAQ
+
+### I have used the `forward` or `backward` method, but when i copy my file to the calculator it won't work!
+Make sure, that if you have specified the speed, that you have also specified the speed unit.
+
+
+### I have used a method's returned value, but it won't work on my calculator
+The returned values of functions are just for your own use for debugging in your IDE. The methods on the calculator dont actually return anything, which is why you are unable to get the value from them.
+
+
+### How do i see a functions / class description
+When using IntelliJ Idea, `Ctrl + Click` the statement.
+When using Visual Studio Code, You will see a dialogue with autocomplete suggestions. Click the `>` sign to toggle the informations.
