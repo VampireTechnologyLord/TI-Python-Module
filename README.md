@@ -47,10 +47,14 @@ Make sure, that if you have specified the speed, that you have also specified th
 The returned values of functions are just for your own use for debugging in your IDE. The methods on the calculator dont actually return anything, which is why you are unable to get the value from them.
 
 
-### How do i see a functions / class description?
+### How do I see a functions / class description?
 When using IntelliJ Idea, `Ctrl + Click` the statement.
 When using Visual Studio Code, You will see a dialogue with autocomplete suggestions. Click the `>` sign to toggle the informations.
 
 
 ### What are the functions `errormsg_type` and `errormsg_range`?
 These methods are just to simplify the writing of Error messages. They are not actually implemented in the software.
+
+### The function I want to use requires an argument called `self`. What does that mean?
+If a function requires an argument called `self`, then it is placed after a class (example, this is wrong btw: `hub.continuous_servo.set_cw(1, 1)`). Then, you have to check, if the class needs an argument aswell 
+(example: `hub.continuous_servo("OUT 3").set_cw(1, 1)`). Then, you should no longer need a `self` argument.
