@@ -474,3 +474,587 @@ def forward_time(time:float, speed:float = 1, unit:str = "units/s"):
     else:
         raise ValueError("ERROR: Parameter <unit> can only be one of these: 'units/s', 'm/s', 'revs/s'")
 
+###########################################################################################
+
+def ranger_measurement():
+    """
+    Reads the ultrasonic distance sensor on the front of the Rover, returning the current distance in meters.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Fetching data from ultrasonic sensor")
+    return None
+
+###########################################################################################
+
+def colour_measurement():
+    """
+    Returns a value from 1 to 9, indicating the predominant color being "seen" by the Rover color input sensor.\n
+        1 = red\n
+        2 = green\n
+        3 = blue\n
+        4 = cyan\n
+        5 = magenta\n
+        6 = yellow\n
+        7 = black\n
+        8 = grey\n
+        9 = white\n
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring dominant colour from colour sensor")
+    return None
+
+###########################################################################################
+
+def red_measurement():
+    """
+    Returns a value between 0 and 255 that indicates the perceived red level being seen by the color input sensor.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring red level from the colour sensor")
+    return None
+
+###########################################################################################
+
+def green_measurement():
+    """
+    Returns a value between 0 and 255 that indicates the perceived green level being seen by the color input sensor.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring green level from the colour sensor")
+    return None
+
+###########################################################################################
+
+def blue_measurement():
+    """
+    Returns a value between 0 and 255 that indicates the perceived blue level being seen by the color input sensor.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring blue level from the colour sensor")
+    return None
+
+###########################################################################################
+
+def gray_measurement():
+    """
+    Returns a value between 0 and 255 that indicates the perceived gray level being seen by the color input sensor with 0 being black and 255 being white.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring gray level from the colour sensor")
+    return None
+
+###########################################################################################
+
+def encoders_gyro_measurement():
+    """
+    Returns a list of values that contains the left and right wheel encoder counts as well as the current gyro heading.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring gyroscope values for heading, left wheel and right wheel")
+    return None
+
+###########################################################################################
+
+def gyro_measurement():
+    """
+    Returns a value that represents the current gyro reading, including drift, in the degrees.
+    
+    
+    Category: Rover / Input
+    
+    
+    Returns None
+    """
+    print("Measuring gyroscope values")
+    return None
+
+###########################################################################################
+
+def colour_rgb(red:float, green:float, blue:float):
+    """
+    Description
+    
+    
+    Category: Rover / Output
+    
+    
+    Returns an array / a list [red, green, blue]
+    """
+    try:
+        float(red)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "red")) from None
+    try:
+        float(green)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "green")) from None
+    try:
+        float(blue)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "blue")) from None
+    
+    if(red > 255 or red < 0):
+        raise ValueError(errormsg_range(0, 255, "red"))
+    if(green > 255 or green < 0):
+        raise ValueError(errormsg_range(0, 255, "green"))
+    if(blue > 255 or blue < 0):
+        raise ValueError(errormsg_range(0, 255, "blue"))
+    
+    print("Setting the RGB-Led to '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
+    return [red, green, blue]
+
+###########################################################################################
+
+def blink(frequency: float, time: float):
+    """
+    Blinks the RGB-LED at the given frequency (in Hertz) for the given time. The frequency ranges between 0.1 - 20 Hz and the time between 0.1 - 100 seconds.
+
+
+    Category: Rover / Output
+
+
+    Returns an array / list: [frequency, time, totalBlinks]
+    """
+
+    try:
+        float(frequency)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "frequency")) from None
+
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+
+    if(frequency > 20 or frequency < 0.1):
+        raise ValueError(errormsg_range(0.1, 20, "frequency"))
+            
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+            
+
+    print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
+    return [frequency, time, time * frequency]
+
+###########################################################################################
+
+def off():
+    """
+    Turns the RGB-LED off.
+
+
+    Category: Rover / Output
+
+
+    Returns None
+    """
+
+    print("Turning RGB-LED off")
+    return None
+
+###########################################################################################
+
+def motor_left(speed:int, time:float = 5):
+    """
+    Sets the left motor power to the specified value for the specified duration. The speed is in the range -255 to 255 with 0 being stop. Positive speed values are counter-clockwise rotation, and negative speed values are clockwise. The optional time parameter, if specified, has a valid range of 0.1 to 100 seconds. If not specified, a default of 5 seconds is used. 
+
+
+    Default Values: time: 5
+    
+    
+    Category: Rover / Output
+    
+    
+    Returns an array / a list [speed, time]
+    """
+    try:
+        int(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "speed")) from None
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+    
+    if(speed > 255 or speed < -255):
+        raise ValueError(errormsg_range(-255, 255, "speed"))
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+    
+    print("Setting the left motor power to 'speed " + str(speed) + "' for a time of '" + str(time) + " seconds'")
+    return [float(speed), time]
+
+###########################################################################################
+
+def motor_right(speed:int, time:float = 5):
+    """
+    Sets the right motor power to the specified value for the specified duration. The speed is in the range -255 to 255 with 0 being stop. Positive speed values are counter-clockwise rotation, and negative speed values are clockwise. The optional time parameter, if specified, has a valid range of 0.1 to 100 seconds. If not specified, a default of 5 seconds is used. 
+
+
+    Default Values: time: 5
+    
+    
+    Category: Rover / Output
+    
+    
+    Returns an array / a list [speed, time]
+    """
+    try:
+        int(speed)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "speed")) from None
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+    
+    if(speed > 255 or speed < -255):
+        raise ValueError(errormsg_range(-255, 255, "speed"))
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+    
+    print("Setting the right motor power to 'speed " + str(speed) + "' for a time of '" + str(time) + " seconds'")
+    return [float(speed), time]
+
+###########################################################################################
+
+def motors(left_direction:str, left_speed:int, right_direction:str, right_speed:int, time:float = 5):
+    """
+    Sets the left and right wheel to the specified speed levels, for an optional amount of time in seconds. The speed (left_speed, right_speed) values are in the range 0 to 255 with 0 being stop. The left_direction and right_direction parameters specify CW or CCW rotation of the respective wheels. The optional time parameter, if specified, has a valid range of 0.1 to 100 seconds. If not specified, a default of 5 seconds is used.
+    
+    
+    Category: Rover / Output
+    
+    
+    Returns an array / a list [left_direction, left_speed, right_direction, right_speed, time]
+    """
+    try:
+        str(left_direction)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "left_direction")) from None
+    try:
+        int(left_speed)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "left_speed")) from None
+    try:
+        str(right_direction)
+    except ValueError:
+        raise ValueError(errormsg_type("str", "right_direction")) from None
+    try:
+        int(right_speed)
+    except ValueError:
+        raise ValueError(errormsg_type("int", "right_speed")) from None
+    try:
+        float(time)
+    except ValueError:
+        raise ValueError(errormsg_type("float", "time")) from None
+    
+    
+    if(left_speed > 255 or left_speed < -255):
+        raise ValueError(errormsg_range(-255, 255, "left_speed"))
+    if(right_speed > 255 or right_speed < -255):
+        raise ValueError(errormsg_range(-255, 255, "right_speed"))
+    if(time > 100 or time < 0.1):
+        raise ValueError(errormsg_range(0.1, 100, "time"))
+    
+    
+    if(left_direction == "cw" or left_direction == "ccw"):
+
+        if(right_direction == "cw" or right_direction == "ccw"):
+            print("Setting the left motor to rotate '" + left_direction + "' with a speed of '" + str(left_speed) + "'. Setting the right motor to rotate '" + right_direction + "' with a speed of '" + str(right_speed) + "'. Both motors are running for '" + str(time) + " seconds'")
+            return [left_direction, left_speed, right_direction, right_speed, time]
+        else:
+            raise("ERROR: Parameter <right_direction> can only be 'cw' or 'ccw'")
+    else:
+        raise("ERROR: Parameter <left_direction> can only be 'cw' or 'ccw'")
+
+###########################################################################################
+
+def waypoint_xythdrn():
+    """
+    Reads the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions, command number of the current waypoint. Returns a list with all these values as elements.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the current waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_prev():
+    """
+    Reads the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions, command number of the previous waypoint.
+
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the previous waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_eta():
+    """
+    Fetches the estimated time to drive to a waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching estimated time to reach next waypoint")
+    return None
+
+###########################################################################################
+
+def path_done():
+    """
+    Returns a value of 0 or 1 depending on whether the Rover is moving (0) or finished with all movement (1).
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Checking if the rover is done with it's path")
+    return None
+
+###########################################################################################
+
+def pathlist_x():
+    """
+    Returns a list of X values from the beginning to and including the current Waypoint X value.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching x values of previous and current waypoints")
+    return None
+
+###########################################################################################
+
+def pathlist_y():
+    """
+    Returns a list of y values from the beginning to and including the current Waypoint Y value.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching y values of previous and current waypoints")
+    return None
+
+###########################################################################################
+
+def pathlist_time():
+    """
+    Returns a list of the time in seconds from the beginning to and including the current Waypoint time value.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching time since first waypoint")
+    return None
+
+###########################################################################################
+
+def pathlist_heading():
+    """
+    Returns a list of the headings from the beginning to and including the current Waypoint heading value.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching headings since first waypoint")
+    return None
+
+###########################################################################################
+
+def pathlist_distance():
+    """
+    Returns a list of the distances traveled from the beginning to and including the current Waypoint distance value.
+
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching distances traveled since first waypoint")
+    return None
+
+###########################################################################################
+
+def pathlist_revs():
+    """
+    Returns a list of the number of revolutions traveled from the beginning to and including the current Waypoint revolutions value.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching wheel revolutions since first waypoint")
+    return None
+
+###########################################################################################
+
+def pathlist_cmdnum():
+    """
+    Returns a list of command numbers for the path.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching list of waypoint numbers since first waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_x():
+    """
+    Returns x coordinate of current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetchin x coordinate of current waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_y():
+    """
+    Returns y coordinate of current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetchin y coordinate of current waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_time():
+    """
+    Returns time spent traveling from previous to current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching time spent travelling to current waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_heading():
+    """
+    Returns absolute heading of current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching absolute heding of current waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_distance():
+    """
+    Returns distance traveled between previous and current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching distance traveled between current and previous waypoint")
+    return None
+
+###########################################################################################
+
+def waypoint_revs():
+    """
+    Returns number of revolutions needed to travel between previous and current waypoint.
+    
+    
+    Category: Rover / Path
+    
+    
+    Returns None
+    """
+    print("Fetching wheel revolutions since last waypoint")
+    return None

@@ -3,9 +3,6 @@ Class containing all TI-Hub commands. Used for debugging
 """
 
 
-from typing import List
-
-
 def errormsg_type(requiredDataType: str, parameter: str):
     msg = "ERROR: Parameter <" + parameter + \
         "> has to be data-type " + requiredDataType + "!"
@@ -54,7 +51,6 @@ def text_at(line: int, text: str, align: str):
     else:
         raise ValueError("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
         
-
 ###########################################################################################
 
 def sleep(seconds: float):
@@ -78,7 +74,6 @@ def sleep(seconds: float):
     else:
         raise ValueError("ERROR: Parameter <seconds> has to be greater then 0!")
         
-
 ###########################################################################################
 
 def get_key():
@@ -451,7 +446,6 @@ def dht(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
         
-
 ###########################################################################################
 
 def ranger(port:str):
@@ -478,7 +472,6 @@ def ranger(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2'")
         
-
 ###########################################################################################
 
 def light_level(port:str):
@@ -506,7 +499,6 @@ def light_level(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
         
-
 ###########################################################################################
 
 def temperature(port:str):
@@ -536,7 +528,6 @@ def temperature(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
         
-
 ###########################################################################################
 
 def moisture(port:str):
@@ -564,7 +555,6 @@ def moisture(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
         
-
 ###########################################################################################
 
 def magnetic(port:str):
@@ -592,8 +582,7 @@ def magnetic(port:str):
         return [port]
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
-        
-
+     
 ###########################################################################################
 
 def vernier(port:str, sensor_type:str):
@@ -635,7 +624,6 @@ def vernier(port:str, sensor_type:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
         
-
 ###########################################################################################
 
 def analog_in(port:str):
@@ -665,7 +653,6 @@ def analog_in(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'")
         
-
 ###########################################################################################
 
 def digital(port:str):
@@ -694,7 +681,6 @@ def digital(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports:  'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
         
-
 ###########################################################################################
 
 def potentiometer(port:str):
@@ -723,7 +709,6 @@ def potentiometer(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
         
-
 ###########################################################################################
 
 def thermistor(port:str):
@@ -752,7 +737,6 @@ def thermistor(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'")
         
-
 ###########################################################################################
 
 def loudness(port:str):
@@ -780,9 +764,7 @@ def loudness(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'IN 1', 'IN 2', 'IN 3'")
         
-
 ###########################################################################################
-
 class colour_input():
 
     """
@@ -906,7 +888,6 @@ class colour_input():
         return None
 
 ###########################################################################################
-
 class bb_port():
     """
     This device provides support for using all 10 BB port pins as a combined digital input/output port. The initialization functions have an optional "mask" parameter that allows the use of the subset of the 10 pins.\n
@@ -982,7 +963,6 @@ def hub_time():
     return None
 
 ###########################################################################################
-
 class rgb_array():
     """
     Provides functions for programming the TI-RGB Array. The initialization function accepts an optional "LAMP" parameter to enable a high-brightness mode for the TI-RGB Array that requires an external power supply.\n
@@ -1146,8 +1126,7 @@ def led(port:str):
         print("Setting port for output device 'led' to '" + port + "'")
         return [port]
     else:
-        raise ValueError("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
-        
+        raise ValueError("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")   
 
 ###########################################################################################
 
@@ -1175,7 +1154,6 @@ def rgb(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports: 'OUT 1', 'OUT 2', 'OUT 3'")
         
-
 ###########################################################################################
 
 def speaker(port:str):
@@ -1204,9 +1182,7 @@ def speaker(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
         
-
 ###########################################################################################
-
 class power():
     """
     Manages functions for controlling external power with the TI-Innovator™ Hub.\n
@@ -1296,7 +1272,6 @@ class power():
         return
 
 ###########################################################################################
-
 class continous_servo():
 
     """
@@ -1435,6 +1410,7 @@ def analog_out(port:str):
     else:
         raise ValueError("ERROR: This device only accepts these Ports:  'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'")
         
+###########################################################################################
 
 class vibration_monitor():
     """
