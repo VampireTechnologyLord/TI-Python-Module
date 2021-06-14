@@ -23,7 +23,12 @@ How to use these modules properly:
 
 - The functions `digital` and `bb_port` are registered each two times in the calculator. If you enter these via the calculators menu, the software is able to differentiate between both of them. If you enter these commands via the keyboard, the system won't know, whether you are choosing the one from category "Add Output Device" or the one from "Add Input Device". Due to pythons programming, I am unable to add these functions two times with different arguments, processing ... with the same name. Therefore, only the ones from "Add Input Device" are currently registered.
 
-- The module `cmath` dont exists. This is due to a module with the exact same name already exists build in to python. Since I am unable to change build-in classes, I can't add the proper functions.
+- The module `cmath` dont exists. This is due to a module with the exact same name already exists build in to python. Since I am unable to change build-in classes, I can't add the proper functions. The same issue occurs for `time`. 
+
+
+
+
+If you know a way to solve one of these issues above, just open an issue tracker! Because clearly, I am not a computer, so i don't know everything ;-).
 
 
 ## Recommendated IDEs
