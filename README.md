@@ -1,9 +1,5 @@
 # TI-Python-Module
 
-## License
-
-This repository is mainly about two files: `ti_hub.py` and `ti_rover.py`. These files are made by me, as a community member, which means, that TI-Nspire™ and I are both not responsible for any changes, deprecations or invalid content! Do not redistribute these files without my permission!
-
 ## How to install this feature / module
 How to use these modules properly:
 ### Accessing the module
