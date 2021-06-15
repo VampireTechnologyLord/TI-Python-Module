@@ -22,7 +22,7 @@ def recall_value(name:str):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [name]
     """
     try:
         str(name)
@@ -30,7 +30,7 @@ def recall_value(name:str):
         raise ValueError(errormsg_type("str", "name")) from None
     
     print("Fetching value of system variable '" + name + "'")
-    return None
+    return [name]
 
 ###########################################################################################
 
@@ -42,10 +42,10 @@ def store_value(name:str, value):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [name, value]
     """
     print("Storing data '" + str(value) + "' to variable '" + name + "'")
-    return None
+    return [name, value]
 
 ###########################################################################################
 
@@ -57,11 +57,11 @@ def recall_list(name:str):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [name]
     """
     
     print("Fetching value of system list '" + name + "'")
-    return None
+    return [name]
 
 ###########################################################################################
 
@@ -73,10 +73,10 @@ def store_list(name:str, list):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [name, list]
     """
     print("Storing data '" + str(list) + "' to variable '" + name + "'")
-    return None
+    return [name, list]
 
 ###########################################################################################
 
@@ -88,10 +88,10 @@ def eval_function(name:str, value):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [name, value]
     """
     print("Evaluating result of '" + name + "' for value '" + str(value) + "'")
-    return None
+    return [name, value]
 
 ###########################################################################################
 
@@ -121,10 +121,10 @@ def get_key(paramter = None):
     Category: TI System
     
     
-    Returns None
+    Returns an array / list: [parameter]
     """
     print("Fetching Key-String for '" + str(paramter) + "'")
-    return None
+    return [paramter]
 
 ###########################################################################################
 
