@@ -28,11 +28,11 @@ def type_error(requiredDataType, requiredDataTypeName:str, parameter):
     except:
         raise TypeError("ERROR: Parameter <" + str(parameter) + "> has to be type '" + requiredDataTypeName + "'") from None
 
-def argument_error(parameter, givenArgument, *validArguments):
+def argument_error(parameter, *validArguments):
     """
     Checks if the given argument is contained in the validArguments.
     """
-    if(givenArgument in validArguments):
+    if(parameter in validArguments):
         return None
     else:
         raise ValueError("ERROR: Parameter <" + str(parameter) + "> can only be " + str(validArguments)) from None
