@@ -1,19 +1,8 @@
 """
 Class containing all TI-Rover commands. Used for debugging
 """
+import __err as err
 
-
-
-def errormsg_type(requiredDataType: str, parameter: str):
-    msg = "ERROR: Parameter <" + parameter + \
-        "> has to be data-type " + requiredDataType + "!"
-    return msg
-
-
-def errormsg_range(rangeMin: float, rangeMax: float, parameter: str):
-    msg = "ERROR: Parameter <" + parameter + \
-        "> has to be in range between " + str(rangeMin) + " and " + str(rangeMax) + "!"
-    return msg
 
 ###########################################################################################
 
@@ -27,32 +16,18 @@ def text_at(line: int, text: str, align: str):
 
     Returns an array / list: [text, line, align]
     """
-    try:
-        int(line)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "line")) from None
 
-    try:
-        str(text)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "text")) from None
+    err.type_error(int, "int", line)
+    err.type_error(str, "str", text)
+    err.type_error(str, "str", align)
 
-    try:
-        str(align)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "align")) from None
+    err.range_error(1, 13, line)
 
-    if(align == "left" or align == "center" or align == "left"):
-        if(line > 0 and line < 14):
-            print("Showing text '" + text + "' at line " +
-                  str(line) + " with alignement '" + align + "' !")
-            return [text, line, align]
-        else:
-            raise ValueError(errormsg_range(1, 13, "line"))
-            
-    else:
-        print("ERROR: Paramteter <align> can only be 'left' or 'right' or 'center'!")
-        return
+    err.argument_error(align, "left", "right", "center")
+
+    print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "' !")
+    return [text, line, align]
+
 
 ###########################################################################################
 
@@ -66,17 +41,15 @@ def sleep(seconds: float):
 
     Returns an array / list: [seconds]
     """
-    try:
-        float(seconds)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "seconds")) from None
 
-    if(seconds > 0):
-        print("Waiting for " + str(seconds) + " seconds")
-        return [seconds]
-    else:
-        print("ERROR: Parameter <seconds> has to be greater then 0!")
-        return
+    err.type_error(float, "float", seconds)
+
+    err.range_error(0, None)
+
+
+    print("Waiting for " + str(seconds) + " seconds")
+    return [seconds]
+
 
 ###########################################################################################
 
@@ -126,40 +99,22 @@ def forward(distance:float, distance_unit:str = "units", speed:float = 1, speed_
     
     Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
-    try:
-        float(distance)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "distance")) from None
-    try:
-        str(distance_unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "distance_unit")) from None
-    try:
-        float(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "speed")) from None
-    try:
-        str(speed_unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "speed_unit")) from None
+
+    err.type_error(float, "float", distance)
+    err.type_error(str, "str", distance_unit)
+    err.type_error(float, "float", speed)
+    err.type_error(str, "str", speed_unit)
+
+    err.range_error(0, None, distance)
+    err.range_error(0.1, 10, speed)
     
-    if(distance > 2147483648 or distance < 0):
-        raise ValueError(errormsg_range(0, 2147483648, "distance"))
-    
-    if(speed > 10 or speed < 0.1):
-        raise ValueError(errormsg_range(0.1, 10, "speed"))
+    err.argument_error(distance_unit, "units", "m", "revs")
+    err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
 
-    if(distance_unit == "units" or distance_unit == "m" or distance_unit == "revs"):
-
-        if(speed_unit == "units/s" or speed_unit == "m/s" or speed_unit == "revs/s"):
-
-            print("Moving Rover forward by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
-            return [distance, distance_unit, speed, speed_unit]
+    print("Moving Rover forward by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
+    return [distance, distance_unit, speed, speed_unit]
         
-        else:
-            raise ValueError("ERROR: Parameter <speed_unit> has to be one of these: 'units/s', 'm/s', 'revs/s'")
-    else:
-        raise ValueError("ERROR: Parameter <distance_units> has to be one of these: 'units', 'm', 'revs'")
+
 
 ###########################################################################################
 
@@ -178,40 +133,20 @@ def backward(distance:float, distance_unit:str = "units", speed:float = 1, speed
     
     Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
-    try:
-        float(distance)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "distance")) from None
-    try:
-        str(distance_unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "distance_unit")) from None
-    try:
-        float(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "speed")) from None
-    try:
-        str(speed_unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "speed_unit")) from None
+    err.type_error(float, "float", distance)
+    err.type_error(str, "str", distance_unit)
+    err.type_error(float, "float", speed)
+    err.type_error(str, "str", speed_unit)
+
+    err.range_error(0, None, distance)
+    err.range_error(0.1, 10, speed)
     
-    if(distance > 2147483648 or distance < 0):
-        raise ValueError(errormsg_range(0, 2147483648, "distance"))
-    
-    if(speed > 10 or speed < 0.1):
-        raise ValueError(errormsg_range(0.1, 10, "speed"))
+    err.argument_error(distance_unit, "units", "m", "revs")
+    err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
 
-    if(distance_unit == "units" or distance_unit == "m" or distance_unit == "revs"):
-
-        if(speed_unit == "units/s" or speed_unit == "m/s" or speed_unit == "revs/s"):
-
-            print("Moving Rover backwards by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
-            return [distance, distance_unit, speed, speed_unit]
+    print("Moving Rover backwards by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
+    return [distance, distance_unit, speed, speed_unit]
         
-        else:
-            raise ValueError("ERROR: Parameter <speed_unit> has to be one of these: 'units/s', 'm/s', 'revs/s'")
-    else:
-        raise ValueError("ERROR: Parameter <distance_units> has to be one of these: 'units', 'm', 'revs'")
 
 
 ###########################################################################################
@@ -226,10 +161,9 @@ def left(degrees:float):
     
     Returns an array / list: [degrees]
     """
-    try:
-        float(degrees)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "degrees")) from None
+
+    err.type_error(float, "float", degrees)
+
     print("Turning rover left by '" + str(degrees) + "' degrees")
     return [degrees]
 
@@ -245,10 +179,8 @@ def right(degrees:float):
     
     Returns an array / list: [degrees]
     """
-    try:
-        float(degrees)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "degrees")) from None
+    err.type_error(float, "float", degrees)
+
     print("Turning rover right by '" + str(degrees) + "' degrees")
     return [degrees]
 
@@ -309,10 +241,8 @@ def stay(time:int=30):
     
     Returns an array / list: [degrees]
     """
-    try:
-        int(time)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "time")) from None
+    err.type_error(int, "int", time)
+
     print("Rover stays at current location for '" + str(time) + "' seconds")
     return [time]
 
@@ -328,14 +258,9 @@ def to(x:float, y:float):
     
     Returns an array / list: [x (gridUnits), y (gridUnits), x (cm), y (cm)]
     """
-    try:
-        float(x)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "x")) from None
-    try:
-        float(y)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "y")) from None
+    err.type_error(float, "float", x)
+    err.type_error(float, "float", y)
+
     
     print("Rover moves to '(" + str(x) + " | " + str(y) + ")' on the virtual grid.")
     return [x, y, x*10, y*10]
@@ -352,14 +277,9 @@ def to_polar(radius:float, theta_degrees:float):
     
     Returns an array / list: [radius, theta_degrees]
     """
-    try:
-        float(radius)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "radius")) from None
-    try:
-        float(theta_degrees)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "theta_degrees")) from None
+    err.type_error(float, "float", radius)
+    err.type_error(float, "float", theta_degrees)
+
     
     print("Rover moves to polar with radius '" + str(radius) + "' and '" + str(theta_degrees) + "' degrees")
     return [radius, theta_degrees]
@@ -379,20 +299,15 @@ def to_angle(degrees:float, unit:str):
     
     Returns an array / list: [degrees, unit]
     """
-    try:
-        float(degrees)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "degrees")) from None
-    try:
-        str(unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "unit")) from None
+    err.type_error(float, "float", degrees)
+    err.type_error(str, "str", unit)
+
+    err.argument_error(unit, "degrees", "radians", "gradians")
     
-    if(unit == "degrees" or unit == "radians" or unit == "gradians"):
-        print("Rover turns by angle '" + str(degrees) + "' with unit type '" + unit + "' degrees")
-        return [degrees, unit]
-    else:
-        raise ValueError("Parameter <unit> can only be 'degrees', 'radians', 'gradians'")
+
+    print("Rover turns by angle '" + str(degrees) + "' with unit type '" + unit + "' degrees")
+    return [degrees, unit]
+
         
 ###########################################################################################
 
@@ -410,29 +325,18 @@ def backward_time(time:float, speed:float = 1, unit:str = "units/s"):
     
     Returns an array / list: [time, speed, unit]
     """
+    err.type_error(float, "float", time)
+    err.type_error(float, "float", speed)
+    err.type_error(str, "str", unit)
 
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
-    try:
-        float(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "speed")) from None
-    try:
-        str(unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "unit")) from None
+    err.range_error(0.1, 100, time)
+    err.range_error(0.1, 10, speed)
 
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
-    if(speed > 10 or speed < 0.1):
-        raise ValueError(errormsg_range(0.1, 10, "speed"))
-    if(unit == "units/s" or unit == "m/s" or unit == "revs/s"):
-        print("Moving the rover backwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
-        return [time, speed, unit]
-    else:
-        raise ValueError("ERROR: Parameter <unit> can only be one of these: 'units/s', 'm/s', 'revs/s'")
+    err.argument_error(unit, "units/s", "m/s", "revs/s")
+
+    print("Moving the rover backwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
+    return [time, speed, unit]
+
 
 ###########################################################################################
 
@@ -451,28 +355,18 @@ def forward_time(time:float, speed:float = 1, unit:str = "units/s"):
     Returns an array / list: [time, speed, unit]
     """
 
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
-    try:
-        float(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "speed")) from None
-    try:
-        str(unit)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "unit")) from None
+    err.type_error(float, "float", time)
+    err.type_error(float, "float", speed)
+    err.type_error(str, "str", unit)
 
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
-    if(speed > 10 or speed < 0.1):
-        raise ValueError(errormsg_range(0.1, 10, "speed"))
-    if(unit == "units/s" or unit == "m/s" or unit == "revs/s"):
-        print("Moving the rover forwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
-        return [time, speed, unit]
-    else:
-        raise ValueError("ERROR: Parameter <unit> can only be one of these: 'units/s', 'm/s', 'revs/s'")
+    err.range_error(0.1, 100, time)
+    err.range_error(0.1, 10, speed)
+
+    err.argument_error(unit, "units/s", "m/s", "revs/s")
+
+    print("Moving the rover forwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
+    return [time, speed, unit]
+    
 
 ###########################################################################################
 
@@ -615,25 +509,15 @@ def colour_rgb(red:float, green:float, blue:float):
     
     Returns an array / a list [red, green, blue]
     """
-    try:
-        float(red)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "red")) from None
-    try:
-        float(green)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "green")) from None
-    try:
-        float(blue)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "blue")) from None
+    err.type_error(float, "float", red)
+    err.type_error(float, "float", green)
+    err.type_error(float, "float", blue)
+
+    err.range_error(0, 255, red)
+    err.range_error(0, 255, green)
+    err.range_error(0, 255, blue)
     
-    if(red > 255 or red < 0):
-        raise ValueError(errormsg_range(0, 255, "red"))
-    if(green > 255 or green < 0):
-        raise ValueError(errormsg_range(0, 255, "green"))
-    if(blue > 255 or blue < 0):
-        raise ValueError(errormsg_range(0, 255, "blue"))
+
     
     print("Setting the RGB-Led to '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
     return [red, green, blue]
@@ -651,21 +535,11 @@ def blink(frequency: float, time: float):
     Returns an array / list: [frequency, time, totalBlinks]
     """
 
-    try:
-        float(frequency)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "frequency")) from None
+    err.type_error(float, "float", frequency)
+    err.type_error(float, "float", time)
 
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
-
-    if(frequency > 20 or frequency < 0.1):
-        raise ValueError(errormsg_range(0.1, 20, "frequency"))
-            
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
+    err.range_error(0.1, 20, frequency)
+    err.range_error(0.1, 100, time)
             
 
     print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
@@ -702,19 +576,12 @@ def motor_left(speed:int, time:float = 5):
     
     Returns an array / a list [speed, time]
     """
-    try:
-        int(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "speed")) from None
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
+    err.type_error(int, "int", speed)
+    err.type_error(float, "float", time)
+
+    err.range_error(-255, 255, speed)
+    err.range_error(0.1, 100, speed)
     
-    if(speed > 255 or speed < -255):
-        raise ValueError(errormsg_range(-255, 255, "speed"))
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
     
     print("Setting the left motor power to 'speed " + str(speed) + "' for a time of '" + str(time) + " seconds'")
     return [float(speed), time]
@@ -734,19 +601,13 @@ def motor_right(speed:int, time:float = 5):
     
     Returns an array / a list [speed, time]
     """
-    try:
-        int(speed)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "speed")) from None
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
-    
-    if(speed > 255 or speed < -255):
-        raise ValueError(errormsg_range(-255, 255, "speed"))
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
+
+    err.type_error(int, "int", speed)
+    err.type_error(float, "float", time)
+
+
+    err.range_error(-255, 255, speed)
+    err.range_error(0.1, 100, speed)
     
     print("Setting the right motor power to 'speed " + str(speed) + "' for a time of '" + str(time) + " seconds'")
     return [float(speed), time]
@@ -763,45 +624,24 @@ def motors(left_direction:str, left_speed:int, right_direction:str, right_speed:
     
     Returns an array / a list [left_direction, left_speed, right_direction, right_speed, time]
     """
-    try:
-        str(left_direction)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "left_direction")) from None
-    try:
-        int(left_speed)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "left_speed")) from None
-    try:
-        str(right_direction)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "right_direction")) from None
-    try:
-        int(right_speed)
-    except ValueError:
-        raise ValueError(errormsg_type("int", "right_speed")) from None
-    try:
-        float(time)
-    except ValueError:
-        raise ValueError(errormsg_type("float", "time")) from None
-    
-    
-    if(left_speed > 255 or left_speed < -255):
-        raise ValueError(errormsg_range(-255, 255, "left_speed"))
-    if(right_speed > 255 or right_speed < -255):
-        raise ValueError(errormsg_range(-255, 255, "right_speed"))
-    if(time > 100 or time < 0.1):
-        raise ValueError(errormsg_range(0.1, 100, "time"))
-    
-    
-    if(left_direction == "cw" or left_direction == "ccw"):
+    err.type_error(str, "str", left_direction)
+    err.type_error(int, "int", left_speed)
+    err.type_error(str, "str", right_direction)
+    err.type_error(int, "int", right_speed)
+    err.type_error(float, "float", time)
 
-        if(right_direction == "cw" or right_direction == "ccw"):
-            print("Setting the left motor to rotate '" + left_direction + "' with a speed of '" + str(left_speed) + "'. Setting the right motor to rotate '" + right_direction + "' with a speed of '" + str(right_speed) + "'. Both motors are running for '" + str(time) + " seconds'")
-            return [left_direction, left_speed, right_direction, right_speed, time]
-        else:
-            raise("ERROR: Parameter <right_direction> can only be 'cw' or 'ccw'")
-    else:
-        raise("ERROR: Parameter <left_direction> can only be 'cw' or 'ccw'")
+    err.range_error(-255, 255, left_speed)
+    err.range_error(-255, 255, right_speed)
+    err.range_error(0.1, 100, time)
+    
+    err.argument_error(left_direction, "cw", "ccw")
+    err.argument_error(right_direction, "cw", "ccw")
+    
+    
+
+    print("Setting the left motor to rotate '" + left_direction + "' with a speed of '" + str(left_speed) + "'. Setting the right motor to rotate '" + right_direction + "' with a speed of '" + str(right_speed) + "'. Both motors are running for '" + str(time) + " seconds'")
+    return [left_direction, left_speed, right_direction, right_speed, time]
+
 
 ###########################################################################################
 
