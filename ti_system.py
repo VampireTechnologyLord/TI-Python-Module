@@ -1,16 +1,7 @@
 """
 A class containing all the TI-System commands
 """
-def errormsg_type(requiredDataType: str, parameter: str):
-    msg = "ERROR: Parameter <" + parameter + \
-        "> has to be data-type " + requiredDataType + "!"
-    return msg
-
-
-def errormsg_range(rangeMin: float, rangeMax: float, parameter: str):
-    msg = "ERROR: Parameter <" + parameter + \
-        "> has to be in range between " + str(rangeMin) + " and " + str(rangeMax) + "!"
-    return msg
+import __err as err
 
 ###########################################################################################
 
@@ -24,10 +15,7 @@ def recall_value(name:str):
     
     Returns an array / list: [name]
     """
-    try:
-        str(name)
-    except ValueError:
-        raise ValueError(errormsg_type("str", "name")) from None
+    err.type_error(str, "str", name)
     
     print("Fetching value of system variable '" + name + "'")
     return [name]
@@ -44,6 +32,7 @@ def store_value(name:str, value):
     
     Returns an array / list: [name, value]
     """
+    err.type_error(str, "str", name)
     print("Storing data '" + str(value) + "' to variable '" + name + "'")
     return [name, value]
 
@@ -59,7 +48,7 @@ def recall_list(name:str):
     
     Returns an array / list: [name]
     """
-    
+    err.type_error(str, "str", name)
     print("Fetching value of system list '" + name + "'")
     return [name]
 
@@ -75,6 +64,8 @@ def store_list(name:str, list):
     
     Returns an array / list: [name, list]
     """
+    err.type_error(str, "str", name)
+    
     print("Storing data '" + str(list) + "' to variable '" + name + "'")
     return [name, list]
 
@@ -90,6 +81,7 @@ def eval_function(name:str, value):
     
     Returns an array / list: [name, value]
     """
+    err.type_error(str, "str", name)
     print("Evaluating result of '" + name + "' for value '" + str(value) + "'")
     return [name, value]
 
@@ -110,7 +102,7 @@ def get_platform():
 
 ###########################################################################################
 
-def get_key(paramter = None):
+def get_key(parameter = None):
     """
     Returns a string representing the key pressed. The '1' key returns "1", 'esc' returns "esc", and so on. When called without any parameters - get_key() - it  returns immediately. When called with a parameter - get_key(1) - it waits until a key is pressed.
 
@@ -123,8 +115,8 @@ def get_key(paramter = None):
     
     Returns an array / list: [parameter]
     """
-    print("Fetching Key-String for '" + str(paramter) + "'")
-    return [paramter]
+    print("Fetching Key-String for '" + str(parameter) + "'")
+    return [parameter]
 
 ###########################################################################################
 
