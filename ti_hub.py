@@ -58,7 +58,7 @@ def get_key():
     """
     key = input("Requesting Key input: ")
     print("Detecting pressed key '" + key + "'")
-    return [key]
+    return key
 
 ###########################################################################################
 
