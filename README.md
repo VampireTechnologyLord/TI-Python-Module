@@ -6,7 +6,7 @@ How to use these modules properly:
 
 1. Download all files
 2. Delete `.github` and `.gitignore`, as you won't need them.
-3. Copy both files into your workspace
+3. Copy the other files into your workspace
 4. Create an additional python file
 5. Import the modules (example: `import ti_rover as rv`)
 
