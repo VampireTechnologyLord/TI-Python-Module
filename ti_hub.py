@@ -1448,5 +1448,5 @@ class squarewave():
         print("[Square Wave] Turning squarewave off")
         return None
 
-##digital - out
-##bb_port - out
+##digital - out <> just use as a class with __init__ method as default. add additional submethods later
+##bb_port - out <> ''

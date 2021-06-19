@@ -260,7 +260,7 @@ def clear_rect(x_start:float, y_start:float, width:float, height:float):
 
 def set_colour(red:int, green:int, blue:int):
     """
-    Description
+    Sets the color of the shape(s) that follow in the program until another color is set. 
     
     
     Category: TI Draw / Control
@@ -268,5 +268,36 @@ def set_colour(red:int, green:int, blue:int):
     
     Returns an array / list: [red, green, blue]
     """
+    err.type_error(int, "int", red)
+    err.type_error(int, "int", green)
+    err.type_error(int, "int", blue)
+
+    err.range_error(0, 255, red)
+    err.range_error(0, 255, green)
+    err.range_error(0, 255, blue)
     
     
+
+    print("Setting drawing colour to red '" +str(red) + "', green '" + str(green) + "', blue '" + str(blue) + "'")
+    return [red, green, blue]
+    
+###########################################################################################
+
+def set_pen(thickness:str, stil:str):
+    """
+    Sets the specified thickness and style of the border when drawing shapes (not applicable when using fill commands). 
+    
+    
+    Category: TI Draw / Control
+    
+    
+    Returns an array / list: [thickness, stil]
+    """
+    err.type_error(str, "str", thickness)
+    err.type_error(str, "str", stil)
+
+    err.argument_error(thickness, "thin", "medium", "thick")
+    err.argument_error(stil, "solid", "dotted", "dashed")
+
+    print("Setting Drawing Pen thickness to '" + thickness + "' and pen stil to '" + stil + "'")
+    return [thickness, stil]
