@@ -7,7 +7,7 @@ How to use these modules properly:
 1. Download the file `ti_hub.py` and `ti_rover.py`
 2. Copy both files into your workspace
 3. Create an additional python file
-4. Import both files (example shown in `example.py`)
+4. Import the modules (example: `import ti_rover as rv`)
 
 ### Putting the program on the calculator / rover
 
