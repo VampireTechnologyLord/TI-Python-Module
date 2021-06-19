@@ -4,17 +4,17 @@
 How to use these modules properly:
 ### Accessing the module
 
-1. Download all files
-2. Delete `.github` and `.gitignore`, as you won't need them.
-3. Copy the other files into your workspace
-4. Create an additional python file
-5. Import the modules (example: `import ti_rover as rv`)
+1. Install the package using `pip install ti-python-module`
+2. Copy the other files into your workspace
+3. Create an additional python file
+4. Import the modules (example: `import ti_rover as rv`)
 
 ### Putting the program on the calculator / rover
 
 1. Check, if you have used any of the returned values from the methods. Since these are NOT implemented on the TI-CAS itself, these won't work. Just comment them out, so you will be able to use them again, when editing the program later again
-2. Save the python file
-3. Copy ONLY your python file to the calculator
+2. Change the import so you don't habe the `ti_python_module` part
+3. Save the python file
+4. Copy ONLY your python file to the calculator
 
 ## Known Problems / Issues
 

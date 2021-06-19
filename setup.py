@@ -4,7 +4,7 @@ import codecs
 import os
 
 
-VERSION = "0.8.0"
+VERSION = "0.8.1"
 
 setup(
     name="ti-python-module",
