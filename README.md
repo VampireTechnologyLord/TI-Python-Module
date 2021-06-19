@@ -4,10 +4,11 @@
 How to use these modules properly:
 ### Accessing the module
 
-1. Download the file `ti_hub.py` and `ti_rover.py`
-2. Copy both files into your workspace
-3. Create an additional python file
-4. Import the modules (example: `import ti_rover as rv`)
+1. Download all files
+2. Delete `.github` and `.gitignore`, as you won't need them.
+3. Copy both files into your workspace
+4. Create an additional python file
+5. Import the modules (example: `import ti_rover as rv`)
 
 ### Putting the program on the calculator / rover
 

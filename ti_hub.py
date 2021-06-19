@@ -54,10 +54,11 @@ def get_key():
     Category: Hub / Miscellaneous
 
 
-    Returns None
+    Returns [pressed key]
     """
-    print("Getting Pressed key")
-    return None
+    key = input("Requesting Key input: ")
+    print("Detecting pressed key '" + key + "'")
+    return [key]
 
 ###########################################################################################
 
