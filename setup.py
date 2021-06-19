@@ -4,7 +4,7 @@ import codecs
 import os
 
 
-VERSION = "0.7.6"
+VERSION = "0.7.7"
 
 setup(
     name="ti-python-module",
@@ -16,12 +16,12 @@ setup(
     packages=find_packages(),
 #    install_requires=[],
     keywords=["python", "ti", "texas instruments"],
-    classifiers=[
-        "Developement Status :: 1 - Planning",
-        "Intended Audience :: Developers",
-        "Programming Language :: Python :: 3",
-        "Operation System :: Unix",
-        "Operation System :: MacOS, MacOS X",
-        "Operation System :: Microsoft :: Windows",
-    ]
+    # classifiers=[
+    #     "Developement Status :: 1 - Planning",
+    #     "Intended Audience :: Developers",
+    #     "Programming Language :: Python :: 3",
+    #     "Operation System :: Unix",
+    #     "Operation System :: MacOS, MacOS X",
+    #     "Operation System :: Microsoft :: Windows",
+    # ]
 )
