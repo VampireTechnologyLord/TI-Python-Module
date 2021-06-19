@@ -4,7 +4,7 @@ import codecs
 import os
 
 
-VERSION = "0.7.4"
+VERSION = "0.7.5"
 DESCRIPTION: "TI-Python Debugging"
 
 setup(
