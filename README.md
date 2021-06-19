@@ -7,7 +7,7 @@ How to use these modules properly:
 1. Install the package using `pip install ti-python-module`
 2. Copy the other files into your workspace
 3. Create an additional python file
-4. Import the modules (example: `import ti_rover as rv`)
+4. Import the modules (examples: `from ti_python_module.ti_hub import *` or `from ti_python_module import ti_rover as rv`)
 
 ### Putting the program on the calculator / rover
 
