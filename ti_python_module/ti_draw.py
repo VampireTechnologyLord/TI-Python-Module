@@ -1,4 +1,4 @@
-import err
+import ti_python_module.err as err
 
 
 """

@@ -1,4 +1,4 @@
-import err
+import ti_python_module.err as err
 """
 Class containing all TI-Hub commands. Used for debugging
 """
