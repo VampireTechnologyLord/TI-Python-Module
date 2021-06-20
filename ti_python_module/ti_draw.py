@@ -1,4 +1,4 @@
-import __err as err
+import err
 
 
 """

@@ -1,7 +1,7 @@
 """
 Class containing all TI-Rover commands. Used for debugging
 """
-import __err as err
+import err
 
 
 ###########################################################################################

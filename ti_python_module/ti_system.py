@@ -1,7 +1,7 @@
 """
 A class containing all the TI-System commands
 """
-import __err as err
+import err
 
 ###########################################################################################
 
