@@ -27,7 +27,7 @@ def draw_line(x1:float, y1:float, x2:float, y2:float):
     err.type_error(float, "float", x2)
     err.type_error(float, "float", y2)
     
-    print("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2), + " | " + str(y2) + " )")
+    print("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2) + " | " + str(y2) + " )")
     return [x1, y1, x2, y2]
 
 ###########################################################################################
