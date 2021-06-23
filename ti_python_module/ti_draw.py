@@ -301,3 +301,72 @@ def set_pen(thickness:str, stil:str):
 
     print("Setting Drawing Pen thickness to '" + thickness + "' and pen stil to '" + stil + "'")
     return [thickness, stil]
+
+###########################################################################################
+
+def set_window(x_min:int, x_max:int, y_min:int, y_max:int):
+    """
+    Sets the size of the window in which any shapes will be drawn. This function is useful to resize the window to match the data or to change the origin (0,0) of the drawing canvas.
+    
+    
+    Category: TI Draw / Control
+    
+    
+    Returns an array / list: [x_min, x_max, y_min, y_max]
+    """
+    err.type_error(int, "int", x_min)
+    err.type_error(int, "int", x_max)
+    err.type_error(int, "int", y_min)
+    err.type_error(int, "int", y_max)
+
+    if(x_min >= x_max):
+        raise ValueError("ERROR: minimum value has to be smaller then maximum value")
+    if(x_min >= x_max):
+        raise ValueError("ERROR: minimum value has to be smaller then maximum value")
+
+    print("Setting Drawing window from (" + str(x_min) + " | " + str(y_min) + " ) to (" + str(x_max) + " | " + str(y_max) + " )")
+    return [x_min, x_max, y_min, y_max]
+
+###########################################################################################
+
+def get_screen_dim():
+    """
+    Returns the xmax and ymax of the screen dimensions.
+    
+    
+    Category: TI Draw / Control
+    
+    
+    Returns None
+    """
+    print("Getting max coordinates of screen / window")
+    return None
+
+###########################################################################################
+
+def use_buffer():
+    """
+    Enables an off-screen buffer to speed up drawing.
+    
+    
+    Category: TI Draw / Control
+    
+    
+    Returns None 
+    """
+    print("Enabeled off-screen buffer")
+    return None
+
+###########################################################################################
+
+def paint_buffer():
+    """
+    Description
+    
+    
+    Category: TI Draw / Control
+    
+    
+    Returns an array / list: 
+    """
+    print("Displaying buffered output")

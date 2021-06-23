@@ -65,6 +65,4 @@ from ti_python_module.ti_draw import *
 
 ########################################################################
 
-from ti_python_module.err import argument_error
-from ti_python_module.err import range_error
-from ti_python_module.err import type_error
+from ti_python_module.err import *
