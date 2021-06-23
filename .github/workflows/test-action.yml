@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+    inputs:
+      echo_text:
+        description: "Echo Message"
+        required: true
+        default: "Hello, World!"
+
+      name:
+        description: "Name"
+        required: true
+    
+jobs:
+  EchoMessage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "$ {{ github.event.inputs.echo_text}}"
