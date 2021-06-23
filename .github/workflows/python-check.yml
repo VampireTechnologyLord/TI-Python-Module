@@ -1,8 +1,8 @@
 name: Check Python Package
 
 on:
-  release:
-    types: [published]
+  push:
+
 
 jobs:
   deploy:
