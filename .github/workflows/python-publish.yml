@@ -32,6 +32,8 @@ jobs:
 
 
   publish:
+
+    needs: code-check
     runs-on: ubuntu-latest
 
     steps:
