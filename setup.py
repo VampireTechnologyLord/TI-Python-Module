@@ -3,8 +3,11 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
+def readme():
+    with open('README.md') as f:
+        return f.read()
 
-VERSION = "0.8.8"
+VERSION = "0.8.9"
 
 setup(
     name="ti-python-module",
@@ -13,6 +16,7 @@ setup(
     author_email="<elias.freund@ewe.net>",
     description="TI-Python Debugging",
     long_description_content_type="text/markdown",
+    long_descripion=readme(),
     packages=find_packages(),
     install_requires=['multimethod'],
     keywords=["python", "ti", "texas instruments"],
