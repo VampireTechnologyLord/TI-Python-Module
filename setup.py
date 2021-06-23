@@ -14,7 +14,7 @@ setup(
     description="TI-Python Debugging",
     long_description_content_type="text/markdown",
     packages=find_packages(),
-#    install_requires=[],
+    install_requires=['multimethod'],
     keywords=["python", "ti", "texas instruments"],
     # classifiers=[
     #     "Developement Status :: 1 - Planning",
