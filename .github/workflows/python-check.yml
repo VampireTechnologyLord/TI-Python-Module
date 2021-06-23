@@ -6,7 +6,7 @@ on:
 
 
 jobs:
-  deploy:
+  code-check:
 
     runs-on: ubuntu-latest
 
