@@ -2,6 +2,7 @@ name: Check Python Package
 
 on:
   push:
+  workflow_dispatch:
 
 
 jobs:
