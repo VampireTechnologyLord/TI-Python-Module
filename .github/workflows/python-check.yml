@@ -26,6 +26,7 @@ jobs:
     needs: code-check
     
     steps:
-      - uses: actions/checkout@v2
-      - name: Build package
-        run: python -m build
+    - uses: actions/checkout@v2
+    - name: Build package
+      run: |
+        python -m build
