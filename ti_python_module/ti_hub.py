@@ -529,7 +529,7 @@ class light_level():
             
 ###########################################################################################
 
-def temperature(port:str):
+class temperature():
     """
     This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
     
@@ -542,14 +542,44 @@ def temperature(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        
+        """
+        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
+        
+        Please Note, that this method will throw an ERROR with this library!
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'temperature' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'temperature' to '" + port + "'")
+        return
+
+
+    def measurement(self):
+        """
+        Gets the measured temperature.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[temperature] getting measued temperature")
+        return None
         
 ###########################################################################################
 
