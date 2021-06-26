@@ -1,4 +1,5 @@
 import ti_python_module.err as err
+from multimethod import multimethod
 """
 Class containing all TI-Hub commands. Used for debugging
 """
@@ -524,28 +525,6 @@ def analog_in(port:str):
     print("Setting port for input device 'analog_in' to '" + port + "'")
     return [port]
         
-###########################################################################################
-
-def digital(port:str):
-    """
-    This device outputs the current state of the digital pin connected to the 'DIGITAL' object, or the cached state of the digital output value last 'SET' to the object.
-
-
-
-    Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
-
-
-    Category: Hub / Add Input Device
-
-
-    Returns an array / list: [port]
-    """
-
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
-
-    print("Setting port for input device 'digital' to '" + port + "'")
-    return [port]
         
 ###########################################################################################
 
@@ -732,61 +711,6 @@ class colour_input():
         """
         print("[Colour_Input] fetching gray value")
         return None
-
-###########################################################################################
-class bb_port():
-    """
-    This device provides support for using all 10 BB port pins as a combined digital input/output port. The initialization functions have an optional "mask" parameter that allows the use of the subset of the 10 pins.\n
-    • read_port(): Reads the current values on the input pins of the BB port.\n
-    • write_port(value): Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
-
-
-    Category: Hub / Add Input Device
-
-
-    Returns None
-    """
-
-    def __init__(self, mask:int) -> None:
-        """
-        This device provides support for using all 10 BB port pins as a combined digital input/output port. The initialization functions have an optional "mask" parameter that allows the use of the subset of the 10 pins.\n
-        • read_port(): Reads the current values on the input pins of the BB port.\n
-        • write_port(value): Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
-        """
-
-        err.type_error(int, "int", mask)
-        err.range_error(-1, 1024, mask)
-
-
-        print("Setting mask for input device 'bb_port' to '" + str(mask) + "'")
-        return 
-
-
-            
-
-    def read_port(self):
-        """
-        Reads the current values on the input pins of the BB port.\n
-        """
-        print("[bb_port] reading ports")
-        return
-    
-    def write_port(self ,value:int):
-        """
-        Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
-
-
-        Returns an array / list: [value]
-        """
-        err.type_error(int, "int", value)
-        print("[bb_port] writing value " + str(value))
-        return [value]
 
 ###########################################################################################
 
@@ -1449,5 +1373,160 @@ class squarewave():
         print("[Square Wave] Turning squarewave off")
         return None
 
-##digital - out <> just use as a class with __init__ method as default. add additional submethods later
-##bb_port - out <> ''
+
+class digital():
+    """
+    INPUT: This device outputs the current state of the digital pin connected to the 'DIGITAL' object, or the cached state of the digital output value last 'SET' to the object.\n
+    OUTPUT: Interface for controlling a digital output
+
+
+
+    INPUT: Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'\n
+    INPUT: Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
+
+
+    Category: Hub / Add Input Device\n
+    Category: Hub / Add Output Device
+
+
+    Returns None
+    """
+
+    def __init__(self, port:str) -> None:
+        """
+        INPUT: This device outputs the current state of the digital pin connected to the 'DIGITAL' object, or the cached state of the digital output value last 'SET' to the object.\n
+        OUTPUT: Interface for controlling a digital output
+
+
+
+        INPUT: Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'\n
+        INPUT: Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
+
+
+        Category: Hub / Add Input Device\n
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "IN 1", "IN 2", "IN 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
+
+        print("Setting port for input / output device 'digital' to '" + port + "'")
+
+
+    def measurement():
+        """
+        Returns the value of the digital input device
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("Measuring value of digital inout device")
+
+
+    def set(value:int):
+        """
+        Sets the digital output to the value specified by "value" (0 or 1).
+
+
+        Category: Hub / Add Output Device
+
+
+        Returns an array / list: [value]
+        """
+
+        err.type_error(int, "int", value)
+        err.range_error(0, 1, value)
+
+        print("Setting digital outout to '" + str(value) + "'")
+        return [value]
+
+
+    def on():
+        """
+        Sets the state of the digital output to high (1).
+
+
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+        print("Setting state of digital output device to 'on' (1)")
+        return None
+
+    def off():
+        """
+        Sets the state of the digital output to high (1).
+
+
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+        print("Setting state of digital output device to 'off' (0)")
+        return None
+
+###########################################################################################
+
+class bb_port():
+    """
+    This device provides support for using all 10 BB port pins as a combined digital input/output port. The initialization functions have an optional "mask" parameter that allows the use of the subset of the 10 pins.\n
+    • read_port(): Reads the current values on the input pins of the BB port.\n
+    • write_port(value): Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
+
+
+    Category: Hub / Add Input Device\n
+    Category: Hub / Add Output Device
+
+
+    Returns None
+    """
+
+    def __init__(self, mask:int) -> None:
+        """
+        This device provides support for using all 10 BB port pins as a combined digital input/output port. The initialization functions have an optional "mask" parameter that allows the use of the subset of the 10 pins.\n
+        • read_port(): Reads the current values on the input pins of the BB port.\n
+        • write_port(value): Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
+
+
+        Category: Hub / Add Input Device\n
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+
+        err.type_error(int, "int", mask)
+        err.range_error(-1, 1024, mask)
+
+
+        print("Setting mask for input / output device 'bb_port' to '" + str(mask) + "'")
+        return 
+
+
+            
+
+    def read_port(self):
+        """
+        Reads the current values on the input pins of the BB port.\n
+        """
+        print("[bb_port] reading ports")
+        return
+    
+    def write_port(self ,value:int):
+        """
+        Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
+
+
+        Returns an array / list: [value]
+        """
+        err.type_error(int, "int", value)
+        print("[bb_port] writing value " + str(value))
+        return [value]
