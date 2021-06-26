@@ -504,6 +504,7 @@ class light_level():
         Returns None
         """
         print("[light_level] getting measured brightness")
+        return None
 
     def range(self, min:int, max:int):
         """
@@ -583,7 +584,7 @@ class temperature():
         
 ###########################################################################################
 
-def moisture(port:str):
+class moisture():
     """
     This device outputs the moisture sensor reading.
 
@@ -594,14 +595,62 @@ def moisture(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the moisture sensor reading.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'moisture' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'moisture' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured moisture.
+        
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[moisture] getting measured moisture")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the moisture sensor.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[moisture] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
         
 ###########################################################################################
 
