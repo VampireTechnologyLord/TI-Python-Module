@@ -413,7 +413,7 @@ class dht():
       
 ###########################################################################################
 
-def ranger(port:str):
+class ranger():
     """
     This device outputs the current distance measurement from the specified ultrasonic ranger.
 
@@ -426,11 +426,36 @@ def ranger(port:str):
     Returns an array / list: [port]
     """
 
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the current distance measurement from the specified ultrasonic ranger.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2")
-    print("Setting port for input device 'ranger' to '" + port + "'")    
-    return [port]
+        Available Ports: 'IN 1', 'IN 2'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2")
+        print("Setting port for input device 'ranger' to '" + port + "'")    
+        return
+
+    def measurement(self):
+        """
+        Returns the measured values from the ultrasonic-ranger sensor in cm.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[ultrasonic] getting measured distance in cm")
         
 ###########################################################################################
 
