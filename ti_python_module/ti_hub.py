@@ -333,7 +333,7 @@ class brightness():
 
 ###########################################################################################
 
-def dht(port:str):
+class dht():
     """
     This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status.
 
@@ -346,12 +346,70 @@ def dht(port:str):
     Returns an array / list: [port]
     """
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2")
+    def __init__(self, port:str) -> None:
 
-    
-    print("Setting port for input device 'dht' to '" + port + "'")
-    return [port]
+        """
+        This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status.
+
+
+        Available Ports: 'IN 1', 'IN 2'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [port]
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2")
+
+        
+        print("Setting port for input device 'dht' to '" + port + "'")
+        return
+
+
+    def temp_measurement(self):
+        """
+        Measures the temperature from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured temperature")
+        return None
+
+    def humidity_measurement(self):
+        """
+        Measures the humidity from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured humidity")
+        return None
+
+    def t_h_measurement(self):
+        """
+        Measures the temperature and the humidity from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured temperature and humidity")
+        return None
       
 ###########################################################################################
 
@@ -1416,7 +1474,7 @@ class digital():
         print("Setting port for input / output device 'digital' to '" + port + "'")
 
 
-    def measurement():
+    def measurement(self):
         """
         Returns the value of the digital input device
 
@@ -1429,7 +1487,7 @@ class digital():
         print("Measuring value of digital inout device")
 
 
-    def set(value:int):
+    def set(self ,value:int):
         """
         Sets the digital output to the value specified by "value" (0 or 1).
 
@@ -1447,7 +1505,7 @@ class digital():
         return [value]
 
 
-    def on():
+    def on(self):
         """
         Sets the state of the digital output to high (1).
 
@@ -1460,7 +1518,7 @@ class digital():
         print("Setting state of digital output device to 'on' (1)")
         return None
 
-    def off():
+    def off(self):
         """
         Sets the state of the digital output to high (1).
 
