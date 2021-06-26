@@ -1,0 +1,18 @@
+name: Project Issue Labeler
+
+on:
+  project_card:
+    types:
+      - "converted"
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Label issues
+        uses: andymckay/labeler@1.0.2
+        with:
+          add-labels: "project, confirmed"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
