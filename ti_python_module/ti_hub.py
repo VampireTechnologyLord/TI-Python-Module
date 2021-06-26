@@ -343,7 +343,7 @@ class dht():
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
     def __init__(self, port:str) -> None:
@@ -358,7 +358,7 @@ class dht():
         Category: Hub / Add Input Device
 
 
-        Returns an array / list: [port]
+        Returns None
         """
 
         err.type_error(str, "str", port)
@@ -423,7 +423,7 @@ class ranger():
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
     def __init__(self, port:str) -> None:
@@ -459,7 +459,7 @@ class ranger():
         
 ###########################################################################################
 
-def light_level(port:str):
+class light_level():
     """
     This device outputs the brightness level from the external light level (brightness) sensor.
 
@@ -470,16 +470,63 @@ def light_level(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
-    
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the brightness level from the external light level (brightness) sensor.
 
-    print("Setting port for input device 'light_level' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
         
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'light_level' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured light-level value.
+        
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[light_level] getting measured brightness")
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the light_level sensor.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[light_level] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
+            
 ###########################################################################################
 
 def temperature(port:str):
