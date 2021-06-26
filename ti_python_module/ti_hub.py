@@ -654,7 +654,7 @@ class moisture():
         
 ###########################################################################################
 
-def magnetic(port:str):
+class magnetic():
     """
     This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
 
@@ -666,15 +666,71 @@ def magnetic(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'magnetic' to '" + port + "'")
-    return [port]
-     
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'magnetic' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured magnetic value
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[magnetic] measuring magnetic value")
+        return None
+
+    def magnet_close(self):
+        """
+        Says, whether a magnet is close, by checking if the magnetic value is over the threshold. This can be changed using the threshold function.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[magnetic] checking if magnet is close (magnetic value is over threshold)")
+        return None
+
+    def trigger(self, threshold:int):
+        """
+        Sets the threshold of the magnetic value, at which the magnet_close functions triggers. This ranges from 0 to 16383. The default is 150.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [threshold]
+        """
+        err.type_error(int, "int", threshold)
+        err.range_error(0, 16383)
+
+        print("[magnetic] setting threshold to '" + str(threshold) + "'")
+        return [threshold]
+        
 ###########################################################################################
 
 def vernier(port:str, sensor_type:str):
