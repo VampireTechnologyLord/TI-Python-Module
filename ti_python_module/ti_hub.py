@@ -976,7 +976,7 @@ class potentiometer():
         return [min, max]
 ###########################################################################################
 
-def thermistor(port:str):
+class thermistor():
     """
     This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function.
 
@@ -988,14 +988,54 @@ def thermistor(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-    print("Setting port for input device 'thermistor' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
+
+        print("Setting port for input device 'thermistor' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the 'thermistor'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[thermistor] measuring sensor value")
+        return None
+
+    def calibrate(self, c1, c2, c3, r):
+        """
+        Calibrates the 'potentiomter'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [c1, c2, c3, r]
+        """
+        print("[thermistor] calibrating with '" + str(c1) + "', '" +str(c2) + "', '" +str(c3) + "' and '" + str(r))
+        return [c1, c2, c3, r]
         
 ###########################################################################################
 
