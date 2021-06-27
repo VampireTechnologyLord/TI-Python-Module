@@ -730,10 +730,10 @@ class magnetic():
 
         print("[magnetic] setting threshold to '" + str(threshold) + "'")
         return [threshold]
-        
+
 ###########################################################################################
 
-def vernier(port:str, sensor_type:str):
+class vernier():
     """
     This device reads the value from the vernier analog sensor specified by the <sensor_type>.\n
     Supported Features:\n
@@ -756,15 +756,77 @@ def vernier(port:str, sensor_type:str):
 
     Returns an array / list: [port]
     """
+    def __init__(self, port:str, sensor_type:str) -> None:
+        """
+        This device reads the value from the vernier analog sensor specified by the <sensor_type>.\n
+        Supported Features:\n
+        • temperature - Stainless Steel Temperature sensor.\n
+        • lightlevel - TI Light level sensor.\n
+        • pressure - Original gas pressure sensor\n
+        • pressure2 - Newer gas pressure sensor.\n
+        • pH - pH sensor.\n
+        • force10 - ±10 N setting, Dual Force Sensor.\n
+        • force50 - ±50 N setting, Dual Force Sensor.\n
+        • accelerometer - Low-G Accelerometer.\n
+        • generic - Allows setting of other sensors not supported directly above, and use of the calibrate() API above to set equation coefficients\n<
 
-    err.type_error(str, "str", port)
-    err.type_error(str, "str", sensor_type)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
-    err.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic")
 
-    print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
 
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        
+
+        err.type_error(str, "str", port)
+        err.type_error(str, "str", sensor_type)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+        err.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic")
+
+        print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value of the set sensor type.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[vernier] measuring value from set sensor type")
+        return None
+
+    def calibrate(a, b, c = None, d = None):
+        """
+        Calibrates the sensor.
+        
+        
+        Use type 1: a, b ==> linear: ax + b\n
+        Use type 2: a, b, c, d
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [a, b, c, d]
+        """
+        if(c == None and d == None):
+            print("[vernier] calibrating linearly with '" + str(a) + "' and '" + str(b) + "'")
+        elif(c != None and d == None):
+            raise ValueError("ERROR: If you specify 'c' you also need to specify 'd'")
+        else:
+            print("[vernier] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
+
+        return [a, b, c, d]
+
+        
         
 ###########################################################################################
 
