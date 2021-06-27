@@ -1039,7 +1039,7 @@ class thermistor():
         
 ###########################################################################################
 
-def loudness(port:str):
+class loudness():
     """
     This device supports sound loudness sensors.
 
@@ -1050,15 +1050,63 @@ def loudness(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device supports sound loudness sensors.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'loudness' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'loudness' to '" + port + "'")
+        return
         
+    def measurement(self):
+        """
+        Outputs the measured value from the 'loudness'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[loudness] measuring sensor value")
+        return None
+
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the 'loudness'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[loudness] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
 ###########################################################################################
 class colour_input():
 
