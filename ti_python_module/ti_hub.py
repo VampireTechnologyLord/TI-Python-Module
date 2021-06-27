@@ -333,7 +333,7 @@ class brightness():
 
 ###########################################################################################
 
-def dht(port:str):
+class dht():
     """
     This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status.
 
@@ -343,19 +343,77 @@ def dht(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2")
+    def __init__(self, port:str) -> None:
 
-    
-    print("Setting port for input device 'dht' to '" + port + "'")
-    return [port]
+        """
+        This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status.
+
+
+        Available Ports: 'IN 1', 'IN 2'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2")
+
+        
+        print("Setting port for input device 'dht' to '" + port + "'")
+        return
+
+
+    def temp_measurement(self):
+        """
+        Measures the temperature from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured temperature")
+        return None
+
+    def humidity_measurement(self):
+        """
+        Measures the humidity from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured humidity")
+        return None
+
+    def t_h_measurement(self):
+        """
+        Measures the temperature and the humidity from the dht sensor
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        print("[dht] getting measured temperature and humidity")
+        return None
       
 ###########################################################################################
 
-def ranger(port:str):
+class ranger():
     """
     This device outputs the current distance measurement from the specified ultrasonic ranger.
 
@@ -365,18 +423,43 @@ def ranger(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the current distance measurement from the specified ultrasonic ranger.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2")
-    print("Setting port for input device 'ranger' to '" + port + "'")    
-    return [port]
+        Available Ports: 'IN 1', 'IN 2'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2")
+        print("Setting port for input device 'ranger' to '" + port + "'")    
+        return
+
+    def measurement(self):
+        """
+        Returns the measured values from the ultrasonic-ranger sensor in cm.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[ultrasonic] getting measured distance in cm")
         
 ###########################################################################################
 
-def light_level(port:str):
+class light_level():
     """
     This device outputs the brightness level from the external light level (brightness) sensor.
 
@@ -387,19 +470,67 @@ def light_level(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
 
-    
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the brightness level from the external light level (brightness) sensor.
 
-    print("Setting port for input device 'light_level' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
         
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'light_level' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured light-level value.
+        
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[light_level] getting measured brightness")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the light_level sensor.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[light_level] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
+            
 ###########################################################################################
 
-def temperature(port:str):
+class temperature():
     """
     This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
     
@@ -412,18 +543,48 @@ def temperature(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        
+        """
+        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
+        
+        Please Note, that this method will throw an ERROR with this library!
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'temperature' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'temperature' to '" + port + "'")
+        return
+
+
+    def measurement(self):
+        """
+        Gets the measured temperature.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[temperature] getting measued temperature")
+        return None
         
 ###########################################################################################
 
-def moisture(port:str):
+class moisture():
     """
     This device outputs the moisture sensor reading.
 
@@ -434,18 +595,66 @@ def moisture(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device outputs the moisture sensor reading.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'moisture' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'moisture' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured moisture.
+        
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[moisture] getting measured moisture")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the moisture sensor.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[moisture] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
         
 ###########################################################################################
 
-def magnetic(port:str):
+class magnetic():
     """
     This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
 
@@ -457,18 +666,74 @@ def magnetic(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'magnetic' to '" + port + "'")
-    return [port]
-     
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'magnetic' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Returns the measured magnetic value
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[magnetic] measuring magnetic value")
+        return None
+
+    def magnet_close(self):
+        """
+        Says, whether a magnet is close, by checking if the magnetic value is over the threshold. This can be changed using the threshold function.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[magnetic] checking if magnet is close (magnetic value is over threshold)")
+        return None
+
+    def trigger(self, threshold:int):
+        """
+        Sets the threshold of the magnetic value, at which the magnet_close functions triggers. This ranges from 0 to 16383. The default is 150.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [threshold]
+        """
+        err.type_error(int, "int", threshold)
+        err.range_error(0, 16383)
+
+        print("[magnetic] setting threshold to '" + str(threshold) + "'")
+        return [threshold]
+
 ###########################################################################################
 
-def vernier(port:str, sensor_type:str):
+class vernier():
     """
     This device reads the value from the vernier analog sensor specified by the <sensor_type>.\n
     Supported Features:\n
@@ -491,19 +756,81 @@ def vernier(port:str, sensor_type:str):
 
     Returns an array / list: [port]
     """
+    def __init__(self, port:str, sensor_type:str) -> None:
+        """
+        This device reads the value from the vernier analog sensor specified by the <sensor_type>.\n
+        Supported Features:\n
+        • temperature - Stainless Steel Temperature sensor.\n
+        • lightlevel - TI Light level sensor.\n
+        • pressure - Original gas pressure sensor\n
+        • pressure2 - Newer gas pressure sensor.\n
+        • pH - pH sensor.\n
+        • force10 - ±10 N setting, Dual Force Sensor.\n
+        • force50 - ±50 N setting, Dual Force Sensor.\n
+        • accelerometer - Low-G Accelerometer.\n
+        • generic - Allows setting of other sensors not supported directly above, and use of the calibrate() API above to set equation coefficients\n<
 
-    err.type_error(str, "str", port)
-    err.type_error(str, "str", sensor_type)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
-    err.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic")
 
-    print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
 
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        
+
+        err.type_error(str, "str", port)
+        err.type_error(str, "str", sensor_type)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+        err.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic")
+
+        print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value of the set sensor type.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[vernier] measuring value from set sensor type")
+        return None
+
+    def calibrate(a, b, c = None, d = None):
+        """
+        Calibrates the sensor.
+        
+        
+        Use type 1: a, b ==> linear: ax + b\n
+        Use type 2: a, b, c, d
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [a, b, c, d]
+        """
+        if(c == None and d == None):
+            print("[vernier] calibrating linearly with '" + str(a) + "' and '" + str(b) + "'")
+        elif(c != None and d == None):
+            raise ValueError("ERROR: If you specify 'c' you also need to specify 'd'")
+        else:
+            print("[vernier] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
+
+        return [a, b, c, d]
+
+        
         
 ###########################################################################################
 
-def analog_in(port:str):
+class analog_in():
 
     """
     This device supports the use of analog input generic devices.
@@ -516,19 +843,68 @@ def analog_in(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device supports the use of analog input generic devices.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-    print("Setting port for input device 'analog_in' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
+
+        print("Setting port for input device 'analog_in' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the sensor set to 'analog_in'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[analog_in] measuring sensor value")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the sensor set to 'analog_in'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[analog_in] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
         
         
 ###########################################################################################
 
-def potentiometer(port:str):
+class potentiometer():
     """
     This device supports a potentiometer sensor. The range of the sensor can be changed by the range() function.
 
@@ -540,18 +916,67 @@ def potentiometer(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device supports a potentiometer sensor. The range of the sensor can be changed by the range() function.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-    print("Setting port for input device 'potentiometer' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
+
+        print("Setting port for input device 'potentiometer' to '" + port + "'")
+        return
         
+
+    def measurement(self):
+        """
+        Outputs the measured value from the 'potentiometer'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[potentiometer] measuring sensor value")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the 'potentiometer'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[potentiometer] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
 ###########################################################################################
 
-def thermistor(port:str):
+class thermistor():
     """
     This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function.
 
@@ -563,18 +988,58 @@ def thermistor(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-    print("Setting port for input device 'thermistor' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
+
+        print("Setting port for input device 'thermistor' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the 'thermistor'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[thermistor] measuring sensor value")
+        return None
+
+    def calibrate(self, c1, c2, c3, r):
+        """
+        Calibrates the 'potentiomter'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [c1, c2, c3, r]
+        """
+        print("[thermistor] calibrating with '" + str(c1) + "', '" +str(c2) + "', '" +str(c3) + "' and '" + str(r))
+        return [c1, c2, c3, r]
         
 ###########################################################################################
 
-def loudness(port:str):
+class loudness():
     """
     This device supports sound loudness sensors.
 
@@ -585,15 +1050,63 @@ def loudness(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device supports sound loudness sensors.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-    print("Setting port for input device 'loudness' to '" + port + "'")
-    return [port]
+        Available Ports: 'IN 1', 'IN 2', 'IN 3'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3")
+
+        print("Setting port for input device 'loudness' to '" + port + "'")
+        return
         
+    def measurement(self):
+        """
+        Outputs the measured value from the 'loudness'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[loudness] measuring sensor value")
+        return None
+
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the 'loudness'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[loudness] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
 ###########################################################################################
 class colour_input():
 
@@ -714,7 +1227,7 @@ class colour_input():
 
 ###########################################################################################
 
-def hub_time():
+class hub_time():
     """
     This device provides access to the internal millisecond timer of the HUB.
 
@@ -724,8 +1237,43 @@ def hub_time():
 
     Returns None
     """
-    print("Fetching millisecond timer of HUB")
-    return None
+    def __init__(self) -> None:
+        """
+        This device provides access to the internal millisecond timer of the HUB.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the 'hub_time'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[hub_time] Fetching millisecond timer of HUB")
+        return None
+
+    def reset_time(self):
+        """
+        Resets the HUB-intern millisecond counter.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[hub_time] resetting hub timer")
+        return None
 
 ###########################################################################################
 class rgb_array():
@@ -1416,7 +1964,7 @@ class digital():
         print("Setting port for input / output device 'digital' to '" + port + "'")
 
 
-    def measurement():
+    def measurement(self):
         """
         Returns the value of the digital input device
 
@@ -1429,7 +1977,7 @@ class digital():
         print("Measuring value of digital inout device")
 
 
-    def set(value:int):
+    def set(self ,value:int):
         """
         Sets the digital output to the value specified by "value" (0 or 1).
 
@@ -1447,7 +1995,7 @@ class digital():
         return [value]
 
 
-    def on():
+    def on(self):
         """
         Sets the state of the digital output to high (1).
 
@@ -1460,7 +2008,7 @@ class digital():
         print("Setting state of digital output device to 'on' (1)")
         return None
 
-    def off():
+    def off(self):
         """
         Sets the state of the digital output to high (1).
 
