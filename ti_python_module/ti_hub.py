@@ -830,7 +830,7 @@ class vernier():
         
 ###########################################################################################
 
-def analog_in(port:str):
+class analog_in():
 
     """
     This device supports the use of analog input generic devices.
@@ -843,14 +843,63 @@ def analog_in(port:str):
     Category: Hub / Add Input Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device supports the use of analog input generic devices.
 
-    err.type_error(str, "str", port)
-    err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-    print("Setting port for input device 'analog_in' to '" + port + "'")
-    return [port]
+
+        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+        err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
+
+        print("Setting port for input device 'analog_in' to '" + port + "'")
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the sensor set to 'analog_in'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[analog_in] measuring sensor value")
+        return None
+
+    def range(self, min:int, max:int):
+        """
+        Reconfigures the range of the sensor set to 'analog_in'.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns an array / list: [min, max]
+        """
+        err.type_error(int, "int", min)
+        err.type_error(int, "int", max)
+
+        err.range_error(0, None, min)
+        err.range_error(1, None, max)
+
+        if(min > max):
+            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
+
+        print("[analog_in] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        return [min, max]
         
         
 ###########################################################################################
