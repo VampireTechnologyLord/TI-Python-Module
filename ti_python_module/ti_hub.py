@@ -1227,7 +1227,7 @@ class colour_input():
 
 ###########################################################################################
 
-def hub_time():
+class hub_time():
     """
     This device provides access to the internal millisecond timer of the HUB.
 
@@ -1237,8 +1237,43 @@ def hub_time():
 
     Returns None
     """
-    print("Fetching millisecond timer of HUB")
-    return None
+    def __init__(self) -> None:
+        """
+        This device provides access to the internal millisecond timer of the HUB.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        return
+
+    def measurement(self):
+        """
+        Outputs the measured value from the 'hub_time'.
+        
+        
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[hub_time] Fetching millisecond timer of HUB")
+        return None
+
+    def reset_time(self):
+        """
+        Resets the HUB-intern millisecond counter.
+
+
+        Category: Hub / Add Input Device
+
+
+        Returns None
+        """
+        print("[hub_time] resetting hub timer")
+        return None
 
 ###########################################################################################
 class rgb_array():
