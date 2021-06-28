@@ -1,6 +1,7 @@
 """
 Class containing all TI-Rover commands. Used for debugging
 """
+from typing import overload
 import ti_python_module.err as err
 
 
@@ -83,15 +84,56 @@ def cls():
 
 
 ###########################################################################################
-
-def forward(distance:float, distance_unit:str = "units", speed:float = 1, speed_unit:str = "units/s"):
+@overload
+def forward(distance:float):
     """
-    Moves Rover forward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
+    Moves Rover forward by the specified distance .
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [distance]
+    """
 
-    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
+    err.type_error(float, "float", distance)
 
+    err.range_error(0, None, distance)
+    
 
-    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
+    print("Moving Rover forward by '" + str(distance) + "'")
+    return [distance]
+        
+###########################################################################################
+
+@overload
+def forward(distance:float, distance_unit:str):
+    """
+    Moves Rover forward by the specified distance in in the given unit.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [distance, distance_unit]
+    """
+
+    err.type_error(float, "float", distance)
+    err.type_error(str, "str", distance_unit)
+
+    err.range_error(0, None, distance)
+
+    err.argument_error(distance_unit, "units", "m", "revs")
+
+    print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "'")
+    return [distance, distance_unit]
+        
+###########################################################################################
+
+@overload
+def forward(distance:float, distance_unit:str, speed:float, speed_unit:str):
+    """
+    Moves Rover forward by the specified distance in in the given unit. Speed and speed unit will be as specified.
     
     
     Category: Rover / Driving
@@ -114,18 +156,57 @@ def forward(distance:float, distance_unit:str = "units", speed:float = 1, speed_
     print("Moving Rover forward by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
     return [distance, distance_unit, speed, speed_unit]
         
+###########################################################################################
+@overload
+def backward(distance:float):
+    """
+    Moves Rover backwards by the specified distance .
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [distance]
+    """
 
+    err.type_error(float, "float", distance)
 
+    err.range_error(0, None, distance)
+    
+
+    print("Moving Rover backwards by '" + str(distance) + "'")
+    return [distance]
+        
 ###########################################################################################
 
-def backward(distance:float, distance_unit:str = "units", speed:float = 1, speed_unit:str = "units/s"):
+@overload
+def backward(distance:float, distance_unit:str):
     """
-    Moves Rover backward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
+    Moves Rover backwards by the specified distance in in the given unit.
+    
+    
+    Category: Rover / Driving
+    
+    
+    Returns an array / list: [distance, distance_unit]
+    """
 
-    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
+    err.type_error(float, "float", distance)
+    err.type_error(str, "str", distance_unit)
 
+    err.range_error(0, None, distance)
 
-    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
+    err.argument_error(distance_unit, "units", "m", "revs")
+
+    print("Moving Rover backwards by '" + str(distance) + " " + distance_unit + "'")
+    return [distance, distance_unit]
+        
+###########################################################################################
+
+@overload
+def backward(distance:float, distance_unit:str, speed:float, speed_unit:str):
+    """
+    Moves Rover backwards by the specified distance in in the given unit. Speed and speed unit will be as specified.
     
     
     Category: Rover / Driving
@@ -133,6 +214,7 @@ def backward(distance:float, distance_unit:str = "units", speed:float = 1, speed
     
     Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
+
     err.type_error(float, "float", distance)
     err.type_error(str, "str", distance_unit)
     err.type_error(float, "float", speed)
@@ -146,8 +228,6 @@ def backward(distance:float, distance_unit:str = "units", speed:float = 1, speed
 
     print("Moving Rover backwards by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
     return [distance, distance_unit, speed, speed_unit]
-        
-
 
 ###########################################################################################
 
