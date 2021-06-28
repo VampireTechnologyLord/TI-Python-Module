@@ -20,6 +20,7 @@ How to use these modules properly:
 
 - The module `cmath` dont exists. This is due to a module with the exact same name already exists build in to python. Since I am unable to change build-in classes, I can't add the proper functions. The same issue occurs for `time`. 
 
+- The module `ti_image` does not exist. This is due to the method `new_image` requiring these parameters: `width, height, (red, green, blue)`. Since Python 3.x sub-list arguments (the part in brackets) are not supported (invalid). Due to the majority of people working with Python 3.x, I have decided *NOT* to implement the module, because if you can't create an image, you can't work with it later on.
 
 
 
