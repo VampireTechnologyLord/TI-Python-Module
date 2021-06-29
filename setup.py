@@ -6,7 +6,7 @@ import os
 
 ###
 
-VERSION = "0.9.2"
+VERSION = "0.9.3"
 
 ###
 
@@ -28,8 +28,8 @@ setup(
     author="VampireTechnologyLord",
     author_email="<elias.freund@ewe.net>",
     description="TI-Python Debugging",
-    long_description_content_type="text/markdown",
     long_descripion=long_desc,
+    long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['multimethod'],
     keywords=["python", "ti", "texas instruments"],
