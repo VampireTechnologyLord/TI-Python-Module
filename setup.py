@@ -37,9 +37,9 @@ setup(
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
-        "Operation System :: Unix",
-        "Operation System :: MacOS, MacOS X",
-        "Operation System :: Microsoft :: Windows",
+        "Operating System :: Unix",
+        "Operating System :: MacOS",
+        "Operating System :: Microsoft :: Windows",
         "Topic :: Utilities"
     ]
 )
