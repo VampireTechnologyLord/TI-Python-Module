@@ -6,19 +6,14 @@ import os
 
 ###
 
-VERSION = "0.9.3"
+VERSION = "0.9.4"
+
+
+SUMMARY = "Texas Instruments python debugging"
 
 ###
-
-
-
-current_directory = os.path.dirname(os.path.abspath(__file__))
-
-try:
-    with open(os.path.join(current_directory, 'README.md'), encoding='utf-8') as f:
-        long_desc = f.read()
-except Exception:
-    long_desc = "A module for debugging with the TexasInstruments CX II Cas, Rover and Innovator Hub."
+with open("README.md", "r") as fh:
+    long_decription = fh.read()
 
 
 
@@ -27,8 +22,8 @@ setup(
     version=VERSION,
     author="VampireTechnologyLord",
     author_email="<elias.freund@ewe.net>",
-    description="TI-Python Debugging",
-    long_descripion=long_desc,
+    description=SUMMARY,
+    long_descripion=long_decription,
     long_description_content_type="text/markdown",
     packages=find_packages(),
     install_requires=['multimethod'],
