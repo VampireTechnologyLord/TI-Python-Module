@@ -36,3 +36,41 @@ def argument_error(parameter, *validArguments):
         return None
     else:
         raise ValueError("ERROR: Parameter <" + str(parameter) + "> can only be " + str(validArguments)) from None
+
+
+class relation():
+
+    def smaller_error(smaller_parameter, larger_parameter):
+
+        if(smaller_parameter < larger_parameter):
+            return None
+        else:
+            raise ValueError("ERROR: Parameter <" + str(smaller_parameter) + "> has to be smaller then <" + str(larger_parameter) + ">")
+
+    def smaller_equal_error(smaller_parameter, larger_parameter):
+
+        if(smaller_parameter <= larger_parameter):
+            return None
+        else:
+            raise ValueError("ERROR: Parameter <" + str(smaller_parameter) + "> has to be smaller or equal to/then <" + str(larger_parameter) + ">")
+
+    def larger_error(larger_parameter, smaller_parameter):
+
+        if(larger_parameter > smaller_parameter):
+            return None
+        else:
+            raise ValueError("ERROR: Parameter <" + str(larger_parameter) + "> has to be greater then <" + str(smaller_parameter) + ">")
+
+    def larger_equal_error(larger_parameter, smaller_parameter):
+
+        if(larger_parameter >= smaller_parameter):
+            return None
+        else:
+            raise ValueError("ERROR: Parameter <" + str(larger_parameter) + "> has to be greater or equal to/then <" + str(smaller_parameter) + ">")
+
+    def equal_errpr(parameter_1, parameter_2):
+
+        if(parameter_1 == parameter_2):
+            return None
+        else:
+            raise ValueError("ERROR: Parameter <" + str(parameter_1) + "> and Parameter <" + str(parameter_2) + "> have to be the same value")
