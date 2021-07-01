@@ -1,4 +1,3 @@
-from sys import version
 from setuptools import setup, find_packages
 import codecs
 import os
@@ -6,14 +5,17 @@ import os
 
 ###
 
-VERSION = "0.9.4"
+VERSION = "0.9.5"
 
 
 SUMMARY = "Texas Instruments python debugging"
 
 ###
-with open("README.md", "r") as fh:
-    long_decription = fh.read()
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+    long_decription = "\n" + fh.read()
 
 
 
@@ -26,7 +28,7 @@ setup(
     long_descripion=long_decription,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['multimethod'],
+    # install_requires=[],
     keywords=["python", "ti", "texas instruments"],
     classifiers=[
         "Development Status :: 1 - Planning",
