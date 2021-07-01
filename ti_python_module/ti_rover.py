@@ -83,57 +83,17 @@ def cls():
     return None
 
 
-###########################################################################################
-@overload
-def forward(distance:float):
-    """
-    Moves Rover forward by the specified distance .
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [distance]
-    """
 
-    err.type_error(float, "float", distance)
-
-    err.range_error(0, None, distance)
-    
-
-    print("Moving Rover forward by '" + str(distance) + "'")
-    return [distance]
-        
 ###########################################################################################
 
-@overload
-def forward(distance:float, distance_unit:str):
+def forward(distance:float, distance_unit:str = None, speed:float = None, speed_unit:str = None):
     """
-    Moves Rover forward by the specified distance in in the given unit.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [distance, distance_unit]
-    """
+    Moves Rover forward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
 
-    err.type_error(float, "float", distance)
-    err.type_error(str, "str", distance_unit)
+    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
 
-    err.range_error(0, None, distance)
 
-    err.argument_error(distance_unit, "units", "m", "revs")
-
-    print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "'")
-    return [distance, distance_unit]
-        
-###########################################################################################
-
-@overload
-def forward(distance:float, distance_unit:str, speed:float, speed_unit:str):
-    """
-    Moves Rover forward by the specified distance in in the given unit. Speed and speed unit will be as specified.
+    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
     
     
     Category: Rover / Driving
@@ -141,72 +101,50 @@ def forward(distance:float, distance_unit:str, speed:float, speed_unit:str):
     
     Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
+    if(distance_unit == None and speed == None and speed_unit == None):
+        err.type_error(float, "float", distance)
+        err.range_error(0, None, distance)
 
-    err.type_error(float, "float", distance)
-    err.type_error(str, "str", distance_unit)
-    err.type_error(float, "float", speed)
-    err.type_error(str, "str", speed_unit)
+        print("Moving Rover forward by '" + str(distance) + "'")
+        return [distance, distance_unit, speed, speed_unit]
 
-    err.range_error(0, None, distance)
-    err.range_error(0.1, 10, speed)
-    
-    err.argument_error(distance_unit, "units", "m", "revs")
-    err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
+    elif(distance_unit != None and speed == None and speed_unit == None):
+        err.type_error(float, "float", distance)
+        err.type_error(str, "str", distance_unit)
+        err.range_error(0, None, distance)
+        err.argument_error(distance_unit, "units", "m", "revs")
 
-    print("Moving Rover forward by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
-    return [distance, distance_unit, speed, speed_unit]
+        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "'")
+        return [distance, distance_unit, speed, speed_unit]
+
+    elif(distance_unit != None and speed != None and speed_unit != None):
+        err.type_error(float, "float", distance)
+        err.type_error(str, "str", distance_unit)
+        err.type_error(float, "float", speed)
+        err.type_error(str, "str", speed_unit)
+        err.range_error(0, None, distance)
+        err.range_error(0.1, 10, speed)
+        err.argument_error(distance_unit, "units", "m", "revs")
+        err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
+
+        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "' with a speed of '" + str(speed) + " " + speed_unit + "'")
+        return [distance, distance_unit, speed, speed_unit]
+
+    else:
+        raise ValueError("ERROR: You have to set both 'speed' and 'speed_unit' in order to set one of these!")
         
-###########################################################################################
-@overload
-def backward(distance:float):
-    """
-    Moves Rover backwards by the specified distance .
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [distance]
-    """
 
-    err.type_error(float, "float", distance)
 
-    err.range_error(0, None, distance)
-    
-
-    print("Moving Rover backwards by '" + str(distance) + "'")
-    return [distance]
-        
 ###########################################################################################
 
-@overload
-def backward(distance:float, distance_unit:str):
+def backward(distance:float, distance_unit:str = None, speed:float = None, speed_unit:str = None):
     """
-    Moves Rover backwards by the specified distance in in the given unit.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [distance, distance_unit]
-    """
+    Moves Rover backward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
 
-    err.type_error(float, "float", distance)
-    err.type_error(str, "str", distance_unit)
+    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
 
-    err.range_error(0, None, distance)
 
-    err.argument_error(distance_unit, "units", "m", "revs")
-
-    print("Moving Rover backwards by '" + str(distance) + " " + distance_unit + "'")
-    return [distance, distance_unit]
-        
-###########################################################################################
-
-@overload
-def backward(distance:float, distance_unit:str, speed:float, speed_unit:str):
-    """
-    Moves Rover backwards by the specified distance in in the given unit. Speed and speed unit will be as specified.
+    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
     
     
     Category: Rover / Driving
@@ -214,21 +152,38 @@ def backward(distance:float, distance_unit:str, speed:float, speed_unit:str):
     
     Returns an array / list: [distance, distance_unit, speed, speed_unit]
     """
+    if(distance_unit == None and speed == None and speed_unit == None):
+        err.type_error(float, "float", distance)
+        err.range_error(0, None, distance)
 
-    err.type_error(float, "float", distance)
-    err.type_error(str, "str", distance_unit)
-    err.type_error(float, "float", speed)
-    err.type_error(str, "str", speed_unit)
+        print("Moving Rover forward by '" + str(distance) + "'")
+        return [distance, distance_unit, speed, speed_unit]
 
-    err.range_error(0, None, distance)
-    err.range_error(0.1, 10, speed)
-    
-    err.argument_error(distance_unit, "units", "m", "revs")
-    err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
+    elif(distance_unit != None and speed == None and speed_unit == None):
+        err.type_error(float, "float", distance)
+        err.type_error(str, "str", distance_unit)
+        err.range_error(0, None, distance)
+        err.argument_error(distance_unit, "units", "m", "revs")
 
-    print("Moving Rover backwards by '" + str(distance) + distance_unit + "' with a speed of '" + str(speed) + speed_unit + "'")
-    return [distance, distance_unit, speed, speed_unit]
+        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "'")
+        return [distance, distance_unit, speed, speed_unit]
 
+    elif(distance_unit != None and speed != None and speed_unit != None):
+        err.type_error(float, "float", distance)
+        err.type_error(str, "str", distance_unit)
+        err.type_error(float, "float", speed)
+        err.type_error(str, "str", speed_unit)
+        err.range_error(0, None, distance)
+        err.range_error(0.1, 10, speed)
+        err.argument_error(distance_unit, "units", "m", "revs")
+        err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
+
+        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "' with a speed of '" + str(speed) + " " + speed_unit + "'")
+        return [distance, distance_unit, speed, speed_unit]
+
+    else:
+        raise ValueError("ERROR: You have to set both 'speed' and 'speed_unit' in order to set one of these!")
+        
 ###########################################################################################
 
 def left(degrees:float):
