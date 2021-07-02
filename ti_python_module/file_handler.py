@@ -3,7 +3,7 @@ import datetime
 
 
 MODULES:list[str] = ["TI Hub", "TI Rover", "TI Draw", "TI System", "TI Plotlib"]
-SUBMODULES:list[str] = []
+SUBMODULES:list[str] = ["Screen"]
 LOGTYPES:list[str] = ["WARNING", "ERROR", "INFO"]
 
 
