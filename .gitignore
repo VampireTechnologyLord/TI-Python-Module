@@ -1,3 +1,6 @@
 /.vscode
 /__pycache__
 ti_python_module/__pycache__
+/test.py
+/ti-python-log.log
+/ti-python-settings.cfg

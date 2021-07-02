@@ -1372,7 +1372,7 @@ class rgb_array():
 
 ###########################################################################################
 
-def led(port:str):
+class led():
     """
     This device manages functions for controlling externally connected LEDs.
 
@@ -1383,19 +1383,68 @@ def led(port:str):
     Category: Hub / Add Output Device
     
     
-    Returns an array / list: [port]
+    Returns None
     """
-    err.type_error(str, "str", port)
+    def __init__(self, port:str) -> None:
+        """
+        This device manages functions for controlling externally connected LEDs.
 
-    err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
 
-    print("Setting port for output device 'led' to '" + port + "'")
-    return [port]
+        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3'
+        
+        
+        Category: Hub / Add Output Device
+        
+        
+        Returns None
+        """
+        err.type_error(str, "str", port)
+
+        err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
+
+        print("Setting port for output device 'led' to '" + port + "'")
+        return
     
+    def on(self):
+        """
+        Turns the led on.
 
+
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+
+        print("Setting output device 'led' to 'on'")
+
+    def off(self):
+        """
+        Turns the led off.
+
+
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+
+        print("Setting output device 'led' to 'off'")
+
+    def blink(self, frequency:int, time:int):
+        """
+        Blinks the led for the given time in seconds with the set frequency in Hz.
+        """
+        err.type_error(int, "int", frequency)
+        err.type_error(int, "int", time)
+
+        err.range_error(1, 20, frequency)
+        err.range_error(1, 100, time)
+        print("Blinking output device 'led' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
+        return [frequency, time, time * frequency]
 ###########################################################################################
 
-def rgb(port:str):
+class rgb():
     """
     Description
 
@@ -1406,18 +1455,78 @@ def rgb(port:str):
     Category: Hub / Add Output Device
     
     
-    Returns an array / list [port]
+    Returns None
     """
-    err.type_error(str, "str", port)
+    def __init__(self, port:str) -> None:
+        """
+        Description
 
-    err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
 
-    print("Setting port for output device 'rgb' to '" + port + "'")
-    return [port]
+        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3'
         
+        
+        Category: Hub / Add Output Device
+        
+        
+        Returns None
+        """
+        err.type_error(str, "str", port)
+
+        err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
+
+        print("Setting port for output device 'rgb' to '" + port + "'")
+        return
+
+    def off(self):
+        """
+        Turns the rgb off.
+
+
+        Category: Hub / Add Output Device
+
+
+        Returns None
+        """
+
+        print("Setting output device 'rgb' to 'off'")
+
+    def blink(self, frequency:int, time:int):
+        """
+        Blinks the rgb for the given time in seconds with the set frequency in Hz.
+        """
+        err.type_error(int, "int", frequency)
+        err.type_error(int, "int", time)
+
+        err.range_error(1, 20, frequency)
+        err.range_error(1, 100, time)
+        print("Blinking output device 'rgb' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
+        return [frequency, time, time * frequency]
+
+    def rgb(red: int, green: int, blue: int):
+        """
+        Sets the rgb led to the given red, green and blue colours. Colours are ranging between 0 and 255.
+
+
+        Category: Hub / Integrated / Colour Output
+
+
+        Returns an array / list: [red, green, blue]
+        """
+
+        err.type_error(int, "int", red)
+        err.type_error(int, "int", green)
+        err.type_error(int, "int", blue)
+
+        err.range_error(0, 255, red)
+        err.range_error(0, 255, green)
+        err.range_error(0, 255, blue)
+            
+
+        print("Setting output device 'rgb' to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
+        return [red, green, blue]
 ###########################################################################################
 
-def speaker(port:str):
+class speaker():
     """
     This device manages functions for supporting an external speaker with the TIInnovator™ Hub. The functions are the same as the ones for "tone".
 
@@ -1429,16 +1538,78 @@ def speaker(port:str):
     Category: Hub / Add Output Device
 
 
-    Returns an array / list: [port]
+    Returns None
     """
+    def __init__(self, port:str) -> None:
+        """
+        This device manages functions for supporting an external speaker with the TIInnovator™ Hub. The functions are the same as the ones for "tone".
 
-    err.type_error(str, "str", port)
+        
+        
+        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
 
-    err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
 
-    print("Setting port for output device 'speaker' to '" + port + "'")
-    return [port]
+        Category: Hub / Add Output Device
 
+
+        Returns None
+        """
+
+        err.type_error(str, "str", port)
+
+        err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
+
+        print("Setting port for output device 'speaker' to '" + port + "'")
+        return
+
+    def tone(frequency :float, duration :float):
+        """
+        Sets the speaker frequency to the given frequency for the given duration. The frequency ranges between 0 and 8000 Hz. The duration ranges between 0.1 and 100 seconds.
+
+
+        Category: Hub / Integrated / Sound Output
+
+
+        Returns an array / list: [frequency, time]
+        """
+
+        err.type_error(float, "float", frequency)
+        err.type_error(float, "float", duration)
+
+        err.range_error(0.1, 8000, frequency)
+        err.range_error(0.1, 100, duration)
+            
+
+        print("Setting the speakers frequency to " + str(frequency) + "Hz for " + str(duration) + " seconds")
+        return [frequency, duration]
+
+    ###########################################################################################
+
+    def note(note :str, duration :float):
+        """
+        Plays the given note for the given duration. An example for the note is 'A4'. The duration ranges between 0.1 and 100 seconds.
+
+        The note names are C, CS, D, DS, E, F, FS, G, GS, A, AS, and B.
+
+        The octave numbers range from 1 to 9 (inclusive).
+
+
+        Category: Hub / Integrated / Sound Output
+
+
+        Returns an array / list: [note, time]
+        """
+
+        err.type_error(str, "str", note)
+        err.type_error(float, "float", duration)
+
+        err.range_error(0.1, 100, duration)
+
+        err.argument_error(note, "C1", "CS1", "D1", "DS1", "E1", "F1", "FS1", "G1", "GS1", "A1", "AS1", "B1", "C2", "CS2", "D2", "DS2", "E2", "F2", "FS2", "G2", "GS2", "A2", "AS2", "B2", "C3", "CS3", "D3", "DS3", "E3", "F3", "FS3", "G3", "GS3", "A3", "AS3", "B3", "C4", "CS4", "D4", "DS4", "E4", "F4", "FS4", "G4", "GS4", "A4", "AS4", "B4", "C5", "CS5", "D5", "DS5", "E5", "F5", "FS5", "G5", "GS5", "A5", "AS5", "B5", "C6", "CS6", "D6", "DS6", "E6", "F6", "FS6", "G6", "GS6", "A6", "AS6", "B6", "C7", "CS7", "D7", "DS7", "E7", "F7", "FS7", "G7", "GS7", "A7", "AS7", "B7", "C8", "CS8", "D8", "DS8", "E8", "F8", "FS8", "G8", "GS8", "A8", "AS8", "B8", "C9", "CS9", "D9", "DS9", "E9", "F9", "FS9", "G9", "GS9", "A9", "AS9", "B9")
+            
+
+        print("Playing the note '" + note + "' for " + str(duration) + " second(s)")
+        return [note, duration]
         
 ###########################################################################################
 class power():
@@ -1616,7 +1787,7 @@ class continous_servo():
 
 ###########################################################################################
 
-def analog_out(port:str):
+class analog_out():
     """
     Functions for the use of analog input generic devices.
     
@@ -1627,16 +1798,51 @@ def analog_out(port:str):
     Category: Hub / Add Output Device
     
     
-    Returns an array / list: [port]
+    Returns None
     """
-    err.type_error(str, "str", port)
-
-    err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
-    
-    
-    print("Setting port for output device 'analog_out' to '" + port + "'")
-    return [port]
+    def __init__(self, port:str) -> None:
+        """
+        Functions for the use of analog input generic devices.
         
+        
+        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
+        
+        
+        Category: Hub / Add Output Device
+        
+        
+        Returns None
+        """
+        err.type_error(str, "str", port)
+
+        err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
+        
+        
+        print("Setting port for output device 'analog_out' to '" + port + "'")
+        return
+
+    def off(self):
+        """
+        Description
+        """
+        print("Setting output device for 'analog_out' to 'off'")
+        return None
+    def on(self):
+        """
+        Description
+        """
+        print("Setting output device for 'analog_out' to 'on'")
+        return None
+
+    def set(self, value:float):
+        """
+        Description
+        """
+        err.type_error(float, "float", value)
+        err.range_error(0, None, value)
+        print("Setting the value of output device 'analog_out' to '" + str(value) + "'")
+        return [value]
+
 ###########################################################################################
 
 class vibration_monitor():

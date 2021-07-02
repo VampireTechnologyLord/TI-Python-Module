@@ -1,7 +1,6 @@
 """
 Class containing all TI-Rover commands. Used for debugging
 """
-from typing import overload
 import ti_python_module.err as err
 
 
@@ -62,10 +61,11 @@ def get_key():
     Category: Rover / Miscellaneous
 
 
-    Returns None
+    Returns pressed key
     """
-    print("Getting Pressed key")
-    return None
+    key = input("Requesting key input:  ")
+    print("Getting Pressed key '" + key  + "'")
+    return key
 
 ###########################################################################################
 

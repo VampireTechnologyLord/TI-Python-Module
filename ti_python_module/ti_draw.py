@@ -151,7 +151,7 @@ def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angl
 
 ###########################################################################################
 
-def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angle:float, arc_angle:float):
+def fill_arc(x_start:float, y_start:float, width:float, height:float, start_angle:float, arc_angle:float):
     """
     Draws an arc starting at the specified x,y coordinate with the specified width, height and angles filled with the specified color (using set_color or black if not defined). 
     
