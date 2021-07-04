@@ -202,13 +202,10 @@ class light():
         """
         Turns the Light-LED off.
 
-
-        Category: Hub / Integrated / Light-LED
-
-
-        Returns None
+        Returns:
+            None: None
         """
-
+        log("Turned the Light-LED off", "INFO", "TI Hub", "Light")
         print("Turning Light-LED off")
         return None
 
@@ -216,15 +213,12 @@ class light():
 
     def on():
         """
-        Turns the Light-LED in.
+        Turns the Light-LED on
 
-
-        Category: Hub / Integrated / Light-LED
-
-
-        Returns None
+        Returns:
+            None: None
         """
-
+        log("Turned the Light-LED on", "INFO", "TI Hub", "Light")
         print("Turning Light-LED on")
         return None
 
@@ -234,20 +228,27 @@ class light():
         """
         Blinks the Light-LED at the given frequency (in Hertz) for the given time. The frequency ranges between 0.1 - 20 Hz and the time between 0.1 - 100 seconds.
 
+        Args:
+            frequency (float): The frequency to blink in Hertz. Ranges from 0.1 to 20.
+            time (float): The time to blink in seconds. Ranges from 0.1 to 100.
 
-        Category: Hub / Integrated / Colour Output
-
-
-        Returns an array / list: [frequency, time, totalBlinks]
+        Returns:
+            list: a list containing the following data: [frequency, time, total_blinks]
         """
-        
+
+        if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Light")
+        if cerr.type_error(float, time) == False: log("Argument 'time' has to be type integer!", "ERROR", "TI Hub", "Light")
+        if cerr.range_error(0.1, 20, frequency) == False: log("Argument 'frequency' has to be between the values 0.1 and 20!", "ERROR", "TI Hub", "Light")
+        if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Hub", "Light")
+
+        if frequency > 5 and time > 5: log("Blinking the LED at a high frequency for a longer time decreases its life-time!", "WARNING", "TI Hub", "Light")
+
         err.type_error(float, "float", frequency)
         err.type_error(float, "float", time)
-
         err.range_error(0.1, 20, frequency)
         err.range_error(0.1, 100, time)
-          
 
+        log("Blinking the Light-LED at a frequency of '" + str(frequency) + "' Hz for a time of '" + str(time) + "' seconds (" + str(time * frequency) + ") times", "INFO", "TI Hub", "Light")
         print("Blinking the Light-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
         return [frequency, time, time * frequency]
 
