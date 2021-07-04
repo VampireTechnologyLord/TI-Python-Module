@@ -56,11 +56,10 @@ When using IntelliJ Idea, `Ctrl + Click` the statement.
 When using Visual Studio Code, You will see a dialogue with autocomplete suggestions. Click the `>` sign to toggle the informations.
 
 
-### What are the functions `errormsg_type` and `errormsg_range`?
-These methods are just to simplify the writing of Error messages. They are not actually implemented in the software.
 
-### What is the class `__err`?
-Generally Speaken, if anything starts with `__`, you want to be very careful, if you use it. This is, because the default convention is, that everything should work fine, without having to use anyting with this anotation at front. `__err.py` is a class that handles all the different Error Messages. Do not use it in your actual script.
+### What are the classes `err.py` and `file_handler.py`
+These classes are just for simplifying the creation of the functions. 
+**DO NOT USE THEM IN YOUR ACTUAL SCRIPT**
 
 ### The function I want to use requires an argument called `self`. What does that mean?
 If a function requires an argument called `self`, then it is placed after a class (example, this is wrong btw: `hub.continuous_servo.set_cw(1, 1)`). Then, you have to check, if the class needs an argument aswell 
