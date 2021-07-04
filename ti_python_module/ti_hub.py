@@ -80,15 +80,13 @@ def get_key():
 
 def cls():
     """
-    Clears all currently displayed content from the screen / display.
+    Clears the plotting canvas.
 
-
-    Category: Hub / Miscellaneous
-
-
-    Returns None
+    Returns:
+        None: None
     """
     print("Clearing screen / display")
+    log("Clearing the display / screen", "INFO", "TI Plotlib", "Clear Screen")
     return None
 
 ###########################################################################################
