@@ -270,12 +270,20 @@ class sound():
         """
         Sets the speaker frequency to the given frequency for the given duration. The frequency ranges between 0 and 8000 Hz. The duration ranges between 0.1 and 100 seconds.
 
+        Args:
+            frequency (float): The frequency in Hertz. Ranges from 0.1 to 8000.
+            duration (float): The duration of the tone. Ranges from 0.1 to 100.
 
-        Category: Hub / Integrated / Sound Output
-
-
-        Returns an array / list: [frequency, time]
+        Returns:
+            list: a list containing the following data: [frequency, duration]
         """
+
+        if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type float!", "ERROR", "TI Hub", "Sound")
+        if cerr.type_error(float, duration) == False: log("Argument 'duration' has to be type float!", "ERROR", "TI Hub", "Sound")
+
+        if cerr.range_error(0.1, 8000, frequency) == False: log("Argument 'frequency' has to be between the values 0.1 and 8000 (included)!", "ERROR", "TI Hub", "Sound")
+        if cerr.range_error(0.1, 100, duration) == False: log("Argument 'duration' has to be between the values 0.1 and 100 (included)!", "ERROR", "TI Hub", "Sound")
+
 
         err.type_error(float, "float", frequency)
         err.type_error(float, "float", duration)
@@ -283,7 +291,7 @@ class sound():
         err.range_error(0.1, 8000, frequency)
         err.range_error(0.1, 100, duration)
             
-
+        log("Setting the frequency of the speakers to '" + str(frequency) + "' Hz for a duration of '" + str(duration) + "' seconds", "INFO", "TI Hub", "Sound")
         print("Setting the speakers frequency to " + str(frequency) + "Hz for " + str(duration) + " seconds")
         return [frequency, duration]
 
@@ -291,18 +299,22 @@ class sound():
 
     def note(note :str, duration :float):
         """
-        Plays the given note for the given duration. An example for the note is 'A4'. The duration ranges between 0.1 and 100 seconds.
+        Plays the given note for the given duration. An example for the note is 'A4'. The duration ranges between 0.1 and 100 seconds. The note names are `C, CS, D, DS, E, F, FS, G, GS, A, AS, and B`. The octave numbers range from 1 to 9 (inclusive).
 
-        The note names are C, CS, D, DS, E, F, FS, G, GS, A, AS, and B.
+        Args:
+            note (str): The note to play with the octave. Example: `A2`, `CS3`.
+            duration (float): The duration of the note in seconds. Ranges from 0.1 to 100.
 
-        The octave numbers range from 1 to 9 (inclusive).
-
-
-        Category: Hub / Integrated / Sound Output
-
-
-        Returns an array / list: [note, time]
+        Returns:
+            list: a list containing the following data: [note, duration]
         """
+
+        if cerr.type_error(str, note) == False: log("Argument 'note' has to be type string!", "ERROR", "TI Hub", "Sound")
+        if cerr.type_error(float, duration) == False: log("Argument 'duration' has to be type float!", "ERROR", "TI Hub", "Sound")
+
+        if cerr.range_error(0.1, 100, duration) == False: log("Argument 'duration' has to be between the values 0.1 and 100!", "ERROR", "TI Hub", "Sound")
+
+        if cerr.argument_error(note, "C1", "CS1", "D1", "DS1", "E1", "F1", "FS1", "G1", "GS1", "A1", "AS1", "B1", "C2", "CS2", "D2", "DS2", "E2", "F2", "FS2", "G2", "GS2", "A2", "AS2", "B2", "C3", "CS3", "D3", "DS3", "E3", "F3", "FS3", "G3", "GS3", "A3", "AS3", "B3", "C4", "CS4", "D4", "DS4", "E4", "F4", "FS4", "G4", "GS4", "A4", "AS4", "B4", "C5", "CS5", "D5", "DS5", "E5", "F5", "FS5", "G5", "GS5", "A5", "AS5", "B5", "C6", "CS6", "D6", "DS6", "E6", "F6", "FS6", "G6", "GS6", "A6", "AS6", "B6", "C7", "CS7", "D7", "DS7", "E7", "F7", "FS7", "G7", "GS7", "A7", "AS7", "B7", "C8", "CS8", "D8", "DS8", "E8", "F8", "FS8", "G8", "GS8", "A8", "AS8", "B8", "C9", "CS9", "D9", "DS9", "E9", "F9", "FS9", "G9", "GS9", "A9", "AS9", "B9") == False: log("Argument 'note' has to be one of these: 'C1', 'CS1', 'D1', 'DS1', 'E1', 'F1', 'FS1', 'G1', 'GS1', 'A1', 'AS1', 'B1', 'C2', 'CS2', 'D2', 'DS2', 'E2', 'F2', 'FS2', 'G2', 'GS2', 'A2', 'AS2', 'B2', 'C3', 'CS3', 'D3', 'DS3', 'E3', 'F3', 'FS3', 'G3', 'GS3', 'A3', 'AS3', 'B3', 'C4', 'CS4', 'D4', 'DS4', 'E4', 'F4', 'FS4', 'G4', 'GS4', 'A4', 'AS4', 'B4', 'C5', 'CS5', 'D5', 'DS5', 'E5', 'F5', 'FS5', 'G5', 'GS5', 'A5', 'AS5', 'B5', 'C6', 'CS6', 'D6', 'DS6', 'E6', 'F6', 'FS6', 'G6', 'GS6', 'A6', 'AS6', 'B6', 'C7', 'CS7', 'D7', 'DS7', 'E7', 'F7', 'FS7', 'G7', 'GS7', 'A7', 'AS7', 'B7', 'C8', 'CS8', 'D8', 'DS8', 'E8', 'F8', 'FS8', 'G8', 'GS8', 'A8', 'AS8', 'B8', 'C9', 'CS9', 'D9', 'DS9', 'E9', 'F9', 'FS9', 'G9', 'GS9', 'A9', 'AS9', 'B9'!", "ERROR", "TI Hub", "Sound")
 
         err.type_error(str, "str", note)
         err.type_error(float, "float", duration)
@@ -311,7 +323,7 @@ class sound():
 
         err.argument_error(note, "C1", "CS1", "D1", "DS1", "E1", "F1", "FS1", "G1", "GS1", "A1", "AS1", "B1", "C2", "CS2", "D2", "DS2", "E2", "F2", "FS2", "G2", "GS2", "A2", "AS2", "B2", "C3", "CS3", "D3", "DS3", "E3", "F3", "FS3", "G3", "GS3", "A3", "AS3", "B3", "C4", "CS4", "D4", "DS4", "E4", "F4", "FS4", "G4", "GS4", "A4", "AS4", "B4", "C5", "CS5", "D5", "DS5", "E5", "F5", "FS5", "G5", "GS5", "A5", "AS5", "B5", "C6", "CS6", "D6", "DS6", "E6", "F6", "FS6", "G6", "GS6", "A6", "AS6", "B6", "C7", "CS7", "D7", "DS7", "E7", "F7", "FS7", "G7", "GS7", "A7", "AS7", "B7", "C8", "CS8", "D8", "DS8", "E8", "F8", "FS8", "G8", "GS8", "A8", "AS8", "B8", "C9", "CS9", "D9", "DS9", "E9", "F9", "FS9", "G9", "GS9", "A9", "AS9", "B9")
             
-
+        log("Playing the note '" + note + "' for a duration of '" + duration + "' seconds", "INFO", "TI Hub", "Sound")
         print("Playing the note '" + note + "' for " + str(duration) + " second(s)")
         return [note, duration]
 
