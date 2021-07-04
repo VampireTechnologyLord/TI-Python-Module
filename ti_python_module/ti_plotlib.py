@@ -1,8 +1,9 @@
 """
 Class containing all the TI Plotlib elements.
 """
-from typing import overload
-from ti_python_module import err as err
+from ti_python_module.file_handler import create_log as log
+from ti_python_module.err import withConsole as err
+from ti_python_module.err import onlyCheck as cerr
 
 
 def cls():
@@ -13,6 +14,7 @@ def cls():
         None: None
     """
     print("Clearing screen / display")
+    log("Clearing the display / screen", "INFO", "TI Plotlib", "Clear Screen")
     return None
 
 def window(x_min:int, x_max:int, y_min:int, y_max:int):
@@ -28,6 +30,16 @@ def window(x_min:int, x_max:int, y_min:int, y_max:int):
     Returns:
         list: a list containing the following data: [x_min, x_max, y_min, y_max]
     """
+
+
+    if cerr.type_error(int, x_min) == False: log("Argument 'x_min' has to be type integer!", "ERROR", "TI Plotlib", "Window")
+    if cerr.type_error(int, x_max) == False: log("Argument 'x_max' has to be type integer!", "ERROR", "TI Plotlib", "Window")
+    if cerr.type_error(int, y_min) == False: log("Argument 'y_min' has to be type integer!", "ERROR", "TI Plotlib", "Window")
+    if cerr.type_error(int, y_max) == False: log("Argument 'y_max' has to be type integer!", "ERROR", "TI Plotlib", "Window")
+
+    if cerr.relation.smaller_error(x_min, x_max) == False: log("Argument 'x_min' has to be smaller then 'x_max'!", "ERROR", "TI Plotlib", "Window")
+    if cerr.relation.smaller_error(y_min, y_max) == False: log("Argument 'y_min' has to be smaller then 'y_max'!", "ERROR", "TI Plotlib", "Window")
+
     err.type_error(int, "int", x_min)
     err.type_error(int, "int", x_max)
     err.type_error(int, "int", y_min)
@@ -37,9 +49,10 @@ def window(x_min:int, x_max:int, y_min:int, y_max:int):
     err.relation.smaller_error(y_min, y_max)
 
     print("Setting the horizontal interval to '" + str(x_max - x_min) + "' pixels and the vertical interval to '" + str(y_max - y_min) + "' pixels.")
+    log("Setting the horizontal interval of the plotting window to '" + str(x_max - x_min) + "' pixels and the vertical interval to '" + str(y_max - y_min) + "' pixels.", "INFO", "TI Plotlib", "Window")
     return [x_min, x_max, y_min, y_max]
 
-def auto_window(x_list:list, y_list:list):
+def auto_window(x_list:list[int], y_list:list[int]):
     """
     Autoscales the plotting window to fit the data ranges within x-list and y-list specified in the program prior to the auto_window().
 
@@ -50,10 +63,14 @@ def auto_window(x_list:list, y_list:list):
     Returns:
         list: a list containing the following data: [x_list, y_list]
     """
-    err.type_error(list, "list", x_list)
-    err.type_error(list, "list", y_list)
+    if cerr.type_error(list[int], x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Plotlib", "Auto Window")
+    if cerr.type_error(list[int], y_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Plotlib", "Auto Window")
+
+    err.type_error(list[int], "list", x_list)
+    err.type_error(list[int], "list", y_list)
 
     print("Auto-scaling the window to fit the specified plotting data")
+    log("Automatically scaling the plotting window to fit the given data range.", "INFO", "TI Plotlib", "Auto Window")
     return [x_list, y_list]
 
 def grid(x_scale:float, y_scale:float, style:str):
@@ -68,13 +85,18 @@ def grid(x_scale:float, y_scale:float, style:str):
     Returns:
         list: a list containing the followig data: [x_scale, y_scale, style]
     """
+    if cerr.type_error(float, x_scale) == False: log("Argument 'x_scale' has to be type float!", "ERROR", "TI Plotlib", "Grid")
+    if cerr.type_error(float, y_scale) == False: log("Argument 'y_scale' has to be type float!", "ERROR", "TI Plotlib", "Grid")
+    if cerr.type_error(str, style) == False: log("Argument 'style' has to be type string!", "ERROR", "TI Plotlib", "Grid")
     err.type_error(float, "float", x_scale)
     err.type_error(float, "float", y_scale)
     err.type_error(str, "str", style)
 
+    if cerr.argument_error(style, "solid", "dotted", "dashed") == False: log("Argument 'style' can only be on of these: 'solid', 'dotted', 'dashed'!", "ERROR", "TI Plotlib", "Grid")
     err.argument_error(style, "solid", "dotted", "dashed")
 
     print("Setting the grid scale to '" + str(x_scale) + ", " + str(y_scale) + "' with the style '" + style + "'")
+    log("Setting the grid scale to '" + str(x_scale) + " x' and '" + str(y_scale) + " y' with style '" + style + "'", "INFO", "TI Plotlib", "Grid")
     return [x_scale, y_scale, style]
 
 def axes(mode:str):
@@ -87,10 +109,13 @@ def axes(mode:str):
     Returns:
         list: a list containing the following data: [mode]
     """
+    if cerr.type_error(str, mode) == False: log("Argument 'mode' has to be type string!", "ERROR", "TI Plotlib", "Axes")
     err.type_error(str, "str", mode)
 
+    if cerr.argument_error(mode, "off", "on", "axes", "window") == False: log("Argument 'mode' can only be one of these: 'off', 'on', 'axes', 'window'!", "ERROR", "TI Plotlib", "Axes")
     err.argument_error(mode, "off", "on", "axes", "window")
     print("Setting axes mode to '" + mode + "'")
+    log("Setting the axes mode to '" + mode + "'", "INFO", "TI Plotlib", "Axes")
     return [mode]
 
 def labels(x_name:str, y_name:str, x_row:int, y_row:int):
@@ -106,12 +131,17 @@ def labels(x_name:str, y_name:str, x_row:int, y_row:int):
     Returns:
     list: a list containing the following data: [x_name, y_name, x_row, y_row]
     """
+    if cerr.type_error(str, x_name) == False: log("Argument 'x_name' has to be type string!", "ERROR", "TI Plotlib", "Labels")
+    if cerr.type_error(str, y_name) == False: log("Argument 'y_name' has to be type string!", "ERROR", "TI Plotlib", "Labels")
+    if cerr.type_error(int, x_row) == False: log("Argument 'x_row' has to be type integer!", "ERROR", "TI Plotlib", "Labels")
+    if cerr.type_error(int, y_row) == False: log("Argument 'y_row' has to be type integer!", "ERROR", "TI Plotlib", "Labels")
     err.type_error(str, "str", x_name)
     err.type_error(str, "str", y_name)
     err.type_error(int, "int", x_row)
     err.type_error(int, "int", y_row)
 
     print("Displaying '" + x_name + "' at row '" + str(x_row) + "' for the x axis. Displaying '" + y_name + "' at row '" + str(y_row) + "' for the y axis.")
+    log("Displaying '" + x_name + "' at row '" + str(x_row) + "' for the x axis. Displaying '" + y_name + "' at row '" + str(y_row) + "' for the y axis.", "INFO", "TI Plotlib", "Screen")
     return[x_name, y_name, x_row, y_row]
 
 def title(title:str):
@@ -124,8 +154,10 @@ def title(title:str):
     Returns:
         list: a list containing the following data: [title]
     """
+    if cerr.type_error(str, title) == False: log("Argument 'title' has to be type string!", "ERROR", "TI Plotlib", "Title")
     err.type_error(str, "str", title)
 
+    log("Setting the title of the plotting window to '" + title + "'", "INFO", "TI Plotlib", "Title")
     print("Setting the title of the window to '" + title + "'")
     return [title]
 
@@ -136,6 +168,7 @@ def show_plot():
     Returns:
         None: None
     """
+    log("Displaying the buffered drawing output", "INFO", "TI Plotlib", "Show Plot")
     print("Displaying buffered drawing output")
     return None
 
@@ -146,6 +179,7 @@ def use_buffer():
     Returns:
         None: None
     """
+    log("Enabling the use of the offscreen buffer for faster plotting", "INFO", "TI Plotlib", "Use Buffer")
     print("Enabling offscreen buffer")
     return None
 
@@ -161,6 +195,15 @@ def colour(red:float, green:float, blue:float):
     Returns:
         list: a list containing the following data: [red, green, blue]
     """
+    if cerr.type_error(float, red) == False: log("Argument 'red' has to be type float!", "ERROR", "TI Plotlib", "Colour")
+    if cerr.type_error(float, green) == False: log("Argument 'green' has to be type float!", "ERROR", "TI Plotlib", "Colour")
+    if cerr.type_error(float, blue) == False: log("Argument 'blue' has to be type float!", "ERROR", "TI Plotlib", "Colour")
+
+    if cerr.range_error(0, 255, red) == False: log("Argument 'red' has to be between the values 0 and 255 (included)!", "ERROR", "TI Plotlib", "Colour")
+    if cerr.range_error(0, 255, green) == False: log("Argument 'green' has to be between the values 0 and 255 (included)!", "ERROR", "TI Plotlib", "Colour")
+    if cerr.range_error(0, 255, blue) == False: log("Argument 'blue' has to be between the values 0 and 255 (included)!", "ERROR", "TI Plotlib", "Colour")
+
+
     err.type_error(float, "float", red)
     err.type_error(float, "float", green)
     err.type_error(float, "float", blue)
@@ -169,6 +212,7 @@ def colour(red:float, green:float, blue:float):
     err.range_error(0, 255, green)
     err.range_error(0, 255, blue)
     
+    log("Setting the plotting colout to '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'", "INFO", "TI Plotlib", "Colour")
     print("Setting the colour to '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
     return [red, green, blue]
 
@@ -184,35 +228,49 @@ def scatter(x_list:list, y_list:list, mark:str):
     Returns:
         list: a list containing the following data: [x_list, y_list, mark]
     """
+    if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Plotlib", "Scatter")
+    if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Plotlib", "Scatter")
+    if cerr.type_error(str, mark) == False: log("Argument 'mark' has to be type string!", "ERROR", "TI Plotlib", "Scatter")
+
+    if cerr.argument_error(mark, "o", "+", "x", ".") == False: log("Argument 'mark' can only be one of these: 'o', '+', 'x', '.'!", "ERROR", "TI Plotlib", "Scatter")
+
     err.type_error(list, "list", x_list)
     err.type_error(list, "list", y_list)
     err.type_error(str, "str", mark)
 
     err.argument_error(mark, "o", "+", "x", ".")
 
+    log("Scattering mark '" + mark + "' at the values from the given lists", "INFO", "TI Plotlib", "Scatter")
     print("Scattering mark '" + mark + "' in between the given lists")
     return [x_list, y_list, mark]
 
 
 def plot(x_list:list, y_list:list, mark:str):
     """
-    Plots a line using ordered pairs from specified x-list and y-list.
+    Plots a line using ordered pairs from specified x-list and y-list. To use just one value, put this one value in a list.
 
 
     Args:
         x_list (list): The list of the possible x values.
         y_list (list): The list of the possible y values.
-        mark (str): The mark to scatter. Possible Options: 'o', '+', 'x', '.'.
+        mark (str): The mark to plot. Possible Options: 'o', '+', 'x', '.'.
 
     Returns:
         list: a list containing the following data: [x_list, y_list, mark]
     """
+    if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Plotlib", "Plot")
+    if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Plotlib", "Plot")
+    if cerr.type_error(str, mark) == False: log("Argument 'mark' has to be type string!", "ERROR", "TI Plotlib", "Plot")
+
+    if cerr.argument_error(mark, "o", "+", "x", ".") == False: log("Argument 'mark' can only be one of these: 'o', '+', 'x', '.'!", "ERROR", "TI Plotlib", "Plot")
+
     err.type_error(list, "list", x_list)
     err.type_error(list, "list", y_list)
     err.type_error(str, "str", mark)
 
     err.argument_error(mark, "o", "+", "x", ".")
 
+    log("Plotting a line with the mark '" + mark + "' in between the range of the specifed lists", "INFO", "TI Plotlib", "Plot")
     print("Plotting line with mark '" + mark + "' in between the given lists")
     return [x_list, y_list, mark]
 
@@ -230,21 +288,30 @@ def line(x1:float, y1:float, x2:float, y2:float, mode:str):
     Returns:
         list: a list containing the following data: [x1, y1, x2, y2, mode]
     """
+    if cerr.type_error(float, x1) == False: log("Argument 'x1' has to be type float!", "ERROR", "TI Plotlib", "Line")
+    if cerr.type_error(float, y1) == False: log("Argument 'y1' has to be type float!", "ERROR", "TI Plotlib", "Line")
+    if cerr.type_error(float, x2) == False: log("Argument 'x2' has to be type float!", "ERROR", "TI Plotlib", "Line")
+    if cerr.type_error(float, y2) == False: log("Argument 'y2' has to be type float!", "ERROR", "TI Plotlib", "Line")
+    if cerr.type_error(str, mode) == False: log("Argument 'mode' has to be type string!", "ERROR", "TI Plotlib", "Line")
+
+
+    if cerr.argument_error(mode, "default", "arrow") == False: log("Argument 'mode' can only be one of these: 'default', 'arrow'!", "ERROR", "TI Plotlib", "Line")
+
+
     err.type_error(float, "float", x1)
     err.type_error(float, "float", y1)
     err.type_error(float, "float", x2)
     err.type_error(float, "float", y2)
     err.type_error(str, "str", mode)
 
-    err.relation.smaller_error(x1, x2)
-    err.relation.smaller_error(y1, y2)
 
     err.argument_error(mode, "default", "arrow")
 
+    log("Drawing a line of type '" + mode + "' from '(" + str(x1) + "|" + str(y1) + ")' to '(" + str(x2) + "|" + str(y2) + ")'", "INFO", "TI Plotlib", "Line")
     print("Drawing line of type '" + mode + "' from '(" + str(x1) + "|" + str(y1) + ")' to '(" + str(x2) + "|" + str(y2) + ")'")
     return [x1, y1, x2, y2, mode]
 
-def line_reg(x_list:list, y_list:list, display:str):
+def lin_reg(x_list:list, y_list:list, display:str):
     """
     Calculates and draws the linear regression model, ax+b, of x-list,y-list.
 
@@ -257,12 +324,20 @@ def line_reg(x_list:list, y_list:list, display:str):
     Returns:
         list: a list containing the following data: [x_list, y_list, display]
     """
+    if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Plotlib", "Linear Regression")
+    if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Plotlib", "Linear Regression")
+    if cerr.type_error(str, display) == False: log("Argument 'dsiplay' has to be type string!", "ERROR", "TI Plotlib", "Linear Regression  ")
+
+    if cerr.argument_error(display, "left", "center", "right") == False: log("Argument 'display' can only be one of these: 'left', 'center', 'right'!", "ERROR", "TI Plotlib", "Linear Regression")
+
+
     err.type_error(list, "list", x_list)
     err.type_error(list, "list", y_list)
     err.type_error(str, "str", display)
 
     err.argument_error(display, "left", "center", "right")
 
+    log("Drawing linear regression model ax+b using the given lists with the alignment '" + display + "'", "INFO", "TI Plotlib", "Linear Regressio")
     print("Drawing linear regression model with display alignment '" + display + "'")
     return [x_list, y_list, display]
 
@@ -277,12 +352,20 @@ def pen(thickness:str, style:str):
     Returns:
         list: list: a list containing the following data: [thickness, style]
     """
+    if cerr.type_error(str, thickness) == False: log("Argument 'thickness' has to be type string!", "ERROR", "TI Plotlib", "Pen")
+    if cerr.type_error(str, style) == False: log("Argument 'style' has to be type string!", "ERROR", "TI Plotlib", "Pen")
+
+    if cerr.argument_error(thickness, "thin", "medium", "thick") == False: log("Argument 'thickness' can only be one of these: 'thin', 'medium', 'thick'!", "ERROR", "TI Plotlib", "Pen")
+    if cerr.argument_error(style, "solid", "dotted", "dashed") == False: log("Argument 'style' can only be one of these: 'solid', 'dotted', 'dashed'!", "ERROR", "TI Plotlib", "Pen")
+
+
     err.type_error(str, "str", thickness)
     err.type_error(str, "str", style)
 
     err.argument_error(thickness, "thin", "medium", "thick")
     err.argument_error(style, "solid", "dotted", "dashed")
 
+    log("Setting the thickness of the plotting pen to '" + thickness + "' and the line style to '" + style + "'", "INFO", "TI Plotlib", "Pen")
     print("Setting pen thickness to '" + thickness + "' and line style to '" + style + "'")
     return [thickness, style]
 
@@ -298,11 +381,20 @@ def text_at(line: int, text: str, align: str):
     Returns:
         list: list: list: a list containing the following data: [line, text, align]
     """
+
+    if cerr.type_error(int, line) == False: log("Argument 'line' has to be type integer!", "ERROR", "TI Plotlib", "Text At")
+    if cerr.type_error(str, text) == False: log("Argument 'text' has to be type string!", "ERROR", "TI Plotlib", "Text At")
+    if cerr.type_error(str, align) == False: log("Argument 'align' has to be type string!", "ERROR", "TI Plotlib", "Text At")
+    if cerr.argument_error(align, "left", "center", "right") == False: log("Argument 'align' can only be one of these: 'left', 'center', 'right'!", "ERROR", "TI Plotlib", "Text At")
+    if cerr.range_error(1, 13, line) == False: log("Argument 'line' has to be between the values 1 and 13 (included)!", "ERROR", "TI Plotlib", "Text At")
+
+
     err.type_error(int, "int", line)
     err.type_error(str, "str", text)
     err.type_error(str, "str", align)
     err.argument_error(align, "left", "center", "right")
     err.range_error(1, 13, line)
 
-    print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "' !")
+    log("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "'", "INFO", "TI Plotlib", "Text At")
+    print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "'")
     return [text, line, align]
