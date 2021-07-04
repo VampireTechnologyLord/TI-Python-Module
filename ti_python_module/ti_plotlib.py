@@ -350,7 +350,7 @@ def pen(thickness:str, style:str):
         style (str): The style of the pens line. Possible Options: 'solid', 'dotted', 'dashed'.
 
     Returns:
-        list: list: a list containing the following data: [thickness, style]
+        list: a list containing the following data: [thickness, style]
     """
     if cerr.type_error(str, thickness) == False: log("Argument 'thickness' has to be type string!", "ERROR", "TI Plotlib", "Pen")
     if cerr.type_error(str, style) == False: log("Argument 'style' has to be type string!", "ERROR", "TI Plotlib", "Pen")
@@ -379,7 +379,7 @@ def text_at(line: int, text: str, align: str):
         align (str): The texts alignment. Possible Options: 'left', 'center', 'right'.
 
     Returns:
-        list: list: list: a list containing the following data: [line, text, align]
+        list: a list containing the following data: [line, text, align]
     """
 
     if cerr.type_error(int, line) == False: log("Argument 'line' has to be type integer!", "ERROR", "TI Plotlib", "Text At")
