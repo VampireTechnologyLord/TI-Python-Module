@@ -45,15 +45,21 @@ def sleep(seconds: float):
     """
     Waits for the given amount of time in seconds, until the script continues to run.
 
+    Args:
+        seconds (float): The amount of seconds to wait.
 
-    Category: Hub / Miscellaneous
-
-
-    Returns an array / list: [seconds]
+    Returns:
+        list: a list conatining the following data: [seconds]
     """
+    if cerr.type_error(float, seconds) == False: log("Argument 'seconds' has to be type float!", "ERROR", "TI Hub", "Sleep")
+
+    if cerr.range_error(0, None, seconds) == False: log("Argument 'seconds' has to be larger then 0!", "ERROR", "TI Hub", "Sleep")
+
     err.type_error(float, "float", seconds)
 
     err.range_error(0, None, seconds)
+
+    log("Waiting for '" + str(seconds) + "' seconds", "INFO", "TI Hub", "Sleep")
     print("Waiting for " + str(seconds) + " seconds")
     return [seconds]
           
