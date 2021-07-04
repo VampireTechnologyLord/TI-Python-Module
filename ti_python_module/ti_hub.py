@@ -86,7 +86,7 @@ def cls():
         None: None
     """
     print("Clearing screen / display")
-    log("Clearing the display / screen", "INFO", "TI Plotlib", "Clear Screen")
+    log("Clearing the display / screen", "INFO", "TI Hub", "Clear Screen")
     return None
 
 ###########################################################################################
@@ -104,12 +104,24 @@ class colour():
         """
         Sets the rgb led to the given red, green and blue colours. Colours are ranging between 0 and 255.
 
+        Args:
+            red (int): The red value (0 - 255).
+            green (int): The green value (0 - 255).
+            blue (int): The blue value (0 - 255).
 
-        Category: Hub / Integrated / Colour Output
-
-
-        Returns an array / list: [red, green, blue]
+        Returns:
+            list: a list containing the following data: [red, green, blue]
         """
+
+        if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "Colour")
+        if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Hub", "Colour")
+        if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Hub", "Colour")
+
+        if cerr.range_error(0, 255, red) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "Colour")
+        if cerr.range_error(0, 255, green) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "Colour")
+        if cerr.range_error(0, 255, blue) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "Colour")
+
+        if red == 0 and green == 0 and blue == 0: log("Please use the function 'colour.off()' instead of setting each value to 0, since this does not fully turn off the RGB-LED", "WARNING", "TI Hub", "Colour")
 
         err.type_error(int, "int", red)
         err.type_error(int, "int", green)
@@ -119,7 +131,7 @@ class colour():
         err.range_error(0, 255, green)
         err.range_error(0, 255, blue)
             
-
+        log("Setting RGB-Led to '" + str(red) + "' red, '" + str(green) + "' green , '" + str(blue) + "' blue", "INFO", "TI Hub", "Colour")
         print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
         return [red, green, blue]
 
@@ -131,19 +143,27 @@ class colour():
         """
         Blinks the RGB-LED at the given frequency (in Hertz) for the given time. The frequency ranges between 0.1 - 20 Hz and the time between 0.1 - 100 seconds.
 
+        Args:
+            frequency (float): The frequency to blink in Hertz. Ranges from 0.1 to 20.
+            time (float): The time to blink in seconds. Ranges from 0.1 to 100.
 
-        Category: Hub / Integrated / Colour Output
-
-
-        Returns an array / list: [frequency, time, totalBlinks]
+        Returns:
+            list: a list containing the following data: [frequency, time, total_blinks]
         """
+
+        if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Colour")
+        if cerr.type_error(float, time) == False: log("Argument 'time' has to be type integer!", "ERROR", "TI Hub", "Colour")
+        if cerr.range_error(0.1, 20, frequency) == False: log("Argument 'frequency' has to be between the values 0.1 and 20!", "ERROR", "TI Hub", "Colour")
+        if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Hub", "Colour")
+
+        if frequency > 5 and time > 5: log("Blinking the LED at a high frequency for a longer time decreases its life-time!", "WARNING", "TI Hub", "Colour")
 
         err.type_error(float, "float", frequency)
         err.type_error(float, "float", time)
         err.range_error(0.1, 20, frequency)
         err.range_error(0.1, 100, time)
-           
 
+        log("Blinking the RGB-LED at a frequency of '" + str(frequency) + "' Hz for a time of '" + str(time) + "' seconds (" + str(time * frequency) + ") times", "INFO", "TI Hub", "Colour")
         print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
         return [frequency, time, time * frequency]
 
@@ -154,13 +174,11 @@ class colour():
         """
         Turns the RGB-LED off.
 
-
-        Category: Hub / Integrated / Colour Output
-
-
-        Returns None
+        Returns:
+            None: None
         """
 
+        log("Turning the RGB-LED off", "INFO", "TI Hub", "Colour")
         print("Turning RGB-LED off")
         return None
 
