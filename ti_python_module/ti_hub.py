@@ -69,14 +69,11 @@ def get_key():
     """
     Gets the pressed key.
 
-
-    Category: Hub / Miscellaneous
-
-
-    Returns [pressed key]
+    Returns:
+        string: the pressed key
     """
     key = input("Requesting Key input: ")
-    print("Detecting pressed key '" + key + "'")
+    log("Got key '" + key + "' from user input", "INFO", "TI Hub", "Get Key")
     return key
 
 ###########################################################################################
