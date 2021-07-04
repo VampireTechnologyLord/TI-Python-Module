@@ -3,8 +3,11 @@ import datetime
 
 
 MODULES:list[str] = ["TI Hub", "TI Rover", "TI Draw", "TI System", "TI Plotlib"]
-SUBMODULES:list[str] = ["Screen"]
 LOGTYPES:list[str] = ["WARNING", "ERROR", "INFO"]
+
+
+SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At"]
+
 
 
 
@@ -18,7 +21,10 @@ def __check_log_file__():
     else:
         with open("ti-python-log.log", "xt") as file:
             file.write("TI Python Module Log File\n")
-            file.write("---" * 15)
+            file.write("Format:\n")
+            file.write("[Date - Time] [Logtype] [Module] [Function] log\n\n")
+            file.write("You can delete this file to empty the log file, since a new one will be generated\n")
+            file.write("-----" * 15)
             file.write("\n" * 4)
             file.close()
 
@@ -35,7 +41,7 @@ def __check_config__():
                     elif line == "log_file = True":
                         __check_log_file__()
     else:
-        print("======\nYou do not a a config file ('ti-python-settings.cfg') in your current directory.\nCall hte function 'file_handler.generate_settings() once to generate the settings file.'\nWrite 'log_file = True' to enable a logfile or 'log_file = False' to disable a logfile and this message.\n\n")
+        print("======\nYou do not hava a config file ('ti-python-settings.cfg') in your current directory.\nCall the function 'file_handler.generate_settings() once to generate the settings file.'\nWrite 'log_file = True' to enable a logfile or 'log_file = False' to disable a logfile and this message.\n\n")
 
 def generate_settings():
     if os.path.exists("ti-python-settings.cfg") == True:
@@ -99,59 +105,60 @@ def __date_and_time__(date_seperator:str = "-", date_time_seperator:str = " ", t
 
 def create_log(log_context:str, log_type:str, module:str, submodule:str, available_modules:list[str] = MODULES, available_submodules:list[str] = SUBMODULES, available_log_types:list[str] = LOGTYPES):
     __check_config__()
-    available_log_types.append(log_type)
-    available_log_types.sort(key=len)
-    max_len_log_type:int = available_log_types[available_log_types.__len__() - 1]
-    max_len_log_type_char = max_len_log_type.__len__()
+    if os.path.exists("ti-python-log.log") == True:
+        available_log_types.append(log_type)
+        available_log_types.sort(key=len)
+        max_len_log_type:int = available_log_types[available_log_types.__len__() - 1]
+        max_len_log_type_char = max_len_log_type.__len__()
 
-    max_len_log_type_char += 2
+        max_len_log_type_char += 2
 
-    len_log_type = log_type.__len__()
+        len_log_type = log_type.__len__()
 
-    len_diff:int = max_len_log_type_char - len_log_type
-    time_and_date = __date_and_time__()[0]
-    loggable_time = "[" + time_and_date + "]  "
+        len_diff:int = max_len_log_type_char - len_log_type
+        time_and_date = __date_and_time__()[0]
+        loggable_time = "[" + time_and_date + "]  "
 
-    loggable_type = "[" + log_type + "]"
-    for i in range(len_diff):
-        loggable_type = loggable_type.__add__(" ")
-
-
-
-    available_modules.append(module)
-    available_modules.sort(key=len)
-    max_len_module:int = available_modules[available_modules.__len__() - 1]
-    max_len_module_char = max_len_module.__len__()
-
-    max_len_module_char += 2
-
-    len_module = module.__len__()
-
-    len_diff:int = max_len_module_char - len_module
-
-    loggable_module = "[" + module + "]"
-    for i in range(len_diff):
-        loggable_module = loggable_module.__add__(" ")
-
-
-    available_submodules.append(submodule)
-    available_submodules.sort(key=len)
-    max_len_submodule:int = available_submodules[available_submodules.__len__() - 1]
-    max_len_submodule_char = max_len_submodule.__len__()
-
-    max_len_submodule_char += 2
-
-    len_submodule = submodule.__len__()
-
-    len_diff:int = max_len_submodule_char - len_submodule
-
-    loggable_submodule = "[" + submodule + "]"
-    for i in range(len_diff):
-        loggable_submodule = loggable_submodule.__add__(" ")
+        loggable_type = "[" + log_type + "]"
+        for i in range(len_diff):
+            loggable_type = loggable_type.__add__(" ")
 
 
 
+        available_modules.append(module)
+        available_modules.sort(key=len)
+        max_len_module:int = available_modules[available_modules.__len__() - 1]
+        max_len_module_char = max_len_module.__len__()
+
+        max_len_module_char += 2
+
+        len_module = module.__len__()
+
+        len_diff:int = max_len_module_char - len_module
+
+        loggable_module = "[" + module + "]"
+        for i in range(len_diff):
+            loggable_module = loggable_module.__add__(" ")
 
 
-    with open("ti-python-log.log", 'at') as file:
-        file.write(loggable_time + loggable_type + loggable_module + loggable_submodule + log_context + "\n")
+        available_submodules.append(submodule)
+        available_submodules.sort(key=len)
+        max_len_submodule:int = available_submodules[available_submodules.__len__() - 1]
+        max_len_submodule_char = max_len_submodule.__len__()
+
+        max_len_submodule_char += 2
+
+        len_submodule = submodule.__len__()
+
+        len_diff:int = max_len_submodule_char - len_submodule
+
+        loggable_submodule = "[" + submodule + "]"
+        for i in range(len_diff):
+            loggable_submodule = loggable_submodule.__add__(" ")
+
+
+
+
+
+        with open("ti-python-log.log", 'at') as file:
+            file.write(loggable_time + loggable_type + loggable_module + loggable_submodule + log_context + "\n")
