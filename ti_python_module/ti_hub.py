@@ -462,34 +462,35 @@ class ranger():
 
     def __init__(self, port:str) -> None:
         """
-        This device outputs the current distance measurement from the specified ultrasonic ranger.
+        This device outputs the current distance measurement from the specified ultrasonic ranger. Available Ports: 'IN 1', 'IN 2'.
 
-        Available Ports: 'IN 1', 'IN 2'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'IN 1', 'IN 2'.
         """
 
+        if cerr.type_error(str, "str", port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Ranger")
+        if cerr.argument_error(port, "IN 1", "IN 2") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2'!", "ERROR", "TI Hub", "Ranger")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2")
-        print("Setting port for input device 'ranger' to '" + port + "'")    
+
+        log("Setting the port for the device Ranger to '" + port + "'", "INFO", "TI Hub", "Ranger")
+        print("Setting port for input device 'dht' to '" + port + "'")
         return
+
 
     def measurement(self):
         """
         Returns the measured values from the ultrasonic-ranger sensor in cm.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Getting the measured distance to the facing object in cm", "INFO", "TI Hub", "Ranger")
         print("[ultrasonic] getting measured distance in cm")
+        return None
+
+        
         
 ###########################################################################################
 
