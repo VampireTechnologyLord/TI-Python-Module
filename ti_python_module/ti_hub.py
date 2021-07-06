@@ -366,8 +366,8 @@ class brightness():
             list: a list containing the following data: [min, max]
         """
 
-        if cerr.type_error(float, "float", min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Brightness")
-        if cerr.type_error(float, "float", max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Brightness")
+        if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Brightness")
+        if cerr.type_error(float, max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Brightness")
 
 
         err.type_error(float, "float", min)       
@@ -400,7 +400,7 @@ class dht():
             port (str): The port of the device. Possible Options: 'IN 1', 'IN 2'.
         """
 
-        if cerr.type_error(str, "str", port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "DHT")
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "DHT")
         if cerr.argument_error(port, "IN 1", "IN 2") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2'!", "ERROR", "TI Hub", "DHT")
 
         err.type_error(str, "str", port)
@@ -468,7 +468,7 @@ class ranger():
             port (str): The port of the device. Possible Options: 'IN 1', 'IN 2'.
         """
 
-        if cerr.type_error(str, "str", port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Ranger")
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Ranger")
         if cerr.argument_error(port, "IN 1", "IN 2") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2'!", "ERROR", "TI Hub", "Ranger")
 
         err.type_error(str, "str", port)
@@ -516,7 +516,7 @@ class light_level():
             port (str): The port of the device. Possible Options: 'IN 1', IN 2', 'IN 3'.
         """
 
-        if cerr.type_error(str, "str", port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Light Level")
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Light Level")
         if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Light Level")
 
         err.type_error(str, "str", port)
@@ -548,8 +548,8 @@ class light_level():
             list: a list containing the following data: [min, max]
         """
 
-        if cerr.type_error(float, "float", min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Light Level")
-        if cerr.type_error(float, "float", max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Light Level")
+        if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Light Level")
+        if cerr.type_error(float, max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Light Level")
 
 
         err.type_error(float, "float", min)       
@@ -565,8 +565,6 @@ class light_level():
 class temperature():
     """
     This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
-    
-    Please Note, that this method will throw an ERROR with this library!
 
 
     Available Ports: 'IN 1', 'IN 2', 'IN 3'
@@ -577,26 +575,23 @@ class temperature():
 
     Returns None
     """
-    def __init__(self, port:str) -> None:
-        
+    def __init__(self, port:str, extra:str=None) -> None:
         """
-        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
-        
-        Please Note, that this method will throw an ERROR with this library!
+        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG"). Available Ports: 'IN 1', 'IN 2', 'IN 3'.
 
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port for the device. Possible Options: 'IN 1', 'IN 2', 'IN 3'.
+            extra (str, optional): The optional additional Port. Informtaion for checks are missing here. Defaults to None.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Temperature")
+        if cerr.type_error(str, extra) == False: log("Argument 'extra' has to be type string!", "ERROR", "TI Hub", "Temperature")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Temperature")
+        if extra != None: log("Due to missing documentation, it is not possible to check, which options are available for argument 'extra'!", "WARNING", "TI Hub", "Temperature")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
+        log("Setting the port for device temprature sensor to '" + port + "' with the extra argument '" + str(extra) + "'", "INFO", "TI Hub", "Temperature")
         print("Setting port for input device 'temperature' to '" + port + "'")
         return
 
@@ -605,12 +600,10 @@ class temperature():
         """
         Gets the measured temperature.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Getting the measured value of the temperature sensor", "INFO", "TI Hub", "Temperature")
         print("[temperature] getting measued temperature")
         return None
         
