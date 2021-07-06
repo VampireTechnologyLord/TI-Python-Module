@@ -28,7 +28,7 @@ setup(
     long_descripion=long_decription,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=["pytest"],
+    install_requires=[],
     keywords=["python", "ti", "texas instruments"],
     classifiers=[
         "Development Status :: 1 - Planning",
