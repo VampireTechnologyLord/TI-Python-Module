@@ -6,7 +6,7 @@ MODULES:list[str] = ["TI Hub", "TI Rover", "TI Draw", "TI System", "TI Plotlib"]
 LOGTYPES:list[str] = ["WARNING", "ERROR", "INFO"]
 
 
-SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light"]
+SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light", "Sound", "Brightness", "DHT", "Ranger", "Light Level"]
 
 
 
@@ -119,7 +119,7 @@ def create_log(log_context:str, log_type:str, module:str, submodule:str, availab
         time_and_date = __date_and_time__()[0]
         loggable_time = "[" + time_and_date + "]  "
 
-        loggable_type = "[" + log_type + "]"
+        loggable_type = "[" + log_type.upper() + "]"
         for i in range(len_diff):
             loggable_type = loggable_type.__add__(" ")
 
@@ -152,9 +152,14 @@ def create_log(log_context:str, log_type:str, module:str, submodule:str, availab
 
         len_diff:int = max_len_submodule_char - len_submodule
 
-        loggable_submodule = "[" + submodule + "]"
-        for i in range(len_diff):
-            loggable_submodule = loggable_submodule.__add__(" ")
+        if submodule.isupper():
+            loggable_submodule = "[" + submodule + "]"
+            for i in range(len_diff):
+                loggable_submodule = loggable_submodule.__add__(" ")
+        else:
+            loggable_submodule = "[" + submodule.title() + "]"
+            for i in range(len_diff):
+                loggable_submodule = loggable_submodule.__add__(" ")
 
 
 
