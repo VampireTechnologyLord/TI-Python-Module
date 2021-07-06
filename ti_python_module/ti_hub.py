@@ -343,16 +343,12 @@ class brightness():
 
     def measurement():
         """
-        Reads the built-in BRIGHTNESS (light level) sensor and returns a reading.
-        The default range is 0 to 100. This can be changed using the 'range()' function.
+        Reads the built-in BRIGHTNESS (light level) sensor and returns a reading. The default range is 0 to 100. This can be changed using the 'range()' function.
 
-
-        Category: Hub / Integrated / Brightness Input
-
-
-        Returns None
+        Returns:
+            None: None
         """
-
+        log("Reading the value currently measured by the brightness sensor", "INFO", "TI Hub", "Brightness")
         print("Reading Brightness Sensor")
         return None
 
@@ -362,16 +358,22 @@ class brightness():
         """
         Sets the range for mapping the readings from the light level sensor.
 
+        Args:
+            min (float): The minimum range of the brightness sensor.
+            max (float): The maximum range of the brightness sensor.
 
-        Category: Hub / Integrated / Brightness Input
-
-
-        Returns an array / list: [min, max]
+        Returns:
+            list: a list containing the following data: [min, max]
         """
+
+        if cerr.type_error(float, "float", min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Brightness")
+        if cerr.type_error(float, "float", max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Brightness")
+
 
         err.type_error(float, "float", min)       
         err.type_error(float, "float", max)       
 
+        log("Setting the value range of the brightness sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Brighness")
         print("Setting the range of the brightness sensor to " + str(min) + " to " + str(max))
         return [min, max]
 
