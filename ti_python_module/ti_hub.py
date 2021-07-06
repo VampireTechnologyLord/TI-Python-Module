@@ -393,67 +393,55 @@ class dht():
     """
 
     def __init__(self, port:str) -> None:
-
         """
-        This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status.
+        This device outputs a list consisting of the current temperature, humidity, type of sensor, and last cached read status. Available Ports: 'IN 1', 'IN 2'.
 
-
-        Available Ports: 'IN 1', 'IN 2'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'IN 1', 'IN 2'.
         """
+
+        if cerr.type_error(str, "str", port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "DHT")
+        if cerr.argument_error(port, "IN 1", "IN 2") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2'!", "ERROR", "TI Hub", "DHT")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2")
 
-        
+        log("Setting the port for the device DHT to '" + port + "'", "INFO", "TI Hub", "DHT")
         print("Setting port for input device 'dht' to '" + port + "'")
         return
 
 
     def temp_measurement(self):
         """
-        Measures the temperature from the dht sensor
+        Measures the temperature from the dht sensor.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
 
+        log("Getting the measured temperature", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured temperature")
         return None
 
     def humidity_measurement(self):
         """
-        Measures the humidity from the dht sensor
+        Measures the humidity from the dht sensor.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
-
+        log("Getting the measured humidity", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured humidity")
         return None
 
     def t_h_measurement(self):
         """
-        Measures the temperature and the humidity from the dht sensor
+        Measures the temperature and the humidity from the dht sensor.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
-
+        log("Getting the measured temperature and humidity", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured temperature and humidity")
         return None
       
