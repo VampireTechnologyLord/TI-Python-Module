@@ -624,57 +624,53 @@ class moisture():
     """
     def __init__(self, port:str) -> None:
         """
-        This device outputs the moisture sensor reading.
+        This device outputs the moisture sensor reading. Available Ports: 'IN 1', 'IN 2', 'IN 3'.
 
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Available Options: 'IN 1', 'IN 2', 'IN 3'.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Moisture")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Moisture")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
+        log("Setting the port for device mositure Sensor to '" + port + "'", "INFO", "TI Hub", "Moisture")
         print("Setting port for input device 'moisture' to '" + port + "'")
         return
 
     def measurement(self):
         """
-        Returns the measured moisture.
-        
+        Gets the measured moisture.
 
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
-        print("[moisture] getting measured moisture")
+        log("Getting the measured value of the moisture sensor", "INFO", "TI Hub", "Moisture")
+        print("[moisture] getting measued moisture")
         return None
 
-    def range(self, min:int, max:int):
+    def range(min:float, max:float):
         """
         Reconfigures the range of the moisture sensor.
 
+        Args:
+            min (float): The minimum range of the moisture sensor.
+            max (float): The maximum range of the moisture sensor.
 
-        Category: Hub / Add Input Device
-
-
-        Returns an array / list: [min, max]
+        Returns:
+            list: a list containing the following data: [min, max]
         """
-        err.type_error(int, "int", min)
-        err.type_error(int, "int", max)
 
-        err.range_error(0, None, min)
-        err.range_error(1, None, max)
+        if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Moisture")
+        if cerr.type_error(float, max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Moisture")
 
-        if(min > max):
-            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
 
-        print("[moisture] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        err.type_error(float, "float", min)       
+        err.type_error(float, "float", max)       
+
+        log("Setting the value range of the moisture sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Moisture")
+        print("Setting the range of the moisture sensor to " + str(min) + " to " + str(max))
         return [min, max]
         
 ###########################################################################################
