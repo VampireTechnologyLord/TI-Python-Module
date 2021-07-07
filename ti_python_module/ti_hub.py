@@ -1077,58 +1077,54 @@ class loudness():
     """
     def __init__(self, port:str) -> None:
         """
-        This device supports sound loudness sensors.
+        This device supports sound loudness sensors. Available Ports: 'IN 1', 'IN 2', 'IN 3'.
 
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'IN 1', 'IN 2', 'IN 3'.
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Loudness")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Loudness")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-        print("Setting port for input device 'loudness' to '" + port + "'")
+        log("Setting the port for the loudness sensor to '" + port + "'", "INFO", "TI Hub", "Loudness")
+        print("Setting port for loudness sensor to '" + port + "'")
         return
-        
+
     def measurement(self):
         """
-        Outputs the measured value from the 'loudness'.
-        
-        
-        Category: Hub / Add Input Device
+        Outputs the measured value from the loudness sensor.
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Getting value measured by the loudness sensor", "INFO", "TI Hub", "Loudness")
         print("[loudness] measuring sensor value")
         return None
 
-
-    def range(self, min:int, max:int):
+    def range(self, min:float, max:float):
         """
-        Reconfigures the range of the 'loudness'.
+        Reconfigures the range of the loudness sensor.
 
+        Args:
+            min (float): The minimum range of the loudness sensor.
+            max (float): The maximum range of the loudness sensor.
 
-        Category: Hub / Add Input Device
-
-
-        Returns an array / list: [min, max]
+        Returns:
+            list: a list containing the following data: [min, max]
         """
-        err.type_error(int, "int", min)
-        err.type_error(int, "int", max)
 
-        err.range_error(0, None, min)
-        err.range_error(1, None, max)
+        if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Loudness")
+        if cerr.type_error(float, max) == False: log("Argument 'max' has to be type float!", "ERROR", "TI Hub", "Loudness")
 
-        if(min > max):
-            raise ValueError("ERROR: Parameter <min> has to be smaller then <max>!")
 
-        print("[loudness] setting range to '" + str(min) + "' to '" + str(max) + "'")
+        err.type_error(float, "float", min)       
+        err.type_error(float, "float", max)       
+
+        log("Setting the value range of the loudness sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Loudness")
+        print("Setting the range of the loudness sensor to " + str(min) + " to " + str(max))
         return [min, max]
 ###########################################################################################
 class colour_input():
