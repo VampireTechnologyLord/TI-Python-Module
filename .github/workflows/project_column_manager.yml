@@ -7,22 +7,22 @@ jobs:
   General:
     runs-on: ubuntu-latest
     steps:
-    - name: Backlog
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
+    - name: Backlog
       with:
         action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
         project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
         column-name: "Backlog"
         label-name: "General - Backlog"
-    - name: To Do
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
+    - name: To Do
       with:
         action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
         project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
         column-name: "To Do"
         label-name: "General - To Do"
-    - name: Work In Progress
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
+    - name: Work In Progress
       with:
         action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
         project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
