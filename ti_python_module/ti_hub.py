@@ -1160,8 +1160,6 @@ class colour_input():
     
     
     def __init__(self, port:str) -> None:
-        
-
         """
         This device provides interfaces to an I2C-connected Color Input sensor. The bb_port pin is used in addition to the I2C port to control the LED on the color sensor.\n
         • color_number(): Returns a value from 1 to 9 that represents the color the sensor is detecting. The numbers represent the colors per the following mapping:\n
@@ -1179,24 +1177,22 @@ class colour_input():
         • green(): Returns a value from 0 to 255 that represents the intensity of the GREEN color level being detected.\n
         • blue(): Returns a value from 0 to 255 that represents the intensity of the BLUE color level being detected.\n
         • gray(): Returns a value from 0 to 255 that represents the gray level being detected, where 0 is black and 255 is white.\n
+        Available Ports: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'.
 
-
-
-        Available Ports: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'.
         """
         
         
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be!", "ERROR", "TI Hub", "Colour Input")
+        if cerr.argument_error(port, "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be!", "ERROR", "TI Hub", "Colour Input")
+
         err.type_error(str, "str", port)
         err.argument_error(port, "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
 
+        log("Setting the port for the colour input sensor to '" + port + "'", "INFO", "TI Hub", "Colour Inout")
         print("Setting port for input device 'colour_input' to '" + port + "'")
-        return [port]
+        return
             
     
 
@@ -1213,6 +1209,7 @@ class colour_input():
             8: White\n
             9: Gray\n
         """
+        log("Fetching the number of the colour by the predefined mapping", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching colour number")
         return None
     
@@ -1220,6 +1217,7 @@ class colour_input():
         """
         Returns a value from 0 to 255 that represents the intensity of the RED color level being detected.\n
         """
+        log("Fetching the amount of 'red' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching red value")
         return None
     
@@ -1227,6 +1225,7 @@ class colour_input():
         """
         Returns a value from 0 to 255 that represents the intensity of the GREEN color level being detected.\n
         """
+        log("Fetching the amount of 'green' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching green value")
         return None
     
@@ -1234,6 +1233,7 @@ class colour_input():
         """
         Returns a value from 0 to 255 that represents the intensity of the BLUE color level being detected.\n
         """
+        log("Fetching the amount of 'blue' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching blue value")
         return None
 
@@ -1241,6 +1241,7 @@ class colour_input():
         """
         Returns a value from 0 to 255 that represents the gray level being detected, where 0 is black and 255 is white.\n
         """
+        log("Fetching the amount of 'gray' in the measured colour. Ranges from 0 to 255 (inclusive). 0 is black and 255 is white", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching gray value")
         return None
 
