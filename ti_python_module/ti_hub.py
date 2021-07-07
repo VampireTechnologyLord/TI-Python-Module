@@ -1260,25 +1260,17 @@ class hub_time():
     def __init__(self) -> None:
         """
         This device provides access to the internal millisecond timer of the HUB.
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
         """
         return
 
     def measurement(self):
         """
         Outputs the measured value from the 'hub_time'.
-        
-        
-        Category: Hub / Add Input Device
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Fetching the value of the internal millisecond timer of the HUB", "INFO", "TI Hub", "Hub Time")
         print("[hub_time] Fetching millisecond timer of HUB")
         return None
 
@@ -1286,12 +1278,10 @@ class hub_time():
         """
         Resets the HUB-intern millisecond counter.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Resetting the internal millisecond timer of the HUB", "INFO", "TI Hub", "Hub Time")
         print("[hub_time] resetting hub timer")
         return None
 
