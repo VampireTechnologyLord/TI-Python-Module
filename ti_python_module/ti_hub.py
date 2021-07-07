@@ -354,7 +354,7 @@ class brightness():
 
     ###########################################################################################
 
-    def range(min:float, max:float):
+    def range(self, min:float, max:float):
         """
         Sets the range for mapping the readings from the light level sensor.
 
@@ -536,7 +536,7 @@ class light_level():
         log("Getting the measured value of the lightlevel sensor", "INFO", "TI Hub", "Light Level")
         print("[light_level] getting measured brightness")
         return None
-    def range(min:float, max:float):
+    def range(self, min:float, max:float):
         """
         Reconfigures the range of the light_level sensor.
 
@@ -650,7 +650,7 @@ class moisture():
         print("[moisture] getting measued moisture")
         return None
 
-    def range(min:float, max:float):
+    def range(self, min:float, max:float):
         """
         Reconfigures the range of the moisture sensor.
 
@@ -819,7 +819,7 @@ class vernier():
         print("[vernier] measuring value of set sensor")
         return None
 
-    def calibrate(a, b, c = None, d = None):
+    def calibrate(self, a, b, c = None, d = None):
         """
         Calibrates the sensor. Use type 1: a, b ==> linear: ax + b. Use type 2: a, b, c, d.
 
@@ -895,7 +895,7 @@ class analog_in():
         print("[analog_in] measuring sensor value")
         return None
 
-    def range(min:float, max:float):
+    def range(self, min:float, max:float):
         """
         Reconfigures the range of the sensor set to `analog_in`.
 
@@ -950,7 +950,7 @@ class potentiometer():
         err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
         log("Setting the port for the potentiometer to '" + port + "'", "INFO", "TI Hub", "Potentiometer")
-        print("Setting port for input device 'analog_in' to '" + port + "'")
+        print("Setting port for potentiometer to '" + port + "'")
         return
 
     def measurement(self):
@@ -964,7 +964,7 @@ class potentiometer():
         print("[potentiometer] measuring sensor value")
         return None
 
-    def range(min:float, max:float):
+    def range(self, min:float, max:float):
         """
         Reconfigures the range of the potentiometer.
 
@@ -1005,50 +1005,60 @@ class thermistor():
     """
     def __init__(self, port:str) -> None:
         """
-        This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function.
+        This device reads thermistor sensors. The default coefficients are designed to match the thermistor included in the Breadboard Pack of the TI-Innovator™ Hub, when used with a 10KΩ fixed resistor. A new set of calibration coefficients and reference resistance for the thermistor can be configured using the calibrate() function. Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'.
 
-
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port for the device. Possible Options: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', BB 7'.
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Thermistor")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3', 'BB 5', 'BB 6', 'BB 7'!", "ERROR", "TI Hub", "Thermistor")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3", "BB 5", "BB 6", "BB 7")
 
-        print("Setting port for input device 'thermistor' to '" + port + "'")
+        log("Setting the port for the thermistor to '" + port + "'", "INFO", "TI Hub", "Thermistor")
+        print("Setting port for input device thermistor to '" + port + "'")
         return
 
     def measurement(self):
         """
-        Outputs the measured value from the 'thermistor'.
-        
-        
-        Category: Hub / Add Input Device
+        Outputs the measured value from the thermistor.
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Getting value measured by the thermistor", "INFO", "TI Hub", "Thermistor")
         print("[thermistor] measuring sensor value")
         return None
 
-    def calibrate(self, c1, c2, c3, r):
+    def calibrate(self, a, b, c = None, d = None):
         """
-        Calibrates the 'potentiomter'.
+        Calibrates the sensor. Use type 1: a, b ==> linear: ax + b. Use type 2: a, b, c, d.
 
+        Args:
+            a ([type]): Argument 1 of a linear or normal calibration.
+            b ([type]): Argument 2 of a linear or normal calibration.
+            c ([type], optional): Argument 3 of a normal calibration. Also requires argument `d`. Defaults to None.
+            d ([type], optional): Argument 4 of a normal caibration. Defaults to None.
 
-        Category: Hub / Add Input Device
+        Raises:
+            ValueError: If only a, b, c are specified, while d is unspecified.
 
-
-        Returns an array / list: [c1, c2, c3, r]
+        Returns:
+            list: a list containing the following data: [a, b, c, d]
         """
-        print("[thermistor] calibrating with '" + str(c1) + "', '" +str(c2) + "', '" +str(c3) + "' and '" + str(r))
-        return [c1, c2, c3, r]
+        if(c == None and d == None):
+            log("Calibrating linearly (ax + b) with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b'", "INFO", "TI Hub", "Thermistor")
+            print("[thermistor] calibrating linearly with '" + str(a) + "' and '" + str(b) + "'")
+        elif(c != None and d == None):
+            log("You need to specify 'c' and 'd', if you want to use 'c' too!", "ERROR", "TI Hub", "Thermistor")
+            raise ValueError("ERROR: If you specify 'c' you also need to specify 'd'")
+        else:
+            log("Calibrating with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b' and '" + str(c) + "' as 'c' and '" + str(d) + "' as 'd'" , "INFO", "TI Hub", "Thermistor")
+            print("[thermistor] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
+
+        return [a, b, c, d]
         
 ###########################################################################################
 
