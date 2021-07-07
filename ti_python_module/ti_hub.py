@@ -677,11 +677,7 @@ class moisture():
 
 class magnetic():
     """
-    This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
-
-
-
-    Available Ports: 'IN 1', 'IN 2', 'IN 3'
+    This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150. Available Ports: 'IN 1', 'IN 2', 'IN 3'
 
 
     Category: Hub / Add Input Device
@@ -691,64 +687,61 @@ class magnetic():
     """
     def __init__(self, port:str) -> None:
         """
-        This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150.
+        This device detects the presence of a magnetic field. The threshold value to determine the presence of the field is set through the trigger() function. The default value of the threshold is 150. Available Ports: 'IN 1', 'IN 2', 'IN 3'.
 
-
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'IN 1', 'IN 2', 'IN 3'.
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Magnetic")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Magnetic")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
+        log("Setting the port for device magnetic Sensor to '" + port + "'", "INFO", "TI Hub", "Magnetic")
         print("Setting port for input device 'magnetic' to '" + port + "'")
         return
 
     def measurement(self):
         """
-        Returns the measured magnetic value
+        Returns the measured magnetic value.
 
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Measuring the magnetic value", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] measuring magnetic value")
         return None
 
     def magnet_close(self):
         """
         Says, whether a magnet is close, by checking if the magnetic value is over the threshold. This can be changed using the threshold function.
-        
-        
-        Category: Hub / Add Input Device
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Checking, if a magnet is close to the sensor, by using the value modifyable with the 'threshold()' function", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] checking if magnet is close (magnetic value is over threshold)")
         return None
 
     def trigger(self, threshold:int):
         """
         Sets the threshold of the magnetic value, at which the magnet_close functions triggers. This ranges from 0 to 16383. The default is 150.
-        
-        
-        Category: Hub / Add Input Device
 
+        Args:
+            threshold (int): The threshold, at which the function `magnet_close()` returns True.
 
-        Returns an array / list: [threshold]
+        Returns:
+            list: a list containing the following data: [threshold]
         """
-        err.type_error(int, "int", threshold)
-        err.range_error(0, 16383)
+        if err.type_error(int, threshold) == False: log("Argument 'threshold' has to be type integer!", "ERROR", "TI Hub", "Magnetic")
+        if err.range_error(0, 16383, threshold) == False: log("Argument 'threshold' has to be between the values 0 and 16383 (included)!", "ERROR", "TI Hub", "Magnetic")
 
+        err.type_error(int, "int", threshold)
+        err.range_error(0, 16383, threshold)
+
+        log("Setting the threshold for the function 'magnet_close()' to " + str(threshold) + "'", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] setting threshold to '" + str(threshold) + "'")
         return [threshold]
 

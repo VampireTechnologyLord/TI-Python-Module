@@ -6,7 +6,7 @@ MODULES:list[str] = ["TI Hub", "TI Rover", "TI Draw", "TI System", "TI Plotlib"]
 LOGTYPES:list[str] = ["WARNING", "ERROR", "INFO"]
 
 
-SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light", "Sound", "Brightness", "DHT", "Ranger", "Light Level"]
+SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light", "Sound", "Brightness", "DHT", "Ranger", "Light Level", "Temperature", "Moisture", "Magnetic"]
 
 
 
