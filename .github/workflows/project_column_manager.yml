@@ -4,13 +4,27 @@ on:
   issues:
     types: [labeled]
 jobs:
-  Move_Labeled_Issue_On_Project_Board:
+  General:
     runs-on: ubuntu-latest
     steps:
+    - name: Backlog
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
       with:
         action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
-        project-url: "https://github.com/orgs/github/projects/1"
-        column-name: "On Deck"
-        label-name: "priority"
-        columns-to-ignore: "In Review,Ready to deploy,Done"
+        project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
+        column-name: "Backlog"
+        label-name: "General - Backlog"
+    - name: To Do
+    - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
+      with:
+        action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
+        project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
+        column-name: "To Do"
+        label-name: "General - To Do"
+    - name: Work In Progress
+    - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
+      with:
+        action-token: "${{ secrets.ACTION_PROJECT_COLUMN_BY_ISSUE_LABEL }}"
+        project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
+        column-name: "Work in Progress"
+        label-name: "General - WIP"
