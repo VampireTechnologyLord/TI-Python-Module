@@ -784,58 +784,65 @@ class vernier():
         • accelerometer - Low-G Accelerometer.\n
         • generic - Allows setting of other sensors not supported directly above, and use of the calibrate() API above to set equation coefficients\n<
 
-
-        Available Ports: 'IN 1', 'IN 2', 'IN 3'
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Args:
+            port (str): The port for the device. Possible Options: 'IN 1', 'IN 2', 'IN 3'.
+            sensor_type (str): The type of sensor. Possible option: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'.
+        
+        Returns:
+            None: None
         """
 
         
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Vernier")
+        if cerr.type_error(str, sensor_type) == False: log("Argument 'sensor_type' has to be type string!", "ERROR", "TI Hub", "Vernier")
+        if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Vernier")
+        if cerr.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic") == False: log("Argument 'sensor_type' can onnly be one of these: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'!", "ERROR", "TI Hub", "Vernier")
 
         err.type_error(str, "str", port)
         err.type_error(str, "str", sensor_type)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
         err.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic")
 
+        log("Setting the port of the vernier sensor to '" + port + "' with the sensor / measurement type '" + sensor_type + "'", "INFO", "TI Hub", "Vernier")
         print("Setting port for input device 'vernier' to '" + port + "' with sensor type '" + sensor_type + "'")
         return
 
     def measurement(self):
         """
-        Outputs the measured value of the set sensor type.
-        
-        
-        Category: Hub / Add Input Device
+        Returns the measured magnetic value.
 
-
-        Returns None
+        Returns:
+            None: None
         """
-        print("[vernier] measuring value from set sensor type")
+        log("Measuring the value of the specified sensor", "INFO", "TI Hub", "Vernier")
+        print("[vernier] measuring value of set sensor")
         return None
 
     def calibrate(a, b, c = None, d = None):
         """
-        Calibrates the sensor.
-        
-        
-        Use type 1: a, b ==> linear: ax + b\n
-        Use type 2: a, b, c, d
-        
-        
-        Category: Hub / Add Input Device
+        Calibrates the sensor. Use type 1: a, b ==> linear: ax + b. Use type 2: a, b, c, d.
 
+        Args:
+            a ([type]): Argument 1 of a linear or normal calibration.
+            b ([type]): Argument 2 of a linear or normal calibration.
+            c ([type], optional): Argument 3 of a normal calibration. Also requires argument `d`. Defaults to None.
+            d ([type], optional): Argument 4 of a normal caibration. Defaults to None.
 
-        Returns an array / list: [a, b, c, d]
+        Raises:
+            ValueError: If only a, b, c are specified, while d is unspecified.
+
+        Returns:
+            list: a list containing the following data: [a, b, c, d]
         """
         if(c == None and d == None):
+            log("Calibrating linearly (ax + b) with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b'", "INFO", "TI Hub", "Vernier")
             print("[vernier] calibrating linearly with '" + str(a) + "' and '" + str(b) + "'")
         elif(c != None and d == None):
+            log("You need to specify 'c' and 'd', if you want to use 'c' too!", "ERROR", "TI Hub", "Vernier")
             raise ValueError("ERROR: If you specify 'c' you also need to specify 'd'")
         else:
+            log("Calibrating with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b' and '" + str(c) + "' as 'c' and '" + str(d) + "' as 'd'" , "INFO", "TI Hub", "Vernier")
             print("[vernier] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
 
         return [a, b, c, d]
