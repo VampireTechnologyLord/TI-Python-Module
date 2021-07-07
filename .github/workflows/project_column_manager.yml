@@ -4,7 +4,7 @@ on:
   issues:
     types: [labeled]
 jobs:
-  General Backlog:
+  General-Backlog:
     runs-on: ubuntu-latest
     steps:
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
@@ -13,7 +13,7 @@ jobs:
         project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
         column-name: "Backlog"
         label-name: "General - Backlog"
-  General To Do:
+  General-To-Do:
     runs-on: ubunut-latest
     steps:
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
@@ -22,7 +22,7 @@ jobs:
         project-url: "https://github.com/VampireTechnologyLord/TI-Python-Module/projects/4"
         column-name: "To Do"
         label-name: "General - To Do"
-  General WIP:
+  General-WIP:
     runs-on: ubuntu-latest
     steps:
     - uses: konradpabjan/move-labeled-or-milestoned-issue@v2.0
