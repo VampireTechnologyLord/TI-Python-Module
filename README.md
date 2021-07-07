@@ -57,5 +57,12 @@ These classes are just for simplifying the creation of the functions.
 **DO NOT USE THEM IN YOUR ACTUAL SCRIPT**
 
 ### The function I want to use requires an argument called `self`. What does that mean?
-If a function requires an argument called `self`, then it is placed after a class (example, this is wrong btw: `hub.continuous_servo.set_cw(1, 1)`). Then, you have to check, if the class needs an argument aswell 
-(example: `hub.continuous_servo("OUT 3").set_cw(1, 1)`). Then, you should no longer need a `self` argument.
+If a function requires an argument called `self`, then it is placed after a class. Some classes need an argument, whilst some just need the brackets `()` 
+```python
+from ti_python_module.ti_hub import continuous_servo, hub_time
+continuous_servo.set_cw(1, 1)               # WRONG
+continuous_servo("OUT 3").set_cw(1, 1)      # RIGHT
+
+hub_time.measurement()                      # WRONG
+hub_time().measurement()                    # RIGHT
+```
