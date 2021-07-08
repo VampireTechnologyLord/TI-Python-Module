@@ -2359,17 +2359,18 @@ class bb_port():
         • write_port(value): Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
 
 
-        Category: Hub / Add Input Device\n
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        args:
+            mask (int): The mask for the pins (-1 - 1024).
         """
+
+        if cerr.type_error(int, "int", mask) == False: log("Argument 'mask' has to be type integer!", "ERROR", "TI Hub", "BB Port")
+        if cerr.range_error(-1, 1024, mask) == False: log("Argument 'mask' has to be between the values -1 and 1024!", "ERROR", "TI Hub", "BB Port")
 
         err.type_error(int, "int", mask)
         err.range_error(-1, 1024, mask)
 
 
+        log("Setting the mask for the input or output device set to bb port to '" + str(mask) + "'", "INFO", "TI Hub", "BB Port")
         print("Setting mask for input / output device 'bb_port' to '" + str(mask) + "'")
         return 
 
@@ -2378,18 +2379,29 @@ class bb_port():
 
     def read_port(self):
         """
-        Reads the current values on the input pins of the BB port.\n
+        Reads the current values on the input pins of the BB port.
         """
+        log("Reading the ports of the device set to bb port", "INFO", "TI Hub", "BB Port")
         print("[bb_port] reading ports")
         return
     
-    def write_port(self ,value:int):
+    def write_port(self, value:int):
         """
         Sets the output pin values to the specified value, where value is between 0 and 1023. Note that the value is also adjusted against the mask value in the var=bbport(mask) operation, if a mask was provided.
 
+        args:
+            value (int): The output pin value (0 - 1023).
 
-        Returns an array / list: [value]
+        Returns:
+            list: a list containing the following data: [value]
         """
+        if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "BB Port")
+        if cerr.range_error(0, 1023, value) == False: log("Argument 'value' has to be between the values 0 and 1023!", "ERROR", "TI Hub", "BB Port")
+
+
         err.type_error(int, "int", value)
+        err.range_error(0, 1023, value)
+
+        log("Writing the port value of the device set to bb port to '" + str(value) + "'", "INFO", "TI Hub", "BB Port")
         print("[bb_port] writing value " + str(value))
         return [value]
