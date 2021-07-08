@@ -49,7 +49,7 @@ def sleep(seconds: float):
         seconds (float): The amount of seconds to wait.
 
     Returns:
-        list: a list conatining the following data: [seconds]
+        list: a list containing the following data: [seconds]
     """
     if cerr.type_error(float, seconds) == False: log("Argument 'seconds' has to be type float!", "ERROR", "TI Hub", "Sleep")
 
@@ -564,7 +564,7 @@ class light_level():
 
 class temperature():
     """
-    This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
+    This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG")
 
 
     Available Ports: 'IN 1', 'IN 2', 'IN 3'
@@ -577,11 +577,11 @@ class temperature():
     """
     def __init__(self, port:str, extra:str=None) -> None:
         """
-        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seeed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG"). Available Ports: 'IN 1', 'IN 2', 'IN 3'.
+        This device outputs the temperature reading from the external temperature sensor. The default configuration is to support the Seed temperature sensor in 'IN 1', 'IN 2' or 'IN 3' ports. To use the TI LM19 Temperature sensor from the TI-Innovator™ Hub breadboard pack, edit the port to the BB pin in use and use an optional argument Example: mylm19=temperature("BB 5","TIANALOG"). Available Ports: 'IN 1', 'IN 2', 'IN 3'.
 
         Args:
             port (str): The port for the device. Possible Options: 'IN 1', 'IN 2', 'IN 3'.
-            extra (str, optional): The optional additional Port. Informtaion for checks are missing here. Defaults to None.
+            extra (str, optional): The optional additional Port. Information for checks are missing here. Defaults to None.
         """
         if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Temperature")
         if cerr.type_error(str, extra) == False: log("Argument 'extra' has to be type string!", "ERROR", "TI Hub", "Temperature")
@@ -591,7 +591,7 @@ class temperature():
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-        log("Setting the port for device temprature sensor to '" + port + "' with the extra argument '" + str(extra) + "'", "INFO", "TI Hub", "Temperature")
+        log("Setting the port for device temperature sensor to '" + port + "' with the extra argument '" + str(extra) + "'", "INFO", "TI Hub", "Temperature")
         print("Setting port for input device 'temperature' to '" + port + "'")
         return
 
@@ -635,7 +635,7 @@ class moisture():
         err.type_error(str, "str", port)
         err.argument_error(port, "IN 1", "IN 2", "IN 3")
 
-        log("Setting the port for device mositure Sensor to '" + port + "'", "INFO", "TI Hub", "Moisture")
+        log("Setting the port for device moisture Sensor to '" + port + "'", "INFO", "TI Hub", "Moisture")
         print("Setting port for input device 'moisture' to '" + port + "'")
         return
 
@@ -797,7 +797,7 @@ class vernier():
         if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Vernier")
         if cerr.type_error(str, sensor_type) == False: log("Argument 'sensor_type' has to be type string!", "ERROR", "TI Hub", "Vernier")
         if cerr.argument_error(port, "IN 1", "IN 2", "IN 3") == False: log("Argument 'port' can only be one of these: 'IN 1', 'IN 2', 'IN 3'!", "ERROR", "TI Hub", "Vernier")
-        if cerr.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic") == False: log("Argument 'sensor_type' can onnly be one of these: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'!", "ERROR", "TI Hub", "Vernier")
+        if cerr.argument_error(sensor_type, "temperature", "lightlevel", "pressure", "pressure2", "pH", "force10", "force50", "accelerometer", "generic") == False: log("Argument 'sensor_type' can only be one of these: 'temperature', 'lightlevel', 'pressure', 'pressure2', 'pH', 'force10', 'force50', 'accelerometer', 'generic'!", "ERROR", "TI Hub", "Vernier")
 
         err.type_error(str, "str", port)
         err.type_error(str, "str", sensor_type)
@@ -1184,13 +1184,13 @@ class colour_input():
         """
         
         
-        if cerr.type_error(str, port) == False: log("Argument 'port' has to be!", "ERROR", "TI Hub", "Colour Input")
-        if cerr.argument_error(port, "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be!", "ERROR", "TI Hub", "Colour Input")
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Colour Input")
+        if cerr.argument_error(port, "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be one of these values: 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'!", "ERROR", "TI Hub", "Colour Input")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
 
-        log("Setting the port for the colour input sensor to '" + port + "'", "INFO", "TI Hub", "Colour Inout")
+        log("Setting the port for the colour input sensor to '" + port + "'", "INFO", "TI Hub", "Colour Input")
         print("Setting port for input device 'colour_input' to '" + port + "'")
         return
             
@@ -1444,59 +1444,56 @@ class led():
     """
     def __init__(self, port:str) -> None:
         """
-        This device manages functions for controlling externally connected LEDs.
+        This device manages functions for controlling externally connected LEDs. Available Ports: 'OUT 1', 'OUT 2', 'OUT 3'.
 
-
-        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3'
-        
-        
-        Category: Hub / Add Output Device
-        
-        
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'OUT 1', 'OUT 2', 'OUT 3'.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "LED")
+        if cerr.argument_error(port, "OUT 1", "OUT 2", "OUT 3") == False: log("Argument 'port' has to be one of these values: 'OUT 1', 'OUT 2', 'OUT 3'!", "ERROR", "TI Hub", "LED")
+
+
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
 
+        log("Setting the port for the device LED to '" + port + "'", "INFO", "TI Hub", "LED")
         print("Setting port for output device 'led' to '" + port + "'")
         return
     
     def on(self):
         """
         Turns the led on.
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
         """
-
+        log("Turning the LED on", "INFO", "TI Hub", "LED")
         print("Setting output device 'led' to 'on'")
 
     def off(self):
         """
         Turns the led off.
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
         """
-
+        log("Turning the LED off", "INFO", "TI Hub", "LED")
         print("Setting output device 'led' to 'off'")
 
     def blink(self, frequency:int, time:int):
         """
         Blinks the led for the given time in seconds with the set frequency in Hz.
         """
+        if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer", "ERROR", "TI Hub", "LED")
+        if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer", "ERROR", "TI Hub", "LED")
+
+        if cerr.range_error(1, 20, frequency) == False: log("Argument 'frequency' has to be between the values 1 and 20", "ERROR", "TI Hub", "LED")
+        if cerr.range_error(1, 100, time) == False: log("Argument 'time' has to be between the values 1 and 100", "ERROR", "TI Hub", "LED")
+
+        if frequency > 5 and time > 5: log("Blinking the LED at a high frequency for a longer time decreases its life-time!", "WARNING", "TI Hub", "LED")
+
         err.type_error(int, "int", frequency)
         err.type_error(int, "int", time)
 
         err.range_error(1, 20, frequency)
         err.range_error(1, 100, time)
+
+        log("Blinking the LED for '" + str(time) + "' seconds with a frequency of '" + str(frequency) + "' Hz. (" + str(time * frequency) + ") times.", "INFO", "TI Hub", "LED")
         print("Blinking output device 'led' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
         return [frequency, time, time * frequency]
 ###########################################################################################
@@ -1749,7 +1746,7 @@ class power():
         return
 
 ###########################################################################################
-class continous_servo():
+class continuous_servo():
 
     """
     Manages functions for controlling continuous servo motors.\n
@@ -2029,7 +2026,7 @@ class relay():
 
         Returns None
         """
-        print("[Relay] Setting realy state to 'ON'")
+        print("[Relay] Setting relay state to 'ON'")
         return None
 
     def off(self):
@@ -2039,7 +2036,7 @@ class relay():
 
         Returns None
         """
-        print("[Relay] Setting realy state to 'OFF'")
+        print("[Relay] Setting relay state to 'OFF'")
         return None
 
 ###########################################################################################
@@ -2117,7 +2114,7 @@ class servo():
 class squarewave():
     """
     Manages functions for generating a square wave.\n
-    • set(frequency,duty,time): Sets the output squarewave with a default duty cycle of 50% (if duty is not specified) and an output frequency specified by "frequence". The frequency may be from 1 to 500 Hz. The duty cycle, if specified, may be from 0 to 100%.\n
+    • set(frequency,duty,time): Sets the output squarewave with a default duty cycle of 50% (if duty is not specified) and an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle, if specified, may be from 0 to 100%.\n
     • off(): Turns the squarewave off.\n
     
     
@@ -2132,7 +2129,7 @@ class squarewave():
     def __init__(self, port:str) -> None:
         """
         Manages functions for generating a square wave.\n
-        • set(frequency,duty,time): Sets the output squarewave with a default duty cycle of 50% (if duty is not specified) and an output frequency specified by "frequence". The frequency may be from 1 to 500 Hz. The duty cycle, if specified, may be from 0 to 100%.\n
+        • set(frequency,duty,time): Sets the output squarewave with a default duty cycle of 50% (if duty is not specified) and an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle, if specified, may be from 0 to 100%.\n
         • off(): Turns the squarewave off.\n
     
     
@@ -2155,7 +2152,7 @@ class squarewave():
 
     def set(self, frequency:int, duty:int, time:float):
         """
-        Sets the output squarewave with an output frequency specified by "frequence". The frequency may be from 1 to 500 Hz. The duty cycle may be from 0 to 100%.\n
+        Sets the output squarewave with an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle may be from 0 to 100%.\n
 
 
         Returns an array / list: [frequency, duty, time]
@@ -2236,7 +2233,7 @@ class digital():
 
         Returns None
         """
-        print("Measuring value of digital inout device")
+        print("Measuring value of digital input device")
 
 
     def set(self ,value:int):
