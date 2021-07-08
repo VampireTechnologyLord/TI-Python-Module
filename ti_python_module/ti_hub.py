@@ -1478,6 +1478,9 @@ class led():
     def blink(self, frequency:int, time:int):
         """
         Blinks the led for the given time in seconds with the set frequency in Hz.
+
+        Returns:
+            list: a list containing the following data: [frequency, time, total_blinks]
         """
         if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer", "ERROR", "TI Hub", "LED")
         if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer", "ERROR", "TI Hub", "LED")
@@ -1533,39 +1536,57 @@ class rgb():
 
     def off(self):
         """
-        Turns the rgb off.
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        Turns the led off.
         """
-
+        log("Turning the LED off", "INFO", "TI Hub", "RGB")
         print("Setting output device 'rgb' to 'off'")
 
     def blink(self, frequency:int, time:int):
         """
-        Blinks the rgb for the given time in seconds with the set frequency in Hz.
+        Blinks the led for the given time in seconds with the set frequency in Hz.
+
+        Returns:
+            list: a list containing the following data: [frequency, time, total_blinks]
         """
+        if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer", "ERROR", "TI Hub", "R")
+        if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer", "ERROR", "TI Hub", "RGB")
+
+        if cerr.range_error(1, 20, frequency) == False: log("Argument 'frequency' has to be between the values 1 and 20", "ERROR", "TI Hub", "RGB")
+        if cerr.range_error(1, 100, time) == False: log("Argument 'time' has to be between the values 1 and 100", "ERROR", "TI Hub", "RGB")
+
+        if frequency > 5 and time > 5: log("Blinking the LED at a high frequency for a longer time decreases its life-time!", "WARNING", "TI Hub", "RGB")
+
         err.type_error(int, "int", frequency)
         err.type_error(int, "int", time)
 
         err.range_error(1, 20, frequency)
         err.range_error(1, 100, time)
+
+        log("Blinking the RGB-LED for '" + str(time) + "' seconds with a frequency of '" + str(frequency) + "' Hz. (" + str(time * frequency) + ") times.", "INFO", "TI Hub", "RGB")
         print("Blinking output device 'rgb' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
-        return [frequency, time, time * frequency]
 
     def rgb(red: int, green: int, blue: int):
         """
         Sets the rgb led to the given red, green and blue colours. Colours are ranging between 0 and 255.
 
+        Args:
+            red (int): The red value (0 - 255).
+            green (int): The green value (0 - 255).
+            blue (int): The blue value (0 - 255).
 
-        Category: Hub / Integrated / Colour Output
-
-
-        Returns an array / list: [red, green, blue]
+        Returns:
+            list: a list containing the following data: [red, green, blue]
         """
+
+        if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB")
+        if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Hub", "RGB")
+        if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Hub", "RGB")
+
+        if cerr.range_error(0, 255, red) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB")
+        if cerr.range_error(0, 255, green) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB")
+        if cerr.range_error(0, 255, blue) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB")
+
+        if red == 0 and green == 0 and blue == 0: log("Please use the function 'rgb.off()' instead of setting each value to 0, since this does not fully turn off the RGB-LED", "WARNING", "TI Hub", "RGB")
 
         err.type_error(int, "int", red)
         err.type_error(int, "int", green)
@@ -1575,8 +1596,8 @@ class rgb():
         err.range_error(0, 255, green)
         err.range_error(0, 255, blue)
             
-
-        print("Setting output device 'rgb' to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
+        log("Setting RGB-Led to '" + str(red) + "' red, '" + str(green) + "' green , '" + str(blue) + "' blue", "INFO", "TI Hub", "RGB")
+        print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
         return [red, green, blue]
 ###########################################################################################
 
