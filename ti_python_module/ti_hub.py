@@ -2060,20 +2060,21 @@ class relay():
         • on(): Sets the relay to the ON state.\n
         • off(): Sets the relay to the OFF state.
 
-
-        Available Ports: 'OUT 3'
-   
-    
-        Category: Hub / Add Output Device
-  
-    
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'OUT 3'.
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Relay")
+        
+        if cerr.argument_error(port, "OUT 3") == False: log("Argument 'port' has to be one of these: 'OUT 3'!", "ERROR", "TI Hub", "Relay")
+
+
 
         err.type_error(str, "str", port)
         
         err.argument_error(port, "OUT 3")
         
+        log("Setting the port for the relay to '" + port + "'", "INFO", "TI Hub", "Relay")
         print("Setting port for output device 'relay' to '" + port + "'")
         return
             
@@ -2081,20 +2082,16 @@ class relay():
     def on(self):
         """
         Sets the relay state to the ON state
-
-
-        Returns None
         """
+        log("Setting the state of the relay to 'on'", "INFO", "TI Hub", "Relay")
         print("[Relay] Setting relay state to 'ON'")
         return None
 
     def off(self):
         """
         Sets the relay state to the OFF state
-
-
-        Returns None
         """
+        log("Setting the state of the relay to 'off'", "INFO", "TI Hub", "Relay")
         print("[Relay] Setting relay state to 'OFF'")
         return None
 
