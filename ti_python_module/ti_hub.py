@@ -1953,7 +1953,7 @@ class analog_out():
 
 ###########################################################################################
 
-class vibration_monitor():
+class vibration_motor():
     """
     Manages functions for controlling vibration motors.\n
     • set(val): Sets the vibration motor intensity to "val" (0-255).\n
@@ -1977,57 +1977,62 @@ class vibration_monitor():
         • off(): Turns the vibration motor off.\n
         • on(): Turns the vibration motor on at the highest level.\n
 
-
-        Available Ports: 'OUT 3'
-   
-    
-        Category: Hub / Add Output Device
-  
-    
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'OUT 3'.
         """
+
+        if cerr.type_error(str,port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Vibration Motor")
+
+        if cerr.argument_error(port, "OUT 3") == False: log("Argument 'port' has to be one of these: 'OUT 3'!", "ERROR", "TI Hub", "Vibration Motor")
+
 
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 3")
 
-
+        log("Setting the port of the vibration motor to '" + port + "'", "INFO", "TI Hub", "Vibration Motor")
         print("Setting port for output device 'vibration_motor' to '" + port + "'")
         return
             
 
     def set(self, value:int):
         """
-        Sets the vibration motor intensity to "val" (0-255).
+         Sets the vibration motor intensity to the given value.
 
+        Args:
+            value (int): The intensity of the motor (0 - 255).
 
-        Returns an array / list: [value]
+        Returns:
+            list: a list containing the following data: [value]
         """
+        if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "Vibration Motor")
+        
+        if cerr.range_error(0, 255, value) == False: log("Argument 'value' has to be between the values 0 and 255!", "ERROR", "TI Hub", "Vibration Motor")
+
+        if value == 0: log("If you want to turn the vibration motor off, please use 'vibration_motor(\"OUT 3\").off()' instead, since this might not turn the motor fully off'", "WARNING", "TI Hub", "Vibration Motor")
+
         err.type_error(int, "int", value)
         
         err.range_error(0, 255, value)
             
 
+        log("Setting the intensity of the vibration motor to '" + str(value) + "'", "INFO", "TI Hub", "Vibration Motor")
         print("[Vibration Motor] Setting the intensity of the vibration motor to '" + str(value) + "'")
         return [value]
 
     def off(self):
         """
-        Turns the vibration motor off (intensity: 0).
-
-
-        Returns None
+        Turns the vibration motor off.
         """
-        print("[Vibration Motor] Setting the intensity of the vibration motor to '0'")
+        log("Turning the vibration motor off", "INFO", "TI Hub", "Vibration Motor")
+        print("[Vibration Motor] Turning the motor off")
         return None
 
     def on(self):
         """
         Turns the vibration motor on (intensity: 255).
-
-
-        Returns None
         """
+        log("Turning the vibration motor on (intensity: 255)", "INFO", "TI Hub", "Vibration Motor")
         print("[Vibration Motor] Setting the intensity of the vibration motor to '255'")
         return None
 
