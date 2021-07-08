@@ -2194,51 +2194,63 @@ class squarewave():
         • set(frequency,duty,time): Sets the output squarewave with a default duty cycle of 50% (if duty is not specified) and an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle, if specified, may be from 0 to 100%.\n
         • off(): Turns the squarewave off.\n
     
-    
-        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
-    
-    
-        Category: Hub / Add Output Device
-    
-    
-        Returns None
+        args:
+            port (str): Possible Options: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
         """
 
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Squarewave")
+
+        if cerr.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be one of these: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'!", "ERROR", "TI Hub", "Squarewave")
+        
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")    
         
+        log("Setting the port for the squarewave to '" + port + "'", "INFO", "TI Hub", "Squarewave")
         print("Setting port for output device 'squarewave' to '" + port + "'")
         return 
             
 
     def set(self, frequency:int, duty:int, time:float):
         """
-        Sets the output squarewave with an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle may be from 0 to 100%.\n
+        Sets the output squarewave with an output frequency specified by "frequency". The frequency may be from 1 to 500 Hz. The duty cycle may be from 0 to 100%.
 
+        Args:
+            frequency (int): The frequency of the squarewave (1 - 500).
+            duty (int): The duty of the squarewave (0 - 100).
+            time (float): The duration of the squarewave (0.1 - 100).
 
-        Returns an array / list: [frequency, duty, time]
+        Returns:
+            list: a list containing the following data: [frequency, duty, time]
         """
+
+        if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Squarewave")
+        if cerr.type_error(int, duty) == False: log("Argument 'duty' has to be type integer!", "ERROR", "TI Hub", "Squarewave")
+        if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Hub", "Squarewave")
+
+        if cerr.range_error(1, 500, frequency) == False: log("Argument 'frequency' has to be between the values 1 and 500 (included)!", "ERROR", "TI Hub", "Squarewave")
+        if cerr.range_error(0, 100, duty) == False: log("Argument 'duty' has to be between the values 0 and 100 (included)!", "ERROR", "TI Hub", "Squarewave")
+        if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100 (included)!", "ERROR", "TI Hub", "Squarewave")
+
+        if frequency == 0 and duty == 0: log("If you want to turn off the squarewave, please use 'squarewave(PORT).off()' instead, because this might not turn the squarewave off entirely", "WARNING", "TI Hub", "Squarewave")
 
         err.type_error(int, "int", frequency)
         err.type_error(int, "int", duty)
-        err.type_error(float, "float", duty)
+        err.type_error(float, "float", time)
 
-        err.range_error(1, 500)
-        err.range_error(0, 100)
-        err.range_error(0.1, 100)
+        err.range_error(1, 500, frequency)
+        err.range_error(0, 100, duty)
+        err.range_error(0.1, 100, time)
 
-            
+        log("Setting the frequency of the squarewave to '" + str(frequency) + "' Hz, the duty to '" + str(duty) + "%' and the duration to '" + str(time) + "' seconds", "INFO", "TI Hub", "Squarewave")
         print("[Square Wave] Setting the frequency to '" + str(frequency) + "Hz', the duty to '" + str(duty) + "%' and the duration to '" + str(time) + "' seconds")
         return [frequency, duty, time]
 
     def off(self):
         """
-        Turns the squarewave off
-
-
-        Returns None
+        Turns the squarewave off.
         """
+        log("Turning the squarewave off", "INFO", "TI Hub", "Squarewave")
         print("[Square Wave] Turning squarewave off")
         return None
 
