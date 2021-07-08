@@ -9,11 +9,11 @@ How to use these modules properly:
 
 ### Putting the program on the calculator / rover
 
-- Change the import so you don't habe the `ti_python_module` part
+- Change the import so you don't have the `ti_python_module` part
 
 ## Known Problems / Issues
 
-- The module `cmath` dont exists. This is due to a module with the exact same name already exists build in to python. Since I am unable to change build-in classes, I can't add the proper functions. The same issue occurs for `time`. 
+- The module `cmath` don't exists. This is due to a module with the exact same name already exists build in to python. Since I am unable to change build-in classes, I can't add the proper functions. The same issue occurs for `time`. 
 
 - The module `ti_image` does not exist. This is due to the method `new_image` requiring these parameters: `width, height, (red, green, blue)`. Since Python 3.x sub-list arguments (the part in brackets) are not supported (invalid). Due to the majority of people working with Python 3.x, I have decided *NOT* to implement the module, because if you can't create an image, you can't work with it later on.
 
@@ -22,7 +22,7 @@ How to use these modules properly:
 If you know a way to solve one of these issues above, just open an issue tracker! Because clearly, I am not a computer, so i don't know everything ;-).
 
 
-## Recommendated IDEs
+## Recommended IDEs
 
 As an IDE, I personally recommend you choosing between the following two IDEs depending on your use case.
 
@@ -33,7 +33,7 @@ As an IDE, I personally recommend you choosing between the following two IDEs de
 
  - IntelliJ Idea
    - More Intense and deeper Use
-   - Easier coding of complex programms
+   - Easier coding of complex programs
 
 
 ## FAQ
@@ -43,12 +43,12 @@ Make sure, that if you have specified the speed, that you have also specified th
 
 
 ### I have used a method's returned value, but it won't work on my calculator!
-The returned values of functions are just for your own use for debugging in your IDE. The methods on the calculator dont actually return anything, which is why you are unable to get the value from them.
+The returned values of functions are just for your own use for debugging in your IDE. The methods on the calculator don't actually return anything, which is why you are unable to get the value from them.
 
 
 ### How do I see a functions / class description?
 When using IntelliJ Idea, `Ctrl + Click` the statement.
-When using Visual Studio Code, You will see a dialogue with autocomplete suggestions. Click the `>` sign to toggle the informations.
+When using Visual Studio Code, You will see a dialogue with autocomplete suggestions. Click the `>` sign to toggle the information.
 
 
 
