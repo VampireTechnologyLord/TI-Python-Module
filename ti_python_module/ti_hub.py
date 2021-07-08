@@ -1301,13 +1301,38 @@ class rgb_array():
 
     Returns None
     """
+    def __init__(self) -> None:
+        """
+        Provides functions for programming the TI-RGB Array. The initialization function accepts an optional "LAMP" parameter to enable a high-brightness mode for the TI-RGB Array that requires an external power supply.\n
+        • set(led_position, r,g,b): Sets a specific led_position (0-15) to the specified r,g,b value, where r,g,b are values from 0 to 255.\n
+        • set_all(r,g,b): Sets all RGB LEDs in the array to the same r,g,b value.\n
+        • all_off(): Turns off all RGBs in the array.\n
+        • measurement(): Returns the approximate current draw that the RGB array is using from the TI-Innovator™ in milliAmps.\n
+        • pattern(pattern): Using the value of the argument as a binary value in the range 0 to 65535, turns on pixels where a 1 value in the representation would be. LEDs are turned on as RED with pwm level value of 255.
+        """
     def set(self, position:int, red:int, green:int, blue:int):
         """
         Sets a specific led_position (0-15) to the specified r,g,b value, where r,g,b are values from 0 to 255.
 
-        
-        Returns an array / list: [position, red, green, blue]
+        Args:
+            position (int): The LED position. Ranges from 0 to 15.
+            red (int): The red part of the colour. Ranges from 0 to 255.
+            green (int): The green part of the colour. Ranges from 0 to 255.
+            blue (int): The blue part of the colour. Ranges from 0 to 255.
+
+        Returns:
+            list: a list containing the following data: [position, red, green, blue]
         """
+        if cerr.type_error(int, position) == False: log("Argument 'position' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB  Array")
+        if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Hub", "RG Array")
+        if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
+
+        if cerr.range_error(0, 15, position) == False: log("Argument 'position' has to be between the values 0 and 15 (included)", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 255, red) == False: log("Argument 'red' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 255, green) == False: log("Argument 'green' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 255, blue) == False: log("Argument 'blue' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
+
         err.type_error(int, "int", position)
         err.type_error(int, "int", red)
         err.type_error(int, "int", green)
@@ -1319,7 +1344,7 @@ class rgb_array():
         err.range_error(0, 255, blue)
 
           
-
+        log("Setting the LED-Position of the LEDs at the RGB Array to '" + str(position) + "' with the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Setting the LED-Position to '" + str(position) + "' with the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
         return [position, red, green, blue]
 
@@ -1328,10 +1353,21 @@ class rgb_array():
         """
         Sets all RGB LEDs in the array to the same r,g,b value.
 
+        Args:
+            red (int): The red part of the colour. Ranges from 0 to 255.
+            green (int): The green part of the colour. Ranges from 0 to 255.
+            blue (int): The blue part of the colour. Ranges from 0 to 255.
 
-        
-        Returns an array / list: [red, green, blue]
+        Returns:
+            list: a list containing the following data: [red, green, blue]
         """
+        if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB  Array")
+        if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Hub", "RG Array")
+        if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
+
+        if cerr.range_error(0, 255, red) == False: log("Argument 'red' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 255, green) == False: log("Argument 'green' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 255, blue) == False: log("Argument 'blue' has to be between the values 0 and 255 (included)!", "ERROR", "TI Hub", "RGB Array")
 
         err.type_error(int, "int", red)
         err.type_error(int, "int", green)
@@ -1341,18 +1377,19 @@ class rgb_array():
         err.range_error(0, 255, green)
         err.range_error(0, 255, blue)
             
-
+        log("Setting all RGB-LEDs from the RGB Array to the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Setting all RGB-LEDs to the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
         return [red, green, blue]
 
 
     def all_off(self):
         """
-        Turns off all RGB LEDs in the array
+        Turns off all RGB LEDs in the array.
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Turning off all RGB-LEDs in the Array", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Turning off all RGB LEDs")
         return None
 
@@ -1360,26 +1397,35 @@ class rgb_array():
         """
         Returns the approximate current draw that the RGB array is using from the TI-Innovator™ in milliAmps.
 
-
-        Returns None
+        Returns:
+            None: None
         """
+        log("Measuring the current energy draw of the RGB Array", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] measuring current draw of the HUB")
         return None
 
-    def pattern(self, value:int):
+    def pattern(self, pattern:int):
         """
         Using the value of the argument as a binary value in the range 0 to 65535, turns on pixels where a 1 value in the representation would be. LEDs are turned on as RED with pwm level value of 255.
 
+        Args:
+            pattern (int): The value for the pattern. 0 - 65535
 
-        Returns [value]
+        Returns:
+            list: a list containing the following data: [pattern]
         """
-        err.type_error(int, "int", value)
+        if cerr.type_error(int, pattern) == False: log("Argument 'pattern' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
+        if cerr.range_error(0, 65535, pattern) == False: log("Argument 'pattern' has to be between the values 0 and 65535 (included)!", "ERROR", "TI Hub", "RGB Array")
 
-        err.range_error(0, 65535)
-           
-        
-        print("[RGB-Array] Turning on pixels from binary value '" + value + "' (1 => on ; 0 => off)")
-        return [value]
+        err.type_error(int, "int", pattern)
+
+        err.range_error(0, 65535, pattern)
+
+        decoded_pattern = bin(pattern)
+
+        log("Turning on the LEDs from binary value '" + str(pattern) + "'. '1 => on'  '2 => off'. Pattern: '" + decoded_pattern + "'", "INFO", "TI Hub", "RGB Array")
+        print("[RGB-Array] Turning on pixels from binary value '" + str(pattern) + "' (1 => on ; 0 => off)")
+        return [pattern]
 
 ###########################################################################################
 
