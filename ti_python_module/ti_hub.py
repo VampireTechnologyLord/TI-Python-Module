@@ -2264,13 +2264,6 @@ class digital():
 
     INPUT: Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'\n
     INPUT: Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
-
-
-    Category: Hub / Add Input Device\n
-    Category: Hub / Add Output Device
-
-
-    Returns None
     """
 
     def __init__(self, port:str) -> None:
@@ -2283,74 +2276,63 @@ class digital():
         INPUT: Available Ports: 'IN 1', 'IN 2', 'IN 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'\n
         INPUT: Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
 
-
-        Category: Hub / Add Input Device\n
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        args:
+            port (str): The port of the device. Possible Options: 'IN 1', 'IN 2', 'IN 3','OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Digital")
+        if cerr.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "IN 1", "IN 2", "IN 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be one of these: 'IN 1', 'IN 2', 'IN 3','OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'!", "ERROR", "TI Hub", "Digital")
 
         err.type_error(str, "str", port)
         err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "IN 1", "IN 2", "IN 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
 
+        log("Setting the port for the input or output device set to digital to '" + port + "'", "INFO", "TI Hub", "Digital")
         print("Setting port for input / output device 'digital' to '" + port + "'")
 
 
     def measurement(self):
         """
-        Returns the value of the digital input device
-
-
-        Category: Hub / Add Input Device
-
-
-        Returns None
+        Returns the value of the digital input device.
         """
+        log("Measuring the value of the input device set to digital", "INFO", "TI Hub", "Digital")
         print("Measuring value of digital input device")
 
 
-    def set(self ,value:int):
+    def set(self, value:int):
         """
         Sets the digital output to the value specified by "value" (0 or 1).
 
+        args:
+            value (int): The value to set (0 - 1).
 
-        Category: Hub / Add Output Device
-
-
-        Returns an array / list: [value]
+        Returns:
+            list: a list containing the following values: [value]
         """
+
+        if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "Digital")
+        if cerr.range_error(0, 1, value) == False: log("Argument 'value' has to be between the values 0 and 1!", "ERROR", "TI Hub", "Digital")
 
         err.type_error(int, "int", value)
         err.range_error(0, 1, value)
 
-        print("Setting digital outout to '" + str(value) + "'")
+        log("Setting the value of the output device set to digital to '" + str(value) + "'", "INFO", "TI Hub", "Digital")
+        print("Setting digital output to '" + str(value) + "'")
         return [value]
 
 
     def on(self):
         """
-        Sets the state of the digital output to high (1).
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        Sets the state of the digital output to on (1).
         """
+        log("Setting the state / value of the device set to digital to 'on' (1)", "INFO", "TI Hub", "Digital")
         print("Setting state of digital output device to 'on' (1)")
         return None
 
     def off(self):
         """
-        Sets the state of the digital output to high (1).
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        Sets the state of the digital output to off (0).
         """
+        log("Setting the state / value of the device set to digital to 'off' (0)", "INFO", "TI Hub", "Digital")
         print("Setting state of digital output device to 'off' (0)")
         return None
 
