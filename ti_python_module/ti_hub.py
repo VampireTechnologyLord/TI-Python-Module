@@ -1717,27 +1717,24 @@ class power():
     """
 
     def __init__(self, port:str) -> None:
-
         """
         Manages functions for controlling external power with the TI-Innovator™ Hub.\n
         • set(value): Sets the Power level to the specified value, between 0 and 100.\n
         • on(): Sets the Power level to 100.\n
         • off(): Sets the Power level to 0.\n
 
-
-
-        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3'
-
-
-        Category: Hub / Add Output Device
-
-
-        Returns None
+        Args:
+            port (str): The port of the device. Possible Options: 'OUT 1', 'OUT 2', 'OUT 3'.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Power")
+
+        if cerr.argument_error(port, "OUT 1", "OUT 2", "OUT 3") == False: log("Argument 'port' has to be one of these: 'OUT 1', 'OUT 2', 'OUT 3'!", "ERROR", "TI Hub", "Power")
+
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 1", "OUT 2", "OUT 3")
 
+        log("Setting the port of the power device to '" + port + "'", "INFO", "TI Hub", "Power")
         print("Setting port for output device 'power' to '" + port + "'")
         return 
             
@@ -1746,34 +1743,34 @@ class power():
         """
         Sets the Power level to the specified value, between 0 and 100.
 
-
-        Returns an array / list [value]
+        Returns:
+            list: a list containing the following data: [value]
         """
+        if cerr.type_error(int, value) == False: log("Argument value has to be type integer!", "ERROR", "TI Hub", "Power")
+
+        if cerr.range_error(0, 100, value) == False: log("Argument value has to be between the values 0 and 100!", "ERROR", "TI Hub", "Power")
+
         err.type_error(int, "int", value)
 
         err.range_error(0, 100, value)
             
-
+        log("Setting the powerlevel of the power device to '" + str(value) + "'", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '" + str(value) + "'")
         return [value]
 
     def on(self):
         """
         Sets the powerlevel to 100
-
-
-        Returns None
         """
+        log("Setting the powerlevel to 100", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '100'")
         return None
 
     def off(self):
         """
         Sets the powerlevel to 0
-
-
-        Returns None
         """
+        log("Setting the powerlevel to 0", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '0'")
         return
 
@@ -1804,19 +1801,18 @@ class continuous_servo():
         • set_ccw(speed,time): The servo will spin in the counter-clockwise direction at the specified speed (0-255) and for the specific duration in seconds.\n
         • stop(): Stops the continuous servo.
 
-
-        Available Ports: 'OUT 3'
-    
-    
-        Category: Hub / Add Output Device
-    
-    
-        Returns None
+        args:
+            port (str): The port of the device. Possible Options: 'OUT 3'.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Continuous Servo")
+
+        if cerr.argument_error(port, "OUT 3") == False: log("Argument 'port' has to be one of these: 'OUT 3'!", "ERROR", "TI Hub", "Continuous Servo")
+
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 3")
 
+        log("Setting the port for the continuous servo to '" + port + "'", "INFO", "TI Hub", "Continuous Servo")
         print("Setting port for output device 'continuous_servo' to '" + port + "'")
         return
     
@@ -1827,9 +1823,21 @@ class continuous_servo():
         """
         The servo will spin in the clockwise direction at the specified speed (0-255) and for the specific duration in seconds.
 
+        Args:
+            speed (int): The speed of the continuous servo. Ranges from 0 to 255.
+            time (float): The duration of how long the continuous servo spins. Ranges from 0.1 to 100.
 
-        Returns an array / list: [speed, time]
+        Returns:
+            list: a list containing the following data: [speed, time]
         """
+
+        if cerr.type_error(int, speed) == False: log("Argument 'speed' has to be type integer!", "ERROR", "TI Hub", "Continuous Servo")
+        if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Hub", "Continuous Servo")
+
+        if cerr.range_error(0, 255, speed) == False: log("Argument 'speed' has to be between the values 0 and 255!", "ERROR", "TI Hub", "Continuous Servo")
+        if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Hub", "Continuous Servo")
+
+        if speed == 0: log("Please use 'continuous_servo(\"OUT 3\").stop()' if you want to turn it off instead of setting the speed to 0, since this does not turn the servo off", "WARNING", "TI Hub", "Continuous Servo")
 
         err.type_error(int, "int", speed)
         err.type_error(float, "float", time)
@@ -1838,17 +1846,29 @@ class continuous_servo():
         err.range_error(0.1, 100, time)
 
             
-        
+        log("Spinning the continuous servo clockwise for '" + str(time) + "' seconds with a speed of '" + str(speed) + "'", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Spinning the servo clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
         return [speed, time]
 
-    def set_ccw(self, speed:int, time:float):
+    def set_xcw(self, speed:int, time:float):
         """
         The servo will spin in the anti-clockwise direction at the specified speed (0-255) and for the specific duration in seconds.
 
+        Args:
+            speed (int): The speed of the continuous servo. Ranges from 0 to 255.
+            time (float): The duration of how long the continuous servo spins. Ranges from 0.1 to 100.
 
-        Returns an array / list: [speed, time]
+        Returns:
+            list: a list containing the following data: [speed, time]
         """
+
+        if cerr.type_error(int, speed) == False: log("Argument 'speed' has to be type integer!", "ERROR", "TI Hub", "Continuous Servo")
+        if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Hub", "Continuous Servo")
+
+        if cerr.range_error(0, 255, speed) == False: log("Argument 'speed' has to be between the values 0 and 255!", "ERROR", "TI Hub", "Continuous Servo")
+        if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Hub", "Continuous Servo")
+
+        if speed == 0: log("Please use 'continuous_servo(\"OUT 3\").stop()' if you want to turn it off instead of setting the speed to 0, since this does not turn the servo off", "WARNING", "TI Hub", "Continuous Servo")
 
         err.type_error(int, "int", speed)
         err.type_error(float, "float", time)
@@ -1857,17 +1877,15 @@ class continuous_servo():
         err.range_error(0.1, 100, time)
 
             
-        
+        log("Spinning the continuous servo anti-clockwise for '" + str(time) + "' seconds with a speed of '" + str(speed) + "'", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Spinning the servo anti-clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
         return [speed, time]
 
     def stop(self):
         """
         Stops the continuous servo.
-
-
-        Returns None
         """
+        log("Stopping the continuous servo", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Stopping the continuous servo")
         return None
 
@@ -1888,44 +1906,48 @@ class analog_out():
     """
     def __init__(self, port:str) -> None:
         """
-        Functions for the use of analog input generic devices.
-        
-        
-        Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'
-        
-        
-        Category: Hub / Add Output Device
-        
-        
-        Returns None
+        Functions for the use of analog input generic devices. Available Ports: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'.
+
+        Args:
+            port (str): The port of the device. Possible Options: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10'.
         """
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Analog Out")
+        if cerr.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10") == False: log("Argument 'port' has to be one of these: 'OUT 1', 'OUT 2', 'OUT 3', 'BB 1', 'BB 2', 'BB 3', 'BB 4', 'BB 5', 'BB 6', 'BB 7', 'BB 8', 'BB 9', 'BB 10!", "ERROR", "TI Hub", "Analog Out")
+
+
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 1", "OUT 2", "OUT 3", "BB 1", "BB 2", "BB 3", "BB 4", "BB 5", "BB 6", "BB 7", "BB 8", "BB 9", "BB 10")
         
-        
+        log("Setting the port for the output device set to analog out to '" + port + "'", "INFO", "TI Hub", "Analog Out")
         print("Setting port for output device 'analog_out' to '" + port + "'")
         return
 
     def off(self):
         """
-        Description
+        Setts the output device set as 'analog out' to off.
         """
+        log("Turning off the device set as analog out", "INFO", "TI Hub", "Analog Out")
         print("Setting output device for 'analog_out' to 'off'")
         return None
     def on(self):
         """
-        Description
+        Setts the output device set as 'analog out' to on.
         """
+        log("Turning on the device set as analog out", "INFO", "TI Hub", "Analog Out")
         print("Setting output device for 'analog_out' to 'on'")
         return None
 
     def set(self, value:float):
         """
-        Description
+        Setts the value of the output device set as 'analog out'.
         """
+        if cerr.type_error(float, value) == False: log("Argument 'value' has to be type float!", "ERROR", "TI Hub", "Analog Out")
+        if cerr.range_error(0, None, value) == False: log("Argument 'value' has to be greater then 0!", "ERROR", "TI Hub", "Analog Out")
+
         err.type_error(float, "float", value)
         err.range_error(0, None, value)
+        log("Setting the value of the output device set as analog out to '" + str(value) + "'", "INFO", "TI Hub", "Analog Out")
         print("Setting the value of output device 'analog_out' to '" + str(value) + "'")
         return [value]
 
