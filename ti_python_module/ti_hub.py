@@ -2119,31 +2119,39 @@ class servo():
         • set_position(pos): Sets the sweep servo position within a range of -90 to +90.\n
         • zero(): Sets the sweep servo to the zero position.    
 
-
-        Available Ports: 'OUT 3'
-   
-    
-        Category: Hub / Add Output Device
-  
-    
-        Returns None
+        args:
+            port (str): The port of the device. Possible Options: 'OUT 3'.
         """
+
+        if cerr.type_error(str, port) == False: log("Argument 'port' has to be type string!", "ERROR", "TI Hub", "Servo")
+
+        if cerr.argument_error(port, "OUT 3") == False: log("Argument 'port' has to be one of these: 'OUT 3'!", "ERROR", "TI Hub", "Servo")
+
 
         err.type_error(str, "str", port)
 
         err.argument_error(port, "OUT 3")
         
+        log("Setting the port of the servo to '" + port + "'", "INFO", "TI Hub", "Servo")
         print("Setting port for output device 'servo' to '" + port + "'")
         return
             
 
     def set_position(self, pos:int):
         """
-        Sets the sweep servo position within a range of -90 to +90.\n
+        Sets the sweep servo position within a range of -90 to +90.
 
+        args:
+            pos (int): The position to rotate the servo to. Ranges from -90 to 90.
 
-        Returns an array / list: [pos]
+        Returns:
+            list: a list containing the following data: [pos]
         """
+
+        if cerr.type_error(int, pos) == False: log("Argument 'pos' has to type integer!", "ERROR", "TI Hub", "Servo")
+
+        if cerr.range_error(-90, 90, pos) == False: log("Argument 'pos' has to between the values -90 and 90", "ERROR", "TI Hub", "Servo")
+
 
         err.type_error(int, "int", pos)
 
@@ -2151,17 +2159,15 @@ class servo():
 
 
             
-        
+        log("Setting the servos position to '" + str(pos) + "'", "INFO", "TI Hub", "Servo")
         print("[Servo] Setting the servo position to '" + str(pos) + "'")
         return [pos]
 
     def zero(self):
         """
-        Sets the sweep servo position to 0\n
-
-
-        Returns None
+        Sets the sweep servo position to 0
         """
+        log("Setting the position of the servo to 0", "INFO", "TI Hub", "Servo")
         print("[Servo] Setting the servo position to '0'")
         return None
 
