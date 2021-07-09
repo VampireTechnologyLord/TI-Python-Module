@@ -242,17 +242,19 @@ def backward(distance:float, distance_unit:str = None, speed:float = None, speed
 
 def left(degrees:float):
     """
-    Turns the rover left by the specified amount of degrees
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [degrees]
+    Turns the rover left by the specified amount of degrees.
+
+    Args:
+        degrees (float): The angle to turn left.
+
+    Returns:
+        list: a list containing the following data: [degrees]
     """
 
+    if cerr.type_error(float, degrees) == False: log("Argument 'degrees' has to be type float", "ERROR", "TI Rover", "Left")
     err.type_error(float, "float", degrees)
 
+    log("Turning the rover left by '" + str(degrees) + "' degrees", "INFO", "TI Rover", "Left")
     print("Turning rover left by '" + str(degrees) + "' degrees")
     return [degrees]
 
