@@ -282,13 +282,11 @@ def right(degrees:float):
 def stop():
     """
     Stops any current movement immediately. Pending commands will be executed.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns None
+
+    Returns:
+        None: None
     """
+    log("Stopping Rover Movement. Pending commands will be executed", "INFO", "TI Rover", "Stop")
     print("Stopping Rover Movement")
     return None
 
