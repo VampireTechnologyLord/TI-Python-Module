@@ -262,19 +262,21 @@ def left(degrees:float):
 
 def right(degrees:float):
     """
-    Turns the rover right by the specified amount of degrees
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [degrees]
+    Turns the rover right by the specified amount of degrees.
+
+    Args:
+        degrees (float): The angle to turn right.
+
+    Returns:
+        list: a list containing the following data: [degrees]
     """
+
+    if cerr.type_error(float, degrees) == False: log("Argument 'degrees' has to be type float", "ERROR", "TI Rover", "Right")
     err.type_error(float, "float", degrees)
 
+    log("Turning the rover right by '" + str(degrees) + "' degrees", "INFO", "TI Rover", "Right")
     print("Turning rover right by '" + str(degrees) + "' degrees")
     return [degrees]
-
 ###########################################################################################
 
 def stop():
