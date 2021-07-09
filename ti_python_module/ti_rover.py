@@ -81,18 +81,14 @@ def get_key():
 
 def cls():
     """
-    Clears all currently displayed content from the screen / display.
+    Clears the plotting canvas.
 
-
-    Category: Rover / Miscellaneous
-
-
-    Returns None
+    Returns:
+        None: None
     """
     print("Clearing screen / display")
+    log("Clearing the display / screen", "INFO", "TI Hub", "Clear Screen")
     return None
-
-
 
 ###########################################################################################
 
