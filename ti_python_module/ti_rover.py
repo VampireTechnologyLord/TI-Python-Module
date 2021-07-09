@@ -169,36 +169,59 @@ def forward(distance:float, distance_unit:str = None, speed:float = None, speed_
 
 def backward(distance:float, distance_unit:str = None, speed:float = None, speed_unit:str = None):
     """
-    Moves Rover backward by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified.
+    Moves Rover backwards by the specified distance in in the given unit (optional). If given, the speed and the speed unit will be as specified. Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this will cause errors.
 
-    Note: If you set the speed, you HAVE to set speed_unit! Otherwise, this might cause ERRORS!
+    Args:
+        distance (float): The distance to drive.
+        distance_unit (str, optional): The distance unit to drive. Possible Options: 'units', 'm', 'revs'. Defaults to None.
+        speed (float, optional): The speed to drive. Also needs `speed_unit` to be specified. Defaults to None.
+        speed_unit (str, optional): The speed unit. Possible Options: 'units/s', 'm/s', 'revs/s'. Defaults to None.
 
+    Raises:
+        ValueError: If the speed is set, but not the speed unit.
 
-    Default Values: distance_unit: units; speed: 1; speed_unit: units/s
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [distance, distance_unit, speed, speed_unit]
+    Returns:
+        list: a list containing the following values: [distance, distance_unit, speed, speed_unit]
     """
     if(distance_unit == None and speed == None and speed_unit == None):
+        if cerr.type_error(float, distance) == False: log("Argument 'distance' has to be type float!", "ERROR", "TI Rover", "Backward")
+        if cerr.range_error(0, None, distance) == False: log("Argument 'distance' has to be greater then 0!", "ERROR", "TI Rover", "Backward")
+
         err.type_error(float, "float", distance)
         err.range_error(0, None, distance)
 
-        print("Moving Rover forward by '" + str(distance) + "'")
+        log("Moving the Rover backwards by '" + str(distance) + "'", "INFO", "TI Rover", "Backward")
+        print("Moving Rover backwards by '" + str(distance) + "'")
         return [distance, distance_unit, speed, speed_unit]
 
     elif(distance_unit != None and speed == None and speed_unit == None):
+
+        if cerr.type_error(float, distance) == False: log("Argument 'distance' has to be type float!", "ERROR", "TI Rover", "Backward")
+        if cerr.type_error(str, distance_unit) == False: log("Argument 'distance_unit' has to be type string!", "ERROR", "TI Rover", "Backward")
+        if cerr.range_error(0, None, distance) == False: log("Argument 'distance' has to be greater then 0!", "ERROR", "TI Rover", "Backward")
+        if cerr.argument_error(distance_unit, "units", "m", "revs") == False: log("Argument 'distance_unit' has to be one of these: 'units', 'm', 'revs'!", "ERROR", "TI Rover", "Backward")
+
         err.type_error(float, "float", distance)
         err.type_error(str, "str", distance_unit)
         err.range_error(0, None, distance)
         err.argument_error(distance_unit, "units", "m", "revs")
 
-        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "'")
+        log("Moving the rover backwards by '" + str(distance) + " " + distance_unit + "'", "INFO", "TI Rover", "Backward")
+        print("Moving Rover backwards by '" + str(distance) + " " + distance_unit + "'")
         return [distance, distance_unit, speed, speed_unit]
 
     elif(distance_unit != None and speed != None and speed_unit != None):
+
+        if cerr.type_error(float, distance) == False: log("Argument 'distance' has to be type float!", "ERROR", "TI Rover", "Backward")
+        if cerr.type_error(str, distance_unit) == False: log("Argument 'distance_unit' has to be type string!", "ERROR", "TI Rover", "Backward")
+        if cerr.type_error(float, speed) == False: log("Argument 'speed' has to be type float!", "ERROR", "TI Rover", "Backward")
+        if cerr.type_error(str, speed_unit) == False: log("Argument 'speed_unit' has to be type string!", "ERROR", "TI Rover", "Backward")
+        if cerr.range_error(0, None, distance) == False: log("Argument 'distance' has to be greater then 0!", "ERROR", "TI Rover", "Backward")
+        if cerr.range_error(0.1, 10, speed) == False: log("Argument 'speed' has to be between the values 0.1 and 10!", "ERROR", "TI Rover", "Backward")
+        if cerr.argument_error(speed_unit, "units/s", "m/s", "revs/s") == False: log("Argument 'speed_unit' has to be one of these: 'units/s', 'm/s', 'revs/s'", "ERROR", "TI Rover", "Backward")
+        if cerr.argument_error(distance_unit, "units", "m", "revs") == False: log("Argument 'distance_unit' has to be one of these: 'units', 'm', 'revs'!", "ERROR", "TI Rover", "Backward")
+
+
         err.type_error(float, "float", distance)
         err.type_error(str, "str", distance_unit)
         err.type_error(float, "float", speed)
@@ -208,7 +231,8 @@ def backward(distance:float, distance_unit:str = None, speed:float = None, speed
         err.argument_error(distance_unit, "units", "m", "revs")
         err.argument_error(speed_unit, "units/s", "m/s", "revs/s")
 
-        print("Moving Rover forward by '" + str(distance) + " " + distance_unit + "' with a speed of '" + str(speed) + " " + speed_unit + "'")
+        log("Moving the Rover backwards by '" + str(distance) + " " + distance_unit + "' with a speed of '" + str(speed) + " " + speed_unit + "'", "INFO", "TI Rover", "Backward")
+        print("Moving Rover backwards by '" + str(distance) + " " + distance_unit + "' with a speed of '" + str(speed) + " " + speed_unit + "'")
         return [distance, distance_unit, speed, speed_unit]
 
     else:
