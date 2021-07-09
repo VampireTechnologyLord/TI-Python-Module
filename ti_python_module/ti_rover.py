@@ -295,13 +295,11 @@ def stop():
 def stop_clear():
     """
     Stops any current movement immediately. Pending commands will cleared.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns None
+
+    Returns:
+        None: None
     """
+    log("Stopping Rover Movement. Pending commands will be cleared", "INFO", "TI Rover", "Stop Clear")
     print("Stopping Rover Movement and clearing all pending commands")
     return None
 
