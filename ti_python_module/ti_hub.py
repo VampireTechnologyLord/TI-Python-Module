@@ -35,8 +35,8 @@ def text_at(line: int, text: str, align: str):
     err.argument_error(align, "left", "center", "right")
     err.range_error(1, 13, line)
 
-    log("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "'", "INFO", "TI Hub", "Text At")
-    print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "'")
+    log("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'", "INFO", "TI Hub", "Text At")
+    print("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'")
     return [text, line, align]
        
 ###########################################################################################
