@@ -70,14 +70,11 @@ def get_key():
     """
     Gets the pressed key.
 
-
-    Category: Rover / Miscellaneous
-
-
-    Returns pressed key
+    Returns:
+        string: the pressed key
     """
-    key = input("Requesting key input:  ")
-    print("Getting Pressed key '" + key  + "'")
+    key = input("Requesting Key input: ")
+    log("Got key '" + key + "' from user input", "INFO", "TI Hub", "Get Key")
     return key
 
 ###########################################################################################
