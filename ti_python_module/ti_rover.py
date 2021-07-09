@@ -1,31 +1,41 @@
 """
 Class containing all TI-Rover commands. Used for debugging
 """
-import ti_python_module.err as err
+from ti_python_module.err import withConsole as err
+from ti_python_module.err import onlyCheck as cerr
+from ti_python_module.file_handler import create_log as log
 
 
 ###########################################################################################
 
 def text_at(line: int, text: str, align: str):
     """
-    Displays text at the given line (ranging between 1 and 13) and with the given alignment ('left' or 'center' or 'right').
+    Displays "text" in plotting area at specified "align".
 
+    Args:
+        line (int): The line of the text. Possible Options: 'line, 'text', 'align'.
+        text (str): The text of the displayed text.
+        align (str): The texts alignment. Possible Options: 'left', 'center', 'right'.
 
-    Category: Rover / Miscellaneous
-
-
-    Returns an array / list: [text, line, align]
+    Returns:
+        list: list: list: a list containing the following data: [line, text, align]
     """
+
+    if cerr.type_error(int, line) == False: log("Argument 'line' has to be type integer!", "ERROR", "TI Hub", "Text At")
+    if cerr.type_error(str, text) == False: log("Argument 'text' has to be type string!", "ERROR", "TI Hub", "Text At")
+    if cerr.type_error(str, align) == False: log("Argument 'align' has to be type string!", "ERROR", "TI Hub", "Text At")
+    if cerr.argument_error(align, "left", "center", "right") == False: log("Argument 'align' can only be one of these: 'left', 'center', 'right'!", "ERROR", "TI Hub", "Text At")
+    if cerr.range_error(1, 13, line) == False: log("Argument 'line' has to be between the values 1 and 13 (included)!", "ERROR", "TI Hub", "Text At")
+
 
     err.type_error(int, "int", line)
     err.type_error(str, "str", text)
     err.type_error(str, "str", align)
-
+    err.argument_error(align, "left", "center", "right")
     err.range_error(1, 13, line)
 
-    err.argument_error(align, "left", "right", "center")
-
-    print("Showing text '" + text + "' at line " + str(line) + " with alignement '" + align + "' !")
+    log("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'", "INFO", "TI Hub", "Text At")
+    print("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'")
     return [text, line, align]
 
 
