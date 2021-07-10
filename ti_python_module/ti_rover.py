@@ -535,12 +535,10 @@ def green_measurement():
     """
     Returns a value between 0 and 255 that indicates the perceived green level being seen by the color input sensor.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Measuring green level from the colour sensor", "INFO", "TI Rover", "Green Measurement")
     print("Measuring green level from the colour sensor")
     return None
 
