@@ -486,13 +486,11 @@ def forward_time(time:float, speed:float = 1, unit:str = "units/s"):
 def ranger_measurement():
     """
     Reads the ultrasonic distance sensor on the front of the Rover, returning the current distance in meters.
-    
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+
+    Returns:
+        None: None
     """
+    log("Fetching the value measured by the ultrasonic sensor", "INFO", "TI Rover", "Ranger Measurement")
     print("Fetching data from ultrasonic sensor")
     return None
 
