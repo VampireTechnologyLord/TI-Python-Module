@@ -419,27 +419,31 @@ def to_angle(degrees:float, unit:str):
 
 def backward_time(time:float, speed:float = 1, unit:str = "units/s"):
     """
-    Moves Rover backward for the specified time at the specified speed. The speed can be specified in grid units/s, meters/s, or wheel revolutions/s.\n
-    Valid Arguments for <unit>: 'units/s', 'm/s', 'revs/s'
+    Moves Rover backward for the specified time at the specified speed. The speed can be specified in grid units/s, meters/s, or wheel revolutions/s.
 
+    Args:
+        time (float): The time in seconds to move. Ranges from 0.1 to 100.
+        speed (float, optional): The speed at which to move. Ranges from 0.1 to 10. Defaults to 1.
+        unit (str, optional): The unit of speed. Possible Options: 'units/s', 'm/s', 'revs/s'. Defaults to "units/s".
 
-    Default Values: speed = 1; unit = units/s
-    
-    
-    Category: Rover / Driving / Driving With Options
-    
-    
-    Returns an array / list: [time, speed, unit]
+    Returns:
+        list: a list containing the following data: [time, speed, unit]
     """
+    if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Rover", "Backward Time")
+    if cerr.type_error(float, speed) == False: log("Argument 'speed' has to be type float!", "ERROR", "TI Rover", "Backward Time")
+    if cerr.type_error(str, unit) == False: log("Argument 'unit' has to be type string!", "ERROR", "TI Rover", "Backward Time")
+    if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100 (inclusive)!", "ERROR", "TI Rover", "Backward Time")
+    if cerr.range_error(0.1, 10, speed) == False: log("Argument 'speed' has to be between the values 0.1 and 10 (inclusive)!", "ERROR", "TI Rover", "Backward Time")
+    if cerr.argument_error(unit, "units/s", "m/s", "revs/s") == False: log("Argument 'unit' can only be on of these: 'units/s', 'm/s', 'revs/s'!", "ERROR", "TI Rover", "Backward Time")
+
     err.type_error(float, "float", time)
     err.type_error(float, "float", speed)
     err.type_error(str, "str", unit)
-
     err.range_error(0.1, 100, time)
     err.range_error(0.1, 10, speed)
-
     err.argument_error(unit, "units/s", "m/s", "revs/s")
 
+    log("Moving the rover backwards for '" + str(time) + "' seconds with a speed of " + str(speed) + " '" + unit + "'", "INFO", "TI Rover", "Backward Time")
     print("Moving the rover backwards for '" + str(time) + "' seconds with a speed of '" + str(speed) + unit + "'")
     return [time, speed, unit]
 
