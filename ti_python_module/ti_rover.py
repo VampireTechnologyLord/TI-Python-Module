@@ -320,16 +320,22 @@ def resume():
 
 def stay(time:int=30):
     """
-    Rover stays in place for the specified amount of time in seconds (optional). If no time is specified, the Rover stays for 30 seconds
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [degrees]
-    """
-    err.type_error(int, "int", time)
+    Rover stays in place for the specified amount of time in seconds (optional). If no time is specified, the Rover stays for 30 seconds.
 
+    Args:
+        time (int, optional): The time to stay. Defaults to 30.
+
+    Returns:
+        list: a list containing the following data: [time]
+    """
+
+    if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer!", "ERROR", "TI Rover", "Stay")
+    if cerr.range_error(0, None, time) == False: log("Argument 'time' has to be greater then 0!", "ERROR", "TI Rover", "Stay")
+
+    err.type_error(int, "int", time)
+    err.range_error(0, None, time)
+
+    log("Staying at the current location for '" + str(time) + "' seconds", "INFO", "TI Rover", "Stay")
     print("Rover stays at current location for '" + str(time) + "' seconds")
     return [time]
 
