@@ -522,12 +522,10 @@ def red_measurement():
     """
     Returns a value between 0 and 255 that indicates the perceived red level being seen by the color input sensor.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Measuring red level from the colour sensor", "INFO", "TI Rover", "Red Measurement")
     print("Measuring red level from the colour sensor")
     return None
 
