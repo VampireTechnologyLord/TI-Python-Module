@@ -367,17 +367,21 @@ def to(x:float, y:float):
 def to_polar(radius:float, theta_degrees:float):
     """
     Moves Rover to polar coordinate position (r, theta) on virtual grid. The angle is specified in degrees.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [radius, theta_degrees]
+
+    Args:
+        radius (float): The radius to move to.
+        theta_degrees (float): The angle to move to.
+
+    Returns:
+        list: a list containing the following values: [radius, theta_degrees]
     """
+    if cerr.type_error(float, radius) == False: log("Argument 'radius' has to be type float!", "ERROR", "TI Rover", "To Polar")
+    if cerr.type_error(float, theta_degrees) == False: log("Argument 'theta_degrees' has to be type float!", "ERROR", "TI Rover", "To Polar")
+
     err.type_error(float, "float", radius)
     err.type_error(float, "float", theta_degrees)
 
-    
+    log("Moving the Rover to polar with a radius of '" + str(radius) + "' and an angle of '" + str(theta_degrees) + "' degrees", "INFO", "TI Rover", "To Polar")
     print("Rover moves to polar with radius '" + str(radius) + "' and '" + str(theta_degrees) + "' degrees")
     return [radius, theta_degrees]
 
