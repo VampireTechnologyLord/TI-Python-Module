@@ -507,14 +507,12 @@ def colour_measurement():
         6 = yellow\n
         7 = black\n
         8 = grey\n
-        9 = white\n
+        9 = white    
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Measuring the dominant colour from the colour sensor", "INFO", "TI Rover", "Colour Measurement")
     print("Measuring dominant colour from colour sensor")
     return None
 
