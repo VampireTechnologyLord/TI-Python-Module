@@ -567,6 +567,7 @@ def gray_measurement():
     
     Returns None
     """
+    log("Measuring gray level from the colour sensor", "INFO", "TI Rover", "Gray Measurement")
     print("Measuring gray level from the colour sensor")
     return None
 
