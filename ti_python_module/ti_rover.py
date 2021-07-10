@@ -548,12 +548,10 @@ def blue_measurement():
     """
     Returns a value between 0 and 255 that indicates the perceived blue level being seen by the color input sensor.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Measuring blue level from the colour sensor", "INFO", "TI Rover", "Blue Measurement")
     print("Measuring blue level from the colour sensor")
     return None
 
