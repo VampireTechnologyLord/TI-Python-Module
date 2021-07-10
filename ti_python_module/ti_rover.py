@@ -308,13 +308,11 @@ def stop_clear():
 def resume():
     """
     Resumes the processing of commands, that are pending.
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns None
+
+    Returns:
+        None: None
     """
+    log("Resuming pending Rover movement commands", "INFO", "TI Rover", "Resume")
     print("Resuming Rover Movement")
     return None
 
