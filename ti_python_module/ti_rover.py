@@ -391,21 +391,26 @@ def to_angle(degrees:float, unit:str):
     """
     Spins Rover to the specified angle in the virtual grid. The angle is relative to a zero angle which points down the x-axis in the virtual grid.
 
+    Args:
+        degrees (float): The degrees to spin.
+        unit (str): The unit to spin. Possible Options: 'degrees', 'radians', 'gradians'.
 
-    Valid Units: 'degrees', 'radians', 'gradians'
-    
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [degrees, unit]
+    Returns:
+        list: a list containing the following data: [degrees, unit]
     """
+    if cerr.type_error(float, degrees) == False: log("Argument 'degrees' has to be type float!", "ERROR", "TI Rover", "To Angle")
+    if cerr.type_error(str, unit) == False: log("Argument 'unit' has to be type string!", "ERROR", "TI Rover", "To Angle")
+
+    if cerr.argument_error(unit, "degrees", "radians", "gradians") == False: log("Argument 'unit' has to be one of these: 'degrees', 'radians', 'gradians'!", "ERROR", "TI Rover", "To Angle")
+
+
+
     err.type_error(float, "float", degrees)
     err.type_error(str, "str", unit)
 
     err.argument_error(unit, "degrees", "radians", "gradians")
     
-
+    log("Turning the rover by " + str(degrees) + " '" + unit + "'", "INFO", "TI Rover", "To Angle")
     print("Rover turns by angle '" + str(degrees) + "' with unit type '" + unit + "' degrees")
     return [degrees, unit]
 
