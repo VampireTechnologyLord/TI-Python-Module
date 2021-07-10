@@ -344,17 +344,21 @@ def stay(time:int=30):
 def to(x:float, y:float):
     """
     Moves Rover to coordinate position (x,y) on virtual grid. Distance in GridUnits.
+
+    Args:
+        x (float): The x coordinate to go to.
+        y (float): The y coordinate to go to.
     
-    
-    Category: Rover / Driving
-    
-    
-    Returns an array / list: [x (gridUnits), y (gridUnits), x (cm), y (cm)]
+    Returns:
+        list: a list containing the following data: [x, y]
     """
+    if cerr.type_error(float, x) == False: log("Argument 'x' has to be type float!", "ERROR", "TI Rover", "To")
+    if cerr.type_error(float, y) == False: log("Argument 'y' has to be type float!", "ERROR", "TI Rover", "To")
+
     err.type_error(float, "float", x)
     err.type_error(float, "float", y)
 
-    
+    log("Moving the rover to ( " + str(x) + " | " + str(y) + " ) on the virtual grid", "INFO", "TI Rover", "To")
     print("Rover moves to '(" + str(x) + " | " + str(y) + ")' on the virtual grid.")
     return [x, y, x*10, y*10]
 
