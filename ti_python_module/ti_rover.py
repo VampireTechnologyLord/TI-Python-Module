@@ -849,12 +849,10 @@ def pathlist_y():
     """
     Returns a list of y values from the beginning to and including the current Waypoint Y value.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the y values of the previous and current waypoints", "INFO", "TI Rover", "Pathlist Y")
     print("Fetching y values of previous and current waypoints")
     return None
 
