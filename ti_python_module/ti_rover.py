@@ -734,13 +734,31 @@ def motor_right(speed:int, time:float = 5):
 def motors(left_direction:str, left_speed:int, right_direction:str, right_speed:int, time:float = 5):
     """
     Sets the left and right wheel to the specified speed levels, for an optional amount of time in seconds. The speed (left_speed, right_speed) values are in the range 0 to 255 with 0 being stop. The left_direction and right_direction parameters specify CW or CCW rotation of the respective wheels. The optional time parameter, if specified, has a valid range of 0.1 to 100 seconds. If not specified, a default of 5 seconds is used.
-    
-    
-    Category: Rover / Output
-    
-    
-    Returns an array / a list [left_direction, left_speed, right_direction, right_speed, time]
+
+    Args:
+        left_direction (str): The direction of the left wheel. Possible Options: 'cw', 'ccw'.
+        left_speed (int): The speed of the left wheel. Ranges from -255 to 255 with 0 being stop.
+        right_direction (str): The direction of the right wheel. Possible Options: 'cw', 'ccw'.
+        right_speed (int): The speed of the right wheel. Ranges from -255 to 255 with 0 being stop.
+        time (float, optional): The time to spin the wheels. Defaults to 5.
+
+    Returns:
+        list: a list containing the following data: [left_direction, left_speed, right_direction, right_speed, time]
     """
+    if cerr.type_error(str, left_direction) == False: log("Argument 'left_direction' has to be type string!", "ERROR", "TI Rover", "Motors")
+    if cerr.type_error(int, left_speed) == False: log("Argument 'left_speed' has to be type integer!", "ERROR", "TI Rover", "Motors")
+    if cerr.type_error(str, right_direction) == False: log("Argument 'right_direction' has to be type string!", "ERROR", "TI Rover", "Motors")
+    if cerr.type_error(int, right_speed) == False: log("Argument 'right_speed' has to be type integer!", "ERROR", "TI Rover", "Motors")
+    if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Rover", "Motors")
+
+    if cerr.range_error(-255, 255, left_speed) == False: log("Argument 'left_speed' has to be between the values -255 and 255!", "ERROR", "TI Rover", "Motors")
+    if cerr.range_error(-255, 255, right_speed) == False: log("Argument 'right_speed' has to be between the values -255 and 255!", "ERROR", "TI Rover", "Motors")
+    if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Rover", "Motors")
+    
+    if cerr.argument_error(left_direction, "cw", "ccw") == False: log("Argument 'left_direction' has to be one of these: 'cw', 'ccw'!", "ERROR", "TI Rover", "Motors")
+    if cerr.argument_error(right_direction, "cw", "ccw") == False: log("Argument 'right_direction' has to be one of these: 'cw', 'ccw'!", "ERROR", "TI Rover", "Motors")
+
+
     err.type_error(str, "str", left_direction)
     err.type_error(int, "int", left_speed)
     err.type_error(str, "str", right_direction)
@@ -755,7 +773,7 @@ def motors(left_direction:str, left_speed:int, right_direction:str, right_speed:
     err.argument_error(right_direction, "cw", "ccw")
     
     
-
+    log("Setting the left motor to rotate '" + left_direction + "' with a speed of '" + str(left_speed) + "'. Setting the right motor to rotate '" + right_direction + "' with a speed of '" + str(right_speed) + "'. Both motors are running for '" + str(time) + "' seconds", "INFO", "TI Rover", "Motors")
     print("Setting the left motor to rotate '" + left_direction + "' with a speed of '" + str(left_speed) + "'. Setting the right motor to rotate '" + right_direction + "' with a speed of '" + str(right_speed) + "'. Both motors are running for '" + str(time) + " seconds'")
     return [left_direction, left_speed, right_direction, right_speed, time]
 
