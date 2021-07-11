@@ -1,22 +1,27 @@
 """
 A class containing all the TI-System commands
 """
-import ti_python_module.err as err
+from ti_python_module.err import withConsole as err
+from ti_python_module.err import onlyCheck as cerr
+from ti_python_module.file_handler import create_log as log
 
 ###########################################################################################
 
 def recall_value(name:str):
     """
     Recalls a predefined OS variable (value) named "name".
+
+    args:
+        name (str): The name of the variable from which to recall the value.
     
-    
-    Category: TI System
-    
-    
-    Returns an array / list: [name]
+    Returns:
+        list: a list containing the following data: [name]
     """
+    if cerr.type_error(str, name) == False: log("Argument 'name' has to be type string", "ERROR", "TI System", "Recall Value")
+
     err.type_error(str, "str", name)
     
+    log("Fetchint the value stored in the system variable with the name '" + name + "'", "INFO", "TI System", "Recall Value")
     print("Fetching value of system variable '" + name + "'")
     return [name]
 
@@ -145,7 +150,7 @@ def clear_history():
     
     Returns None
     """
-    print("Clearung Shell history")
+    print("Clearing Shell history")
     return None
 
 ###########################################################################################
