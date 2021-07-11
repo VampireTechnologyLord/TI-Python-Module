@@ -587,12 +587,10 @@ def gyro_measurement():
     """
     Returns a value that represents the current gyro reading, including drift, in the degrees.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Getting the values measured by the gyroscope", "INFO", "TI Rover", "Gyroscope Measurement")
     print("Measuring gyroscope values")
     return None
 
