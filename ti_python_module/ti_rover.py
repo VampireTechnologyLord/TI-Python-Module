@@ -914,12 +914,10 @@ def pathlist_cmdnum():
     """
     Returns a list of command numbers for the path.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching list of waypoints numbers since the first waypoint", "INFO", "TI Rover", "Pathlist CMDNUM")
     print("Fetching list of waypoint numbers since first waypoint")
     return None
 
