@@ -862,12 +862,10 @@ def pathlist_time():
     """
     Returns a list of the time in seconds from the beginning to and including the current Waypoint time value.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the time passed since the first waypoint", "INFO", "TI Rover", "Pathlist Time")
     print("Fetching time since first waypoint")
     return None
 
