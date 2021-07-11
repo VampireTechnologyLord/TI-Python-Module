@@ -161,11 +161,13 @@ def draw_text(x_start:float, y_start:float, text:str):
     """
     Draws a text string at the specified x, y coordinate.
     
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x_start, y_start, text]
+    Args:
+        x_start (float): The starting x coordinate.
+        y_start (float): The starting y coordinate.
+        text (str): The text to draw.
+
+    Returns:
+        list: a list containing the following data: [x_start, y_start, text]
     """
 
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Text")
@@ -184,14 +186,26 @@ def draw_text(x_start:float, y_start:float, text:str):
 
 def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angle:float, arc_angle:float):
     """
-    Draws an arc starting at the specified x,y coordinate with the specified width, height and angles. 
-    
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x_start, y_start, width, height, start_angle, arc_angle]
+    Draws an arc starting at the specified x,y coordinate with the specified width, height and angles.
+
+    Args:
+        x_start (float): The starting x coordinate.
+        y_start (float): The starting y coordinate.
+        width (float): The width of the arc.
+        height (float): The height of the arc.
+        start_angle (float): The starting angle of the arc.
+        arc_angle (float): The arc angle.
+
+    Returns:
+        list: a list containing the following data: [x_start, y_start, width, height, start_angle, arc_angle]
     """
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+    if cerr.type_error(float, width) == False: log("Argument 'width' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+    if cerr.type_error(float, height) == False: log("Argument 'height' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+    if cerr.type_error(float, start_angle) == False: log("Argument 'start_angle' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+    if cerr.type_error(float, arc_angle) == False: log("Argument 'arc_angle' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
+
     err.type_error(float, "float", x_start)
     err.type_error(float, "float", y_start)
     err.type_error(float, "float", width)
@@ -199,6 +213,7 @@ def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angl
     err.type_error(float, "float", start_angle)
     err.type_error(float, "float", arc_angle)
 
+    log("Drawing arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'", "INFO", "TI Draw", "Draw Arc")
     print("Drawing arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'")
     return [x_start, y_start, width, height, start_angle, arc_angle]
 
