@@ -107,16 +107,24 @@ def draw_circle(x_start:float, y_start:float, radius:float):
     """
     Draws a circle starting at the specified x,y center coordinate with the specified radius.
     
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x_start, y_start, radius]
+    Args:
+        x_start (float): The starting x coordinate.
+        y_start (float): The starting y coordinate.
+        radius (float): The radius of the circle.
+
+    Returns:
+        list: a list containing the following data: [x_start, y_start, radius]
     """
+
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Circle")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Circle")
+    if cerr.type_error(float, radius) == False: log("Argument 'radius' has to be type float!", "ERROR", "TI Draw", "Draw Circle")
+
     err.type_error(float, "float", x_start)
     err.type_error(float, "float", y_start)
     err.type_error(float, "float", radius)
 
+    log("Drawing circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'", "INFO", "TI Draw", "Draw Circle")
     print("Drawing circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'")
     return [x_start, y_start, radius]
 
