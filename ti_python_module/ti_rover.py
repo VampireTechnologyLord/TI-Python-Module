@@ -966,13 +966,11 @@ def waypoint_heading():
     """
     Returns absolute heading of current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
-    print("Fetching absolute heding of current waypoint")
+    log("Fetching the absolute heading of the current waypoint", "INFO", "TI Rover", "Waypoint Heading")
+    print("Fetching absolute heading of current waypoint")
     return None
 
 ###########################################################################################
@@ -981,12 +979,10 @@ def waypoint_distance():
     """
     Returns distance traveled between previous and current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the distance traveled between the current and the previous waypoint", "INFO", "TI Rover", "Waypoint Distance")
     print("Fetching distance traveled between current and previous waypoint")
     return None
 
