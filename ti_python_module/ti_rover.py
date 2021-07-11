@@ -800,6 +800,7 @@ def waypoint_prev():
     Returns:
         None: None
     """
+    log("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the previous waypoint", "INFO", "TI Rover", "Waypoint Previous")
     print("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the previous waypoint")
     return None
 
