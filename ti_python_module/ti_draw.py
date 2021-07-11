@@ -300,22 +300,33 @@ def fill_poly(x_list:list, y_list:list):
 
 ###########################################################################################
 
-def plot_xy(x:float, y:float, form_id:int):
+def plot_xy(x_start:float, y_start:float, form_id:int):
     """
-    Description
+    Draws a shape using the specified x,y coordinate and specified number from 1-13 representing different shapes and symbols.
     
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x, y, form_id]
+    Args:
+        x_start (float): The x coordinate to draw at.
+        y_start (float): The y coordinate to draw at.
+        form_id (int): The id of which form to draw.
+
+    Returns:
+        list: a list containing the following data: [x_start, y_start, form_id]
     """
-    err.type_error(float, "float", x)
-    err.type_error(float, "float", y)
-    err.type_error(int, "int", y)
-        
-    print("Drawing form '" + str(form_id) + "' at ( " + str(x) + " | " + str(y) + " )")
-    return [x, y, form_id]
+
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Plot XY")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Plot XY")
+    if cerr.type_error(int, form_id) == False: log("Argument 'form_id' has to be type integer!", "ERROR", "TI Draw", "Plot XY")
+    if cerr.range_error(1, 13, form_id) == False: log("Argument 'form_id' has to be between the values 1 and 13 (inclusive)!", "ERROR", "TI Draw", "Plot XY")
+
+    err.type_error(float, "float", x_start)
+    err.type_error(float, "float", y_start)
+    err.type_error(int, "int", form_id)
+
+    err.range_error(1, 13, form_id)
+    
+    log("Drawing form with id '" + str(form_id) + "' at ( " + str(x_start) + " | " + str(y_start) + " )", "INFO", "TI Draw", "Plot XY")
+    print("Drawing form '" + str(form_id) + "' at ( " + str(x_start) + " | " + str(y_start) + " )")
+    return [x_start, y_start, form_id]
 
 ###########################################################################################
 
