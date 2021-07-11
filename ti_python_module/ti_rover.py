@@ -901,12 +901,10 @@ def pathlist_revs():
     """
     Returns a list of the number of revolutions traveled from the beginning to and including the current Waypoint revolutions value.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the number of wheel revolutions since the first waypoint", "INFO", "TI Rover", "Pathlist Revolutions")
     print("Fetching wheel revolutions since first waypoint")
     return None
 
