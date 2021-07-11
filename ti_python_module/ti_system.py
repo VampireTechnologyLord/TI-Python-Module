@@ -167,11 +167,9 @@ def get_time_ms():
     """
     Returns time in milliseconds with millisecond precision. This functionality can be used to calculate a duration rather than determine the actual clock time.
     
-    
-    Category: TI System
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Fetching the time in milliseconds", "INFO", "TI System", "Get Time Milliseconds")
     print("Fetching time in milliseconds")
     return None
