@@ -6,7 +6,7 @@ MODULES:list[str] = ["TI Hub", "TI Rover", "TI Draw", "TI System", "TI Plotlib"]
 LOGTYPES:list[str] = ["WARNING", "ERROR", "INFO"]
 
 
-SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light", "Sound", "Brightness", "DHT", "Ranger", "Light Level", "Temperature", "Moisture", "Magnetic"]
+SUBMODULES:list[str] = ["Clear Screen", "Window", "Auto Window", "Grid", "Axes", "Labels", "Title", "Show Plot", "Use Buffer", "Colour", "Scatter", "Plot", "Line", "Linear Regression", "Pen", "Text At", "Sleep", "Get Key", "Colour", "Light", "Sound", "Brightness", "DHT", "Ranger", "Light Level", "Temperature", "Moisture", "Magnetic", "Vernier", "Analog In", "Potentiometer", "Thermistor", "Loudness", "Colour Input", "Hub Time", "RGB Array", "LED", "RGB", "Speaker", "Power", "Continuous Servo", "Analog Out", "Vibration Motor", "Relay", "Servo", "Squarewave", "Digital", "BB Port", "Forward", "Backward", "Left", "Stop", "Stop Clear", "Resume", "Stay", "To", "Backward Time", "Forward Time", "Ranger Measurement", "Colour Measurement", "Red Measurement", "Green Measurement", "Blue Measurement", "Gray Measurement", "Encoders Gyroscope Measurement", "Gyroscope Measurement", "Colour RGB", "Blink", "Off", "Left Motor", "Right Motor", "Motors", "Waypoint Xythdrn", "Waypoint Previous", "Waypoint ETA", "Path Done", "Pathlist X", "Pathlist Y", "Pathlist Time", "Pathlist Heading", "Pathlist Distance", "Pathlist Revolutions", "Pathlist CMDNUM", "Waypoint X", "Waypoint Y", "Waypoint Time", "Waypoint Heading", "Waypoint Distance", "Waypoint Revolutions", "Recall Value", "Store Value", "Recall List", "Store List", "Evaluate Function", "Get Platform", "Get Mouse", "Clear History", "Get Time Milliseconds", "Draw Line", "Draw Rectangle", "Filled Rectangle", "Draw Circle", "Filled Circle", "Draw Text", "Draw Arc", "Filled Arc", "Draw Polygon", "Filled Polygon", "Plot XY", "Clear", "Set Colour", "Set Pen", "Set Window", "Get Screen Dimension", "Use Buffer", "Paint Buffer"]
 
 
 
@@ -41,7 +41,7 @@ def __check_config__():
                     elif line == "log_file = True":
                         __check_log_file__()
     else:
-        print("======\nYou do not hava a config file ('ti-python-settings.cfg') in your current directory.\nCall the function 'file_handler.generate_settings() once to generate the settings file.'\nWrite 'log_file = True' to enable a logfile or 'log_file = False' to disable a logfile and this message.\n\n")
+        print("======\nYou do not have a config file ('ti-python-settings.cfg') in your current directory.\nCall the function 'file_handler.generate_settings() once to generate the settings file.'\nWrite 'log_file = True' to enable a logfile or 'log_file = False' to disable a logfile and this message.\n\n")
 
 def generate_settings():
     if os.path.exists("ti-python-settings.cfg") == True:
