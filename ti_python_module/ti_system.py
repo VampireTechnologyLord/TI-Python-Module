@@ -65,18 +65,23 @@ def recall_list(name:str):
 
 ###########################################################################################
 
-def store_list(name:str, list):
+def store_list(name:str, list:list):
     """
     Stores a Python list (list) to an OS variable named "name".
     
+    args:
+        name (str): The name of the variable from which to recall the value.
+        list (list): The values to store int the list.
     
-    Category: TI System
-    
-    
-    Returns an array / list: [name, list]
+    Returns:
+        list: a list containing the following data: [name, list]
     """
+
+    if cerr.type_error(str, name) == False: log("Argument 'name' has to be type string", "ERROR", "TI System", "Store List")
+
     err.type_error(str, "str", name)
     
+    log("Storing the data from the given list to system list '" + name + "'", "INFO", "TI System", "Store List")
     print("Storing data '" + str(list) + "' to variable '" + name + "'")
     return [name, list]
 
