@@ -31,16 +31,18 @@ def store_value(name:str, value):
     """
     Stores a Python variable (value) to an OS variable named "name".
     
+    args:
+        name (str): The name of the variable from which to recall the value.
+        value (any): The value to store.
     
-    Category: TI System
-    
-    
-    Returns an array / list: [name, value]
+    Returns:
+        list: a list containing the following data: [name, value]
     """
+    if cerr.type_error(str, name) == False: log("Argument 'name' has to be type string", "ERROR", "TI System", "Store Value")
     err.type_error(str, "str", name)
+    log("Storing data '" + str(value) + "' to variable '" + name + "'", "INFO", "TI System", "Store Value")
     print("Storing data '" + str(value) + "' to variable '" + name + "'")
     return [name, value]
-
 ###########################################################################################
 
 def recall_list(name:str):
