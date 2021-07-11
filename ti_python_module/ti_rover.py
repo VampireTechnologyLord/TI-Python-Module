@@ -946,7 +946,8 @@ def waypoint_y():
     
     Returns None
     """
-    print("Fetchin y coordinate of current waypoint")
+    log("Fetching the y coordinate of the current waypoint", "INFO", "TI Rover", "Waypoint Y")
+    print("Fetching y coordinate of current waypoint")
     return None
 
 ###########################################################################################
