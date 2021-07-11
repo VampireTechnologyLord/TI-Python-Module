@@ -810,12 +810,10 @@ def waypoint_eta():
     """
     Fetches the estimated time to drive to a waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching estimated time to reach the next waypoint", "INFO", "TI Rover", "Waypoint ETA")
     print("Fetching estimated time to reach next waypoint")
     return None
 
