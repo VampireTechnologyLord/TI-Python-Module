@@ -927,13 +927,11 @@ def waypoint_x():
     """
     Returns x coordinate of current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
-    print("Fetchin x coordinate of current waypoint")
+    log("Fetching the x coordinate of the current waypoint", "INFO", "TI Rover", "Waypoint X")
+    print("Fetching x coordinate of current waypoint")
     return None
 
 ###########################################################################################
