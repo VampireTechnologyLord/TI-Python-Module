@@ -91,13 +91,18 @@ def eval_function(name:str, value):
     """
     Evaluates a predefined OS function at the specified value
 
+    args:
+        name (str): The name of the function.
+        value (any): The value to use for the function
     
-    Category: TI System
-    
-    
-    Returns an array / list: [name, value]
+    Returns:
+        list: a list containing the following data: [name, value]
     """
+
+    if cerr.type_error(str, name) == False: log("Argument 'name' has to be type string", "ERROR", "TI System", "Evaluate Function")
+
     err.type_error(str, "str", name)
+    log("Evaluating the result of using the function '" + name +"' with the value '" + str(value) + "'", "INFO", "TI System", "Evaluate Function")
     print("Evaluating result of '" + name + "' for value '" + str(value) + "'")
     return [name, value]
 
