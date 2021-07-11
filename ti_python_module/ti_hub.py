@@ -19,7 +19,7 @@ def text_at(line: int, text: str, align: str):
         align (str): The texts alignment. Possible Options: 'left', 'center', 'right'.
 
     Returns:
-        list: list: list: a list containing the following data: [line, text, align]
+        list: a list containing the following data: [line, text, align]
     """
 
     if cerr.type_error(int, line) == False: log("Argument 'line' has to be type integer!", "ERROR", "TI Hub", "Text At")
