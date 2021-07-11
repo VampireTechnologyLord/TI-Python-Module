@@ -784,12 +784,10 @@ def waypoint_xythdrn():
     """
     Reads the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions, command number of the current waypoint. Returns a list with all these values as elements.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the current waypoint", "INFO", "TI Rover", "Waypoint Xythdrn")
     print("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the current waypoint")
     return None
 
@@ -799,12 +797,8 @@ def waypoint_prev():
     """
     Reads the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions, command number of the previous waypoint.
 
-    
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
     print("Fetching the x-coord, y-coord, time, heading, distance traveled, number of wheel revolutions and command number of the previous waypoint")
     return None
