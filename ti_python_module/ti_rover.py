@@ -875,12 +875,10 @@ def pathlist_heading():
     """
     Returns a list of the headings from the beginning to and including the current Waypoint heading value.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the headings since the fist waypoint", "INFO", "TI Rover", "Pathlist Heading")
     print("Fetching headings since first waypoint")
     return None
 
