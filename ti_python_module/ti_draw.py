@@ -376,13 +376,24 @@ def clear_rect(x_start:float, y_start:float, width:float, height:float):
 def set_colour(red:int, green:int, blue:int):
     """
     Sets the color of the shape(s) that follow in the program until another color is set. 
-    
-    
-    Category: TI Draw / Control
-    
-    
-    Returns an array / list: [red, green, blue]
+
+    Args:
+        red (int): The amount of red. Ranges from 0 to 255.
+        green (int): [description]
+        blue (int): [description]
+
+    Returns:
+        list: a list containing the following data: [red, green, blue]
     """
+    if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Draw", "Set Colour")
+    if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Draw", "Set Colour")
+    if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Draw", "Set Colour")
+
+    if cerr.range_error(0, 255, red) == False: log("Argument 'red' has to be between the values 0 and 255!", "ERROR", "TI Draw", "Set Colour")
+    if cerr.range_error(0, 255, green) == False: log("Argument 'green' has to be between the values 0 and 255!", "ERROR", "TI Draw", "Set Colour")
+    if cerr.range_error(0, 255, blue) == False: log("Argument 'blue' has to be between the values 0 and 255!", "ERROR", "TI Draw", "Set Colour")
+
+
     err.type_error(int, "int", red)
     err.type_error(int, "int", green)
     err.type_error(int, "int", blue)
@@ -392,7 +403,7 @@ def set_colour(red:int, green:int, blue:int):
     err.range_error(0, 255, blue)
     
     
-
+    log("Setting drawing colour to red '" +str(red) + "', green '" + str(green) + "', blue '" + str(blue) + "'", "INFO", "TI Draw", "Set Colour")
     print("Setting drawing colour to red '" +str(red) + "', green '" + str(green) + "', blue '" + str(blue) + "'")
     return [red, green, blue]
     
