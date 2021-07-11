@@ -940,11 +940,8 @@ def waypoint_y():
     """
     Returns y coordinate of current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
     log("Fetching the y coordinate of the current waypoint", "INFO", "TI Rover", "Waypoint Y")
     print("Fetching y coordinate of current waypoint")
@@ -956,12 +953,10 @@ def waypoint_time():
     """
     Returns time spent traveling from previous to current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the time spent travelling to the current waypoint", "INFO", "TI Rover", "Waypoint Time")
     print("Fetching time spent travelling to current waypoint")
     return None
 
