@@ -125,15 +125,13 @@ def get_key(parameter = None):
     """
     Returns a string representing the key pressed. The '1' key returns "1", 'esc' returns "esc", and so on. When called without any parameters - get_key() - it  returns immediately. When called with a parameter - get_key(1) - it waits until a key is pressed.
 
+    Args:
+        parameter (any, optional): Optional Parameter. If given, waits until key is pressed. Defaults to None.
 
-    Default values: parameter: None
-    
-    
-    Category: TI System
-    
-    
-    Returns an array / list: [parameter]
+    Returns:
+        list: a list containing the following data: [parameter]
     """
+    log("Fetching Key-String fot '" + str(parameter) + "'", "INFO", "TI System", "Get Key")
     print("Fetching Key-String for '" + str(parameter) + "'")
     return [parameter]
 
