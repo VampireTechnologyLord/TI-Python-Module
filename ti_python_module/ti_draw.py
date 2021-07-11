@@ -332,14 +332,12 @@ def plot_xy(x_start:float, y_start:float, form_id:int):
 
 def clear():
     """
-    Clears the entire screen. Can be used with x,y,width,height parameters to clear an existing rectangle.
+    Clears the entire screen. Use 'clear_rect' to clear only a rectangular area.
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Clearing all drawings from the screen / display", "INFO", "TI Draw", "Clear")
     print("Clearing Drawings from Screen")
     return None
 
