@@ -167,10 +167,16 @@ def draw_text(x_start:float, y_start:float, text:str):
     
     Returns an array / list: [x_start, y_start, text]
     """
+
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Text")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Text")
+    if cerr.type_error(str, text) == False: log("Argument 'text' has to be type string!", "ERROR", "TI Draw", "Draw Text")
+
     err.type_error(float, "float", x_start)
     err.type_error(float, "float", y_start)
     err.type_error(str, "str", text)
  
+    log("Drawing text '" + text + "' from starting point: ( " + str(x_start) + " | " + str(y_start) + " )", "INFO", "TI Draw", "Draw Text")
     print("Drawing text '" + text + "' from starting point: ( " + str(x_start) + " | " + str(y_start) + " )")
     return [x_start, y_start, text]
 
