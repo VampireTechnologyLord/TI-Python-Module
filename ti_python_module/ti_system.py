@@ -112,12 +112,10 @@ def get_platform():
     """
     Returns 'hh' for handeld and 'dt' for desktop
     
-    
-    Category: TI System
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Fetching current platform type", "INFO", "TI System", "Get Platform")
     print("Fetching platform type")
     return None
 
