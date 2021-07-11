@@ -1,6 +1,7 @@
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
 from ti_python_module.file_handler import create_log as log
+import time as t
 """
 Class containing all TI-Hub commands. Used for debugging
 """
@@ -61,6 +62,7 @@ def sleep(seconds: float):
 
     log("Waiting for '" + str(seconds) + "' seconds", "INFO", "TI Hub", "Sleep")
     print("Waiting for " + str(seconds) + " seconds")
+    t.sleep(seconds)
     return [seconds]
           
 ###########################################################################################
