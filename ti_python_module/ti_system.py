@@ -141,12 +141,10 @@ def get_mouse():
     """
     Returns mouse coordinates as a two element tuple, either the canvas pixel position or (-1,-1) if outside the canvas.
     
-    
-    Category: TI System
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Fetching the position of the mouse cursor", "INFO", "TI System", "Get Mouse")
     print("Fetching position of mouse cursor")
     return None
 
