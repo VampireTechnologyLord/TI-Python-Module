@@ -379,8 +379,8 @@ def set_colour(red:int, green:int, blue:int):
 
     Args:
         red (int): The amount of red. Ranges from 0 to 255.
-        green (int): [description]
-        blue (int): [description]
+        green (int): The amount of green. Ranges from 0 to 255.
+        blue (int): The amount of blue. Ranges from 0 to 255.
 
     Returns:
         list: a list containing the following data: [red, green, blue]
@@ -409,47 +409,70 @@ def set_colour(red:int, green:int, blue:int):
     
 ###########################################################################################
 
-def set_pen(thickness:str, stil:str):
+def set_pen(thickness:str, stile:str):
     """
     Sets the specified thickness and style of the border when drawing shapes (not applicable when using fill commands). 
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns an array / list: [thickness, stil]
+    Args:
+        thickness (str): The thickness of the pen. Possible Options: 'thin', 'medium', 'thick'.
+        stile (str): The stile of the pen. Possible Options: 'solid', 'dotted', 'dashed'.
+
+    Returns:
+        list: a list containing the following data: [thickness, stile]
     """
+    if cerr.type_error(str, thickness) == False: log("Argument 'thickness' has to be type string!", "ERROR", "TI Draw", "Set Pen")
+    if cerr.type_error(str, stile) == False: log("Argument 'stile' has to be type string!", "ERROR", "TI Draw", "Set Pen")
+
+    if cerr.argument_error(thickness, "thin", "medium", "thick") == False: log("Argument 'thickness' can only be one of these: 'thin', 'medium', 'thick'!", "ERROR", "TI Draw", "Set Pen")
+    if cerr.argument_error(stile, "solid", "dotted", "dashed") == False: log("Argument 'stile' can only be one of these: 'solid', 'dotted', 'dashed'!", "ERROR", "TI Draw", "Set Pen")
+
     err.type_error(str, "str", thickness)
-    err.type_error(str, "str", stil)
+    err.type_error(str, "str", stile)
 
     err.argument_error(thickness, "thin", "medium", "thick")
-    err.argument_error(stil, "solid", "dotted", "dashed")
+    err.argument_error(stile, "solid", "dotted", "dashed")
 
-    print("Setting Drawing Pen thickness to '" + thickness + "' and pen stil to '" + stil + "'")
-    return [thickness, stil]
+    log("Setting Drawing Pen thickness to '" + thickness + "' and pen stile to '" + stile + "'", "INFO", "TI Draw", "Set Pen")
+    print("Setting Drawing Pen thickness to '" + thickness + "' and pen stile to '" + stile + "'")
+    return [thickness, stile]
 
 ###########################################################################################
 
 def set_window(x_min:int, x_max:int, y_min:int, y_max:int):
     """
     Sets the size of the window in which any shapes will be drawn. This function is useful to resize the window to match the data or to change the origin (0,0) of the drawing canvas.
-    
-    
-    Category: TI Draw / Control
-    
-    
-    Returns an array / list: [x_min, x_max, y_min, y_max]
+
+    Args:
+        x_min (int): The minimum x coordinate.
+        x_max (int): The minimum y coordinate.
+        y_min (int): The maximum x coordinate.
+        y_max (int): The maximum y corrdinate.
+
+    Raises:
+        ValueError: If x_min is greater or equal to x_max.
+        ValueError: If y_min is greater or equal to y_max.
+
+    Returns:
+        list: a list containing the following data: [x_min, x_max, y_min, y_max]
     """
+    if cerr.type_error(int, x_min) == False: log("Argument 'x_min' has to be type integer!", "ERROR", "TI Draw", "Set Window")
+    if cerr.type_error(int, x_max) == False: log("Argument 'x_max' has to be type integer!", "ERROR", "TI Draw", "Set Window")
+    if cerr.type_error(int, y_min) == False: log("Argument 'y_min' has to be type integer!", "ERROR", "TI Draw", "Set Window")
+    if cerr.type_error(int, y_max) == False: log("Argument 'y_max' has to be type integer!", "ERROR", "TI Draw", "Set Window")
+
+    if cerr.relation.larger_equal_error(x_min, x_max) == False: log("Argument 'x_min' has to be smaller then argument 'x_max'!", "ERROR", "TI Draw", "Set Window")
+    if cerr.relation.larger_equal_error(y_min, y_max) == False: log("Argument 'y_min' has to be smaller then argument 'y_max'!", "ERROR", "TI Draw", "Set Window")
+
+
     err.type_error(int, "int", x_min)
     err.type_error(int, "int", x_max)
     err.type_error(int, "int", y_min)
     err.type_error(int, "int", y_max)
 
-    if(x_min >= x_max):
-        raise ValueError("ERROR: minimum value has to be smaller then maximum value")
-    if(x_min >= x_max):
-        raise ValueError("ERROR: minimum value has to be smaller then maximum value")
+    err.relation.larger_equal_error(x_min, x_max)
+    err.relation.larger_equal_error(y_min, y_max)
 
+    log("Setting Drawing window from (" + str(x_min) + " | " + str(y_min) + " ) to (" + str(x_max) + " | " + str(y_max) + " )", "INFO", "TI Draw", "Set Window")
     print("Setting Drawing window from (" + str(x_min) + " | " + str(y_min) + " ) to (" + str(x_max) + " | " + str(y_max) + " )")
     return [x_min, x_max, y_min, y_max]
 
