@@ -495,12 +495,10 @@ def use_buffer():
     """
     Enables an off-screen buffer to speed up drawing.
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns None 
+    Returns:
+        None: None
     """
+    log("Enabling the use of the off-screen buffer for faster drawing", "INFO", "TI Draw", "Use Buffer")
     print("Enabled off-screen buffer")
     return None
 
