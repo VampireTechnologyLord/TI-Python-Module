@@ -823,12 +823,10 @@ def path_done():
     """
     Returns a value of 0 or 1 depending on whether the Rover is moving (0) or finished with all movement (1).
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Checking if the rover is done with the current path", "INFO", "TI Rover", "Path Done")
     print("Checking if the rover is done with it's path")
     return None
 
