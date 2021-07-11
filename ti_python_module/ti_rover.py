@@ -992,11 +992,9 @@ def waypoint_revs():
     """
     Returns number of revolutions needed to travel between previous and current waypoint.
     
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the wheel revolutions since the last waypoint", "INFO", "TI Rover", "Waypoint Revolutions")
     print("Fetching wheel revolutions since last waypoint")
     return None
