@@ -254,19 +254,24 @@ def fill_arc(x_start:float, y_start:float, width:float, height:float, start_angl
 
 ###########################################################################################
 
-def draw_poly(x_list:list, y_list:list):
+def draw_poly(x_list:list[float], y_list:list[float]):
     """
     Draws a polygon using the specified x-list,y-list values.
-    
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x_list, y_list]
+
+    Args:
+        x_list (list): The list of values with the x coordinates.
+        y_list (list): The list of values with the y coordinates.
+
+    Returns:
+        list: a list containing the following data: [x_list, y_list]
     """
+    if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Draw", "Draw Polygon")
+    if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Draw", "Draw Polygon")
+
     err.type_error(list, "list", x_list)
     err.type_error(list, "list", y_list)
     
+    log("Drawing a polygon from the given x and y list", "INFO", "TI Draw", "Draw Polygon")
     print("Drawing Polygon from x-list and y-list")
     return [x_list, y_list]
 
