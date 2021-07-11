@@ -561,11 +561,8 @@ def gray_measurement():
     """
     Returns a value between 0 and 255 that indicates the perceived gray level being seen by the color input sensor with 0 being black and 255 being white.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
     log("Measuring gray level from the colour sensor", "INFO", "TI Rover", "Gray Measurement")
     print("Measuring gray level from the colour sensor")
@@ -577,12 +574,10 @@ def encoders_gyro_measurement():
     """
     Returns a list of values that contains the left and right wheel encoder counts as well as the current gyro heading.
     
-    
-    Category: Rover / Input
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Measuring the gyroscope values for heading, left wheel and right wheel", "INFO", "TI Rover", "Encoders Gyroscope Measurement")
     print("Measuring gyroscope values for heading, left wheel and right wheel")
     return None
 
