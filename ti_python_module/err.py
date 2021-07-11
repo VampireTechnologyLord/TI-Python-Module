@@ -145,7 +145,7 @@ class onlyCheck():
             else:
                 return False
 
-        def equal_errpr(parameter_1, parameter_2):
+        def equal_error(parameter_1, parameter_2):
 
             if(parameter_1 == parameter_2):
                 return None
