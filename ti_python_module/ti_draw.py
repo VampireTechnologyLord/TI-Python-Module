@@ -1,4 +1,6 @@
-import ti_python_module.err as err
+from ti_python_module.err import withConsole as err
+from ti_python_module.err import onlyCheck as cerr
+from ti_python_module.file_handler import create_log as log
 
 
 """
@@ -15,18 +17,27 @@ Class containing all TI-Draw commands
 def draw_line(x1:float, y1:float, x2:float, y2:float):
     """
     Draws a line starting from the specified x1,y1 coordinate to x2,y2.
-    
-    
-    Category: TI Draw / Shape
-    
-    
-    Returns an array / list: [x1, y1, x2, y2]
+
+    Args:
+        x1 (float): The first x coordinate.
+        y1 (float): The first y coordinate.
+        x2 (float): The second x coordinate.
+        y2 (float): The second y coordinate.
+
+    Returns:
+        list: a list containing the following data: [x1, y1, x2, y2]
     """
+    if cerr.type_error(float, x1) == False: log("Argument 'x1' has to be type float!", "ERROR", "TI Draw", "Draw Line")
+    if cerr.type_error(float, y1) == False: log("Argument 'y1' has to be type float!", "ERROR", "TI Draw", "Draw Line")
+    if cerr.type_error(float, x2) == False: log("Argument 'x2' has to be type float!", "ERROR", "TI Draw", "Draw Line")
+    if cerr.type_error(float, y2) == False: log("Argument 'y2' has to be type float!", "ERROR", "TI Draw", "Draw Line")
+
     err.type_error(float, "float", x1)
     err.type_error(float, "float", y1)
     err.type_error(float, "float", x2)
     err.type_error(float, "float", y2)
     
+    log("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2) + " | " + str(y2) + " )", "INFO", "TI Draw", "Draw Line")
     print("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2) + " | " + str(y2) + " )")
     return [x1, y1, x2, y2]
 
@@ -354,7 +365,7 @@ def use_buffer():
     
     Returns None 
     """
-    print("Enabeled off-screen buffer")
+    print("Enabled off-screen buffer")
     return None
 
 ###########################################################################################
