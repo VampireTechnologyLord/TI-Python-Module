@@ -637,20 +637,27 @@ def blink(frequency: float, time: float):
     """
     Blinks the RGB-LED at the given frequency (in Hertz) for the given time. The frequency ranges between 0.1 - 20 Hz and the time between 0.1 - 100 seconds.
 
+    Args:
+        frequency (float): The frequency to blink in Hertz. Ranges from 0.1 to 20.
+        time (float): The time to blink in seconds. Ranges from 0.1 to 100.
 
-    Category: Rover / Output
-
-
-    Returns an array / list: [frequency, time, totalBlinks]
+    Returns:
+        list: a list containing the following data: [frequency, time, total_blinks]
     """
+
+    if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Rover", "Blink")
+    if cerr.type_error(float, time) == False: log("Argument 'time' has to be type integer!", "ERROR", "TI Rover", "Blink")
+    if cerr.range_error(0.1, 20, frequency) == False: log("Argument 'frequency' has to be between the values 0.1 and 20!", "ERROR", "TI Rover", "Blink")
+    if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Rover", "Blink")
+
+    if frequency > 5 and time > 5: log("Blinking the LED at a high frequency for a longer time decreases its life-time!", "WARNING", "TI Rover", "Blink")
 
     err.type_error(float, "float", frequency)
     err.type_error(float, "float", time)
-
     err.range_error(0.1, 20, frequency)
     err.range_error(0.1, 100, time)
-            
 
+    log("Blinking the RGB-LED at a frequency of '" + str(frequency) + "' Hz for a time of '" + str(time) + "' seconds (" + str(time * frequency) + ") times", "INFO", "TI Rover", "Blink")
     print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
     return [frequency, time, time * frequency]
 
