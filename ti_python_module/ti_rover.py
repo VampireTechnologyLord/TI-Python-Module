@@ -681,22 +681,24 @@ def motor_left(speed:int, time:float = 5):
     """
     Sets the left motor power to the specified value for the specified duration. The speed is in the range -255 to 255 with 0 being stop. Positive speed values are counter-clockwise rotation, and negative speed values are clockwise. The optional time parameter, if specified, has a valid range of 0.1 to 100 seconds. If not specified, a default of 5 seconds is used. 
 
+    Args:
+        speed (int): The speed of the left wheels motor. Ranges from -255 to 255 with 0 being stop.
+        time (float, optional): The time to spin. Ranges from 0.1 to 100. Defaults to 5.
 
-    Default Values: time: 5
-    
-    
-    Category: Rover / Output
-    
-    
-    Returns an array / a list [speed, time]
+    Returns:
+        list: a list containing the following data: [speed, time]
     """
+    if cerr.type_error(int, speed) == False: log("Argument 'speed' has to be type integer!", "ERROR", "TI Rover", "Left Motor")
+    if cerr.type_error(float, time) == False: log("Argument 'time' has to be type float!", "ERROR", "TI Rover", "Left Motor")
+    if cerr.range_error(-255, 255, speed) == False: log("Argument 'speed' has to be between the values -255 and 255!", "ERROR", "TI Rover", "Left Motor")
+    if cerr.range_error(0.1, 100, time) == False: log("Argument 'time' has to be between the values 0.1 and 100!", "ERROR", "TI Rover", "Left Motor")
+
     err.type_error(int, "int", speed)
     err.type_error(float, "float", time)
-
     err.range_error(-255, 255, speed)
-    err.range_error(0.1, 100, speed)
+    err.range_error(0.1, 100, time)
     
-    
+    log("Setting the left motor to counter-clockwise with a speed of '" + str(speed) + "' for a time of '" + str(time) + "' seconds", "INFO", "TI Rover", "Left Motor")
     print("Setting the left motor power to 'speed " + str(speed) + "' for a time of '" + str(time) + " seconds'")
     return [float(speed), time]
 
