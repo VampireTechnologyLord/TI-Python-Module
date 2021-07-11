@@ -152,14 +152,12 @@ def get_mouse():
 
 def clear_history():
     """
-    Clears the shell history
+    Clears the shell history.
     
-    
-    Category: TI System
-    
-    
-    Returns None
+    Returns
+        None: None
     """
+    log("Clearing the content and history of the output shell", "INFO", "TI System", "Clear History")
     print("Clearing Shell history")
     return None
 
