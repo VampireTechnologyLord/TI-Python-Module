@@ -667,13 +667,11 @@ def off():
     """
     Turns the RGB-LED off.
 
-
-    Category: Rover / Output
-
-
-    Returns None
+    Returns:
+        None: None
     """
 
+    log("Turning the RGB-LED off", "INFO", "TI Rover", "Off")
     print("Turning RGB-LED off")
     return None
 
