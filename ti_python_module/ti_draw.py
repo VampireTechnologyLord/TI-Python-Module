@@ -347,13 +347,28 @@ def clear_rect(x_start:float, y_start:float, width:float, height:float):
     """
     Clears a rectangular area from the screen, specified with the x, y, width, height.
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns an array / list: [x_start, y_start, width, height]
+    Args:
+        x_start (float): The starting x coordinate.
+        y_start (float): The starting y coordinate.
+        width (float): The width of the rectangle to clear.
+        height (float): The height of the rectangle to clear.
+
+    Returns:
+        list: a list containing the following data: [x_start, y_start, width, height]
     """
-    print("Clearing rectangular space from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a height of '" + str(height) + "' and a width of '" + str(width) + "'")
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
+    if cerr.type_error(float, width) == False: log("Argument 'width' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
+    if cerr.type_error(float, height) == False: log("Argument 'height' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
+
+
+    err.type_error(float, "float", x_start)
+    err.type_error(float, "float", y_start)
+    err.type_error(float, "float", width)
+    err.type_error(float, "float", height)
+
+    log("Clearing a rectangular area from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'", "INFO", "TI Draw", "Clear Rectangle")
+    print("Clearing a rectangular area from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'")
     return [x_start, y_start, width, height]
 
 ###########################################################################################
