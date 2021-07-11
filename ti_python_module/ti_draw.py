@@ -506,12 +506,10 @@ def use_buffer():
 
 def paint_buffer():
     """
-    Description
+    Displays the buffered drawing output. The 'use_buffer()' and 'paint_buffer()' functions are useful in cases where displaying multiple objects on the screen could cause delays.
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns an array / list: 
+    Returns:
+        None: None
     """
+    log("Displaying the buffered content", "INFO", "TI Draw", "Paint Buffer")
     print("Displaying buffered output")
