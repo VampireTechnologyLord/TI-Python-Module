@@ -480,14 +480,12 @@ def set_window(x_min:int, x_max:int, y_min:int, y_max:int):
 
 def get_screen_dim():
     """
-    Returns the xmax and ymax of the screen dimensions.
+    Returns the x_max and y_max of the screen dimensions.
     
-    
-    Category: TI Draw / Control
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Getting the max coordinates of the screen / window", "INFO", "TI Draw", "Get Screen Dimension")
     print("Getting max coordinates of screen / window")
     return None
 
