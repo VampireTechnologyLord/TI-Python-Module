@@ -53,11 +53,18 @@ def draw_rect(x_start:float, y_start:float, width:float, height:float):
     
     Returns an array / list: [x_start, y_start, width, height]
     """
+    if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
+    if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
+    if cerr.type_error(float, width) == False: log("Argument 'width' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
+    if cerr.type_error(float, height) == False: log("Argument 'height' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
+
+
     err.type_error(float, "float", x_start)
     err.type_error(float, "float", y_start)
     err.type_error(float, "float", width)
     err.type_error(float, "float", height)
 
+    log("Drawing rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'", "INFO", "TI Draw", "Draw Rectangle")
     print("Drawing rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'")
     return [x_start, y_start, width, height]
 
