@@ -49,13 +49,17 @@ def recall_list(name:str):
     """
     Recalls a predefined OS list (list) named "name".
     
+    args:
+        name (str): The name of the list from which to recall the value.
     
-    Category: TI System
-    
-    
-    Returns an array / list: [name]
+    Returns:
+        list: a list containing the following data: [name]
     """
+
+    if cerr.type_error(str, name) == False: log("Argument 'name' has to be type string", "ERROR", "TI System", "Recall List")
+
     err.type_error(str, "str", name)
+    log("Recalling values of system list '" + name + "'", "INFO", "TI System", "Recall List")
     print("Fetching value of system list '" + name + "'")
     return [name]
 
