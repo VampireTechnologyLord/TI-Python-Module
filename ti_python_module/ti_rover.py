@@ -598,25 +598,37 @@ def gyro_measurement():
 
 def colour_rgb(red:float, green:float, blue:float):
     """
-    Description
-    
-    
-    Category: Rover / Output
-    
-    
-    Returns an array / a list [red, green, blue]
+    Sets the rgb led to the given red, green and blue colours. Colours are ranging between 0 and 255.
+
+    Args:
+        red (int): The red value (0 - 255).
+        green (int): The green value (0 - 255).
+        blue (int): The blue value (0 - 255).
+
+    Returns:
+        list: a list containing the following data: [red, green, blue]
     """
-    err.type_error(float, "float", red)
-    err.type_error(float, "float", green)
-    err.type_error(float, "float", blue)
+
+    if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Rover", "Colour RGB")
+    if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Rover", "Colour RGB")
+    if cerr.type_error(int, blue) == False: log("Argument 'blue' has to be type integer!", "ERROR", "TI Rover", "Colour RGB")
+
+    if cerr.range_error(0, 255, red) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Rover", "Colour RGB")
+    if cerr.range_error(0, 255, green) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Rover", "Colour RGB")
+    if cerr.range_error(0, 255, blue) == False: log("Argument 'arg' has to be between the values 0 and 255 (included)!", "ERROR", "TI Rover", "Colour RGB")
+
+    if red == 0 and green == 0 and blue == 0: log("Please use the function 'off()' instead of setting each value to 0, since this does not fully turn off the RGB-LED", "WARNING", "TI Rover", "Colour RGB")
+
+    err.type_error(int, "int", red)
+    err.type_error(int, "int", green)
+    err.type_error(int, "int", blue)
 
     err.range_error(0, 255, red)
     err.range_error(0, 255, green)
     err.range_error(0, 255, blue)
-    
-
-    
-    print("Setting the RGB-Led to '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
+        
+    log("Setting RGB-Led to '" + str(red) + "' red, '" + str(green) + "' green , '" + str(blue) + "' blue", "INFO", "TI Rover", "Colour RGB")
+    print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
     return [red, green, blue]
 
 ###########################################################################################
