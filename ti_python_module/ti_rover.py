@@ -888,12 +888,10 @@ def pathlist_distance():
     """
     Returns a list of the distances traveled from the beginning to and including the current Waypoint distance value.
 
-    
-    Category: Rover / Path
-    
-    
-    Returns None
+    Returns:
+        None: None
     """
+    log("Fetching the distances traveled since the first waypoint", "INFO", "TI Rover", "Pathlist Distance")
     print("Fetching distances traveled since first waypoint")
     return None
 
