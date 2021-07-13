@@ -1,11 +1,11 @@
-from setuptools import setup, find_packages
+import setuptools as st
 import os
 import io
 
 
 ###
 
-VERSION = "0.10.1"
+VERSION = "0.10.12"
 
 
 SUMMARY = "Texas Instruments python debugging"
@@ -22,7 +22,7 @@ except FileNotFoundError:
 
 
 
-setup(
+st.setup(
     name="ti-python-module",
     version=VERSION,
     author="VampireTechnologyLord",
@@ -30,8 +30,11 @@ setup(
     description=SUMMARY,
     long_descripion=long_description,
     long_description_content_type='text/markdown',
-    packages=find_packages(),
+    packages=st.find_packages(),
     install_requires=[],
+    setup_requires=[
+    'setuptools>=41.0.1',
+    'wheel>=0.33.4'],
     keywords=["python", "ti", "texas instruments"],
     classifiers=[
         "Development Status :: 1 - Planning",
