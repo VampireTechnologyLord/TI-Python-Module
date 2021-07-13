@@ -1,11 +1,12 @@
 import setuptools as st
+import distutils.core as dc
 import os
 import io
 
 
 ###
 
-VERSION = "0.10.12"
+VERSION = "0.10.2"
 
 
 SUMMARY = "Texas Instruments python debugging"
@@ -28,12 +29,12 @@ st.setup(
     author="VampireTechnologyLord",
     author_email="<elias.freund@ewe.net>",
     description=SUMMARY,
-    long_descripion=long_description,
+    long_description=long_description,
     long_description_content_type='text/markdown',
     packages=st.find_packages(),
     install_requires=[],
     setup_requires=[
-    'setuptools>=41.0.1',
+    'setuptools>=57.0.1',
     'wheel>=0.33.4'],
     keywords=["python", "ti", "texas instruments"],
     classifiers=[
