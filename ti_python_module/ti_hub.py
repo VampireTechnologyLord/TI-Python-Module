@@ -2,6 +2,7 @@ from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
 from ti_python_module.file_handler import create_log as log
 import time as t
+import random as rng
 """
 Class containing all TI-Hub commands. Used for debugging
 """
@@ -20,7 +21,7 @@ def text_at(line: int, text: str, align: str):
         align (str): The texts alignment. Possible Options: 'left', 'center', 'right'.
 
     Returns:
-        list: a list containing the following data: [line, text, align]
+        None: None
     """
 
     if cerr.type_error(int, line) == False: log("Argument 'line' has to be type integer!", "ERROR", "TI Hub", "Text At")
@@ -38,7 +39,7 @@ def text_at(line: int, text: str, align: str):
 
     log("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'", "INFO", "TI Hub", "Text At")
     print("Showing text '" + text + "' at line " + str(line) + " with alignment '" + align + "'")
-    return [text, line, align]
+    return None
        
 ###########################################################################################
 
@@ -50,7 +51,7 @@ def sleep(seconds: float):
         seconds (float): The amount of seconds to wait.
 
     Returns:
-        list: a list containing the following data: [seconds]
+        None: None
     """
     if cerr.type_error(float, seconds) == False: log("Argument 'seconds' has to be type float!", "ERROR", "TI Hub", "Sleep")
 
@@ -63,7 +64,7 @@ def sleep(seconds: float):
     log("Waiting for '" + str(seconds) + "' seconds", "INFO", "TI Hub", "Sleep")
     print("Waiting for " + str(seconds) + " seconds")
     t.sleep(seconds)
-    return [seconds]
+    return None
           
 ###########################################################################################
 
@@ -112,7 +113,7 @@ class colour():
             blue (int): The blue value (0 - 255).
 
         Returns:
-            list: a list containing the following data: [red, green, blue]
+            None: None
         """
 
         if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "Colour")
@@ -135,7 +136,7 @@ class colour():
             
         log("Setting RGB-Led to '" + str(red) + "' red, '" + str(green) + "' green , '" + str(blue) + "' blue", "INFO", "TI Hub", "Colour")
         print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
-        return [red, green, blue]
+        return None
 
 
     ###########################################################################################
@@ -150,7 +151,7 @@ class colour():
             time (float): The time to blink in seconds. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [frequency, time, total_blinks]
+            None: None
         """
 
         if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Colour")
@@ -167,7 +168,7 @@ class colour():
 
         log("Blinking the RGB-LED at a frequency of '" + str(frequency) + "' Hz for a time of '" + str(time) + "' seconds (" + str(time * frequency) + ") times", "INFO", "TI Hub", "Colour")
         print("Blinking the RGB-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
-        return [frequency, time, time * frequency]
+        return None
 
 
     ###########################################################################################
@@ -235,7 +236,7 @@ class light():
             time (float): The time to blink in seconds. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [frequency, time, total_blinks]
+            None: None
         """
 
         if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Light")
@@ -252,7 +253,7 @@ class light():
 
         log("Blinking the Light-LED at a frequency of '" + str(frequency) + "' Hz for a time of '" + str(time) + "' seconds (" + str(time * frequency) + ") times", "INFO", "TI Hub", "Light")
         print("Blinking the Light-LED at a frequency of " + str(frequency) + "Hz for " + str(time) + " seconds (" + str(time * frequency) + ") times")
-        return [frequency, time, time * frequency]
+        return None
 
 ###########################################################################################
 
@@ -277,7 +278,7 @@ class sound():
             duration (float): The duration of the tone. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [frequency, duration]
+            None: None
         """
 
         if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type float!", "ERROR", "TI Hub", "Sound")
@@ -295,7 +296,7 @@ class sound():
             
         log("Setting the frequency of the speakers to '" + str(frequency) + "' Hz for a duration of '" + str(duration) + "' seconds", "INFO", "TI Hub", "Sound")
         print("Setting the speakers frequency to " + str(frequency) + "Hz for " + str(duration) + " seconds")
-        return [frequency, duration]
+        return None
 
     ###########################################################################################
 
@@ -308,7 +309,7 @@ class sound():
             duration (float): The duration of the note in seconds. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [note, duration]
+            None: None
         """
 
         if cerr.type_error(str, note) == False: log("Argument 'note' has to be type string!", "ERROR", "TI Hub", "Sound")
@@ -327,7 +328,7 @@ class sound():
             
         log("Playing the note '" + note + "' for a duration of '" + duration + "' seconds", "INFO", "TI Hub", "Sound")
         print("Playing the note '" + note + "' for " + str(duration) + " second(s)")
-        return [note, duration]
+        return None
 
 ###########################################################################################
 
@@ -365,7 +366,7 @@ class brightness():
             max (float): The maximum range of the brightness sensor.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Brightness")
@@ -377,7 +378,7 @@ class brightness():
 
         log("Setting the value range of the brightness sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Brightness")
         print("Setting the range of the brightness sensor to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
 
 ###########################################################################################
 
@@ -418,34 +419,38 @@ class dht():
         Measures the temperature from the dht sensor.
 
         Returns:
-            None: None
+            float: The measured temperature
         """
 
         log("Getting the measured temperature", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured temperature")
-        return None
+        retValue:float = rng.randint(100, 300) / 10
+        return retValue
 
     def humidity_measurement(self):
         """
         Measures the humidity from the dht sensor.
 
         Returns:
-            None: None
+            float: The measured humidity
         """
         log("Getting the measured humidity", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured humidity")
-        return None
+        retValue:float = rng.randint(10, 1000) / 10
+        return retValue
 
     def t_h_measurement(self):
         """
         Measures the temperature and the humidity from the dht sensor.
 
         Returns:
-            None: None
+            tuple[float]: temperature, humidity
         """
         log("Getting the measured temperature and humidity", "INFO", "TI Hub", "DHT")
         print("[dht] getting measured temperature and humidity")
-        return None
+        retValueTemp:float = rng.randint(100, 300) / 10
+        retValueHum:float = rng.randint(10, 1000) / 10
+        return retValueTemp, retValueHum
       
 ###########################################################################################
 
@@ -483,14 +488,15 @@ class ranger():
 
     def measurement(self):
         """
-        Returns the measured values from the ultrasonic-ranger sensor in cm.
+        Returns the measured values from the ultrasonic-ranger sensor in m.
 
         Returns:
-            None: None
+            float: The distance measured in meters
         """
-        log("Getting the measured distance to the facing object in cm", "INFO", "TI Hub", "Ranger")
-        print("[ultrasonic] getting measured distance in cm")
-        return None
+        log("Getting the measured distance to the facing object in m", "INFO", "TI Hub", "Ranger")
+        print("[ultrasonic] getting measured distance in m")
+        retValue = rng.randint(100, 40000) / 100
+        return retValue
 
         
         
@@ -533,11 +539,13 @@ class light_level():
         Returns the measured light-level value.
 
         Returns:
-            None: None
+            float: The measured light level
         """
         log("Getting the measured value of the lightlevel sensor", "INFO", "TI Hub", "Light Level")
         print("[light_level] getting measured brightness")
-        return None
+        retValue = rng.randint(10, 4500) / 10
+        return retValue
+
     def range(self, min:float, max:float):
         """
         Reconfigures the range of the light_level sensor.
@@ -547,7 +555,7 @@ class light_level():
             max (float): The maximum range of the light level sensor.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Light Level")
@@ -559,7 +567,7 @@ class light_level():
 
         log("Setting the value range of the light level sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Light Level")
         print("Setting the range of the light level sensor to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
 
             
 ###########################################################################################
@@ -603,11 +611,12 @@ class temperature():
         Gets the measured temperature.
 
         Returns:
-            None: None
+            float: The temperature measured
         """
         log("Getting the measured value of the temperature sensor", "INFO", "TI Hub", "Temperature")
         print("[temperature] getting measued temperature")
-        return None
+        retValue:float = rng.randint(100, 300) / 10
+        return retValue
         
 ###########################################################################################
 
@@ -646,11 +655,12 @@ class moisture():
         Gets the measured moisture.
 
         Returns:
-            None: None
+            float: The humidity measured
         """
         log("Getting the measured value of the moisture sensor", "INFO", "TI Hub", "Moisture")
         print("[moisture] getting measued moisture")
-        return None
+        retValue:float = rng.randint(10, 1000) / 10
+        return retValue
 
     def range(self, min:float, max:float):
         """
@@ -661,7 +671,7 @@ class moisture():
             max (float): The maximum range of the moisture sensor.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Moisture")
@@ -673,7 +683,7 @@ class moisture():
 
         log("Setting the value range of the moisture sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Moisture")
         print("Setting the range of the moisture sensor to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
         
 ###########################################################################################
 
@@ -710,22 +720,24 @@ class magnetic():
         Returns the measured magnetic value.
 
         Returns:
-            None: None
+            float: The measured magnetic value
         """
         log("Measuring the magnetic value", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] measuring magnetic value")
-        return None
+        retValue = rng.randint(10, 10000) / 100
+        return retValue
 
     def magnet_close(self):
         """
         Says, whether a magnet is close, by checking if the magnetic value is over the threshold. This can be changed using the threshold function.
 
         Returns:
-            None: None
+            bool: Wether a magnet is close
         """
         log("Checking, if a magnet is close to the sensor, by using the value modifyable with the 'threshold()' function", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] checking if magnet is close (magnetic value is over threshold)")
-        return None
+        retValue:bool = rng.choice([True, False])
+        return retValue
 
     def trigger(self, threshold:int):
         """
@@ -735,7 +747,7 @@ class magnetic():
             threshold (int): The threshold, at which the function `magnet_close()` returns True.
 
         Returns:
-            list: a list containing the following data: [threshold]
+            None: None
         """
         if err.type_error(int, threshold) == False: log("Argument 'threshold' has to be type integer!", "ERROR", "TI Hub", "Magnetic")
         if err.range_error(0, 16383, threshold) == False: log("Argument 'threshold' has to be between the values 0 and 16383 (included)!", "ERROR", "TI Hub", "Magnetic")
@@ -745,7 +757,7 @@ class magnetic():
 
         log("Setting the threshold for the function 'magnet_close()' to " + str(threshold) + "'", "INFO", "TI Hub", "Magnetic")
         print("[magnetic] setting threshold to '" + str(threshold) + "'")
-        return [threshold]
+        return None
 
 ###########################################################################################
 
@@ -812,14 +824,15 @@ class vernier():
 
     def measurement(self):
         """
-        Returns the measured magnetic value.
+        Returns the measured value.
 
         Returns:
-            None: None
+            float: The measured value
         """
         log("Measuring the value of the specified sensor", "INFO", "TI Hub", "Vernier")
         print("[vernier] measuring value of set sensor")
-        return None
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
 
     def calibrate(self, a, b, c = None, d = None):
         """
@@ -835,7 +848,7 @@ class vernier():
             ValueError: If only a, b, c are specified, while d is unspecified.
 
         Returns:
-            list: a list containing the following data: [a, b, c, d]
+            None: None
         """
         if(c == None and d == None):
             log("Calibrating linearly (ax + b) with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b'", "INFO", "TI Hub", "Vernier")
@@ -847,7 +860,7 @@ class vernier():
             log("Calibrating with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b' and '" + str(c) + "' as 'c' and '" + str(d) + "' as 'd'" , "INFO", "TI Hub", "Vernier")
             print("[vernier] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
 
-        return [a, b, c, d]
+        return None
 
         
         
@@ -891,11 +904,12 @@ class analog_in():
         Outputs the measured value from the sensor set to 'analog_in'.
 
         Returns:
-            None: None
+            float: The measured value
         """
         log("Getting value measured by the sensor at 'analog in'", "INFO", "TI Hub", "Analog In")
         print("[analog_in] measuring sensor value")
-        return None
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
 
     def range(self, min:float, max:float):
         """
@@ -906,7 +920,7 @@ class analog_in():
             max (float): The maximum range of the sensor at `analog_in`.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Analog In")
@@ -918,7 +932,7 @@ class analog_in():
 
         log("Setting the value range of the sensor at 'analog_in' from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Analog In")
         print("Setting the range of the sensor at 'analog_in' to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
         
         
 ###########################################################################################
@@ -960,11 +974,12 @@ class potentiometer():
         Outputs the measured value from the potentiometer.
 
         Returns:
-            None: None
+            float: The measured value
         """
         log("Getting value measured by the potentiometer", "INFO", "TI Hub", "Potentiometer")
         print("[potentiometer] measuring sensor value")
-        return None
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
 
     def range(self, min:float, max:float):
         """
@@ -975,7 +990,7 @@ class potentiometer():
             max (float): The maximum range of the potentiometer.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Potentiometer")
@@ -987,7 +1002,7 @@ class potentiometer():
 
         log("Setting the value range of the potentiometer from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Potentiometer")
         print("Setting the range of the potentiometer to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
         
 ###########################################################################################
 
@@ -1028,11 +1043,12 @@ class thermistor():
         Outputs the measured value from the thermistor.
 
         Returns:
-            None: None
+            float: The measured value
         """
         log("Getting value measured by the thermistor", "INFO", "TI Hub", "Thermistor")
         print("[thermistor] measuring sensor value")
-        return None
+        retValue = rng.randint(100, 4000) / 100
+        return retValue
 
     def calibrate(self, a, b, c = None, d = None):
         """
@@ -1048,7 +1064,7 @@ class thermistor():
             ValueError: If only a, b, c are specified, while d is unspecified.
 
         Returns:
-            list: a list containing the following data: [a, b, c, d]
+            None: None
         """
         if(c == None and d == None):
             log("Calibrating linearly (ax + b) with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b'", "INFO", "TI Hub", "Thermistor")
@@ -1060,7 +1076,7 @@ class thermistor():
             log("Calibrating with the values '" + str(a) + "' as 'a' and '" + str(b) + "' as 'b' and '" + str(c) + "' as 'c' and '" + str(d) + "' as 'd'" , "INFO", "TI Hub", "Thermistor")
             print("[thermistor] calibrating with '" + str(a) + "', '" + str(b) + "', '" + str(c) + "' and '" + str(d) + "'")
 
-        return [a, b, c, d]
+        return None
         
 ###########################################################################################
 
@@ -1100,11 +1116,12 @@ class loudness():
         Outputs the measured value from the loudness sensor.
 
         Returns:
-            None: None
+            float: The measured value
         """
         log("Getting value measured by the loudness sensor", "INFO", "TI Hub", "Loudness")
         print("[loudness] measuring sensor value")
-        return None
+        retValue = rng.randint(100, 12000) / 100
+        return retValue
 
     def range(self, min:float, max:float):
         """
@@ -1115,7 +1132,7 @@ class loudness():
             max (float): The maximum range of the loudness sensor.
 
         Returns:
-            list: a list containing the following data: [min, max]
+            None: None
         """
 
         if cerr.type_error(float, min) == False: log("Argument 'min' has to be type float!", "ERROR", "TI Hub", "Loudness")
@@ -1127,7 +1144,7 @@ class loudness():
 
         log("Setting the value range of the loudness sensor from '" + str(min) + "' to '" + str(max) + "'", "INFO", "TI Hub", "Loudness")
         print("Setting the range of the loudness sensor to " + str(min) + " to " + str(max))
-        return [min, max]
+        return None
 ###########################################################################################
 class colour_input():
 
@@ -1210,42 +1227,62 @@ class colour_input():
             7: Black\n
             8: White\n
             9: Gray\n
+        
+        Returns:
+            int: The number of the colour measured using the given mapping
         """
         log("Fetching the number of the colour by the predefined mapping", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching colour number")
-        return None
+        retValue:int = rng.randint(1, 9)
+        return retValue
     
     def red(self):
         """
-        Returns a value from 0 to 255 that represents the intensity of the RED color level being detected.\n
+        Returns a value from 0 to 255 that represents the intensity of the RED color level being detected.
+
+        Returns:
+            int: The amount of red in the measured colour (0 - 255)
         """
         log("Fetching the amount of 'red' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching red value")
-        return None
+        retValue:int = rng.randint(0, 255)
+        return retValue
     
     def green(self):
         """
-        Returns a value from 0 to 255 that represents the intensity of the GREEN color level being detected.\n
+        Returns a value from 0 to 255 that represents the intensity of the GREEN color level being detected.
+
+        Returns:
+            int: The amount of green in the measured colour (0 - 255)
         """
         log("Fetching the amount of 'green' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching green value")
-        return None
+        retValue:int = rng.randint(0, 255)
+        return retValue
     
     def blue(self):
         """
-        Returns a value from 0 to 255 that represents the intensity of the BLUE color level being detected.\n
+        Returns a value from 0 to 255 that represents the intensity of the BLUE color level being detected.
+
+        Returns:
+            int: The amount of blue in the measured colour (0 - 255)
         """
         log("Fetching the amount of 'blue' in the measured colour. Ranges from 0 to 255 (inclusive)", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching blue value")
-        return None
+        retValue:int = rng.randint(0, 255)
+        return retValue
 
     def gray(self):
         """
-        Returns a value from 0 to 255 that represents the gray level being detected, where 0 is black and 255 is white.\n
+        Returns a value from 0 to 255 that represents the gray level being detected, where 0 is black and 255 is white.
+
+        Returns:
+            int: The amount of gray in the measured colour (0 - 255). 0 is black, 255 is white.
         """
         log("Fetching the amount of 'gray' in the measured colour. Ranges from 0 to 255 (inclusive). 0 is black and 255 is white", "INFO", "TI Hub", "Colour Input")
         print("[Colour_Input] fetching gray value")
-        return None
+        retValue:int = rng.randint(0, 255)
+        return retValue
 
 ###########################################################################################
 
@@ -1274,7 +1311,8 @@ class hub_time():
         """
         log("Fetching the value of the internal millisecond timer of the HUB", "INFO", "TI Hub", "Hub Time")
         print("[hub_time] Fetching millisecond timer of HUB")
-        return None
+        retValue:int = rng.randint(1, round(t.time()))
+        return retValue
 
     def reset_time(self):
         """
@@ -1323,7 +1361,7 @@ class rgb_array():
             blue (int): The blue part of the colour. Ranges from 0 to 255.
 
         Returns:
-            list: a list containing the following data: [position, red, green, blue]
+            None: None
         """
         if cerr.type_error(int, position) == False: log("Argument 'position' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
         if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB  Array")
@@ -1348,7 +1386,7 @@ class rgb_array():
           
         log("Setting the LED-Position of the LEDs at the RGB Array to '" + str(position) + "' with the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Setting the LED-Position to '" + str(position) + "' with the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
-        return [position, red, green, blue]
+        return None
 
 
     def set_all(self, red:int, green:int, blue:int):
@@ -1361,7 +1399,7 @@ class rgb_array():
             blue (int): The blue part of the colour. Ranges from 0 to 255.
 
         Returns:
-            list: a list containing the following data: [red, green, blue]
+            None: None
         """
         if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB  Array")
         if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Hub", "RG Array")
@@ -1381,7 +1419,7 @@ class rgb_array():
             
         log("Setting all RGB-LEDs from the RGB Array to the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Setting all RGB-LEDs to the RGB-Values '" + str(red) + " red', '"+ str(green) + " green', '" + str(blue) + " blue'")
-        return [red, green, blue]
+        return None
 
 
     def all_off(self):
@@ -1400,11 +1438,12 @@ class rgb_array():
         Returns the approximate current draw that the RGB array is using from the TI-Innovator™ in milliAmps.
 
         Returns:
-            None: None
+            float: The current draw of the RGB Array
         """
         log("Measuring the current energy draw of the RGB Array", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] measuring current draw of the HUB")
-        return None
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
 
     def pattern(self, pattern:int):
         """
@@ -1414,7 +1453,7 @@ class rgb_array():
             pattern (int): The value for the pattern. 0 - 65535
 
         Returns:
-            list: a list containing the following data: [pattern]
+            None: None
         """
         if cerr.type_error(int, pattern) == False: log("Argument 'pattern' has to be type integer!", "ERROR", "TI Hub", "RGB Array")
         if cerr.range_error(0, 65535, pattern) == False: log("Argument 'pattern' has to be between the values 0 and 65535 (included)!", "ERROR", "TI Hub", "RGB Array")
@@ -1427,7 +1466,7 @@ class rgb_array():
 
         log("Turning on the LEDs from binary value '" + str(pattern) + "'. '1 => on'  '2 => off'. Pattern: '" + decoded_pattern + "'", "INFO", "TI Hub", "RGB Array")
         print("[RGB-Array] Turning on pixels from binary value '" + str(pattern) + "' (1 => on ; 0 => off)")
-        return [pattern]
+        return None
 
 ###########################################################################################
 
@@ -1466,23 +1505,31 @@ class led():
     def on(self):
         """
         Turns the led on.
+
+        Returns:
+            None: None
         """
         log("Turning the LED on", "INFO", "TI Hub", "LED")
         print("Setting output device 'led' to 'on'")
+        return None
 
     def off(self):
         """
         Turns the led off.
+
+        Returns:
+            None: None
         """
         log("Turning the LED off", "INFO", "TI Hub", "LED")
         print("Setting output device 'led' to 'off'")
+        return None
 
     def blink(self, frequency:int, time:int):
         """
         Blinks the led for the given time in seconds with the set frequency in Hz.
 
         Returns:
-            list: a list containing the following data: [frequency, time, total_blinks]
+            None: None
         """
         if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer", "ERROR", "TI Hub", "LED")
         if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer", "ERROR", "TI Hub", "LED")
@@ -1500,7 +1547,7 @@ class led():
 
         log("Blinking the LED for '" + str(time) + "' seconds with a frequency of '" + str(frequency) + "' Hz. (" + str(time * frequency) + ") times.", "INFO", "TI Hub", "LED")
         print("Blinking output device 'led' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
-        return [frequency, time, time * frequency]
+        return None
 ###########################################################################################
 
 class rgb():
@@ -1540,16 +1587,20 @@ class rgb():
     def off(self):
         """
         Turns the led off.
+
+        Returns:
+            None: None
         """
         log("Turning the LED off", "INFO", "TI Hub", "RGB")
         print("Setting output device 'rgb' to 'off'")
+        return None
 
     def blink(self, frequency:int, time:int):
         """
         Blinks the led for the given time in seconds with the set frequency in Hz.
 
         Returns:
-            list: a list containing the following data: [frequency, time, total_blinks]
+            None: None
         """
         if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer", "ERROR", "TI Hub", "RGB")
         if cerr.type_error(int, time) == False: log("Argument 'time' has to be type integer", "ERROR", "TI Hub", "RGB")
@@ -1567,6 +1618,7 @@ class rgb():
 
         log("Blinking the RGB-LED for '" + str(time) + "' seconds with a frequency of '" + str(frequency) + "' Hz. (" + str(time * frequency) + ") times.", "INFO", "TI Hub", "RGB")
         print("Blinking output device 'rgb' for '" + str(time) + " seconds' with a frequency of '" + str(frequency) + " Hz'. (" + str(time * frequency) + ") times.")
+        return None
 
     def rgb(red: int, green: int, blue: int):
         """
@@ -1578,7 +1630,7 @@ class rgb():
             blue (int): The blue value (0 - 255).
 
         Returns:
-            list: a list containing the following data: [red, green, blue]
+            None: None
         """
 
         if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Hub", "RGB")
@@ -1601,7 +1653,7 @@ class rgb():
             
         log("Setting RGB-Led to '" + str(red) + "' red, '" + str(green) + "' green , '" + str(blue) + "' blue", "INFO", "TI Hub", "RGB")
         print("Setting RGB-Led to Red: " + str(red) + ", Green: " + str(green) + ", Blue: " + str(blue))
-        return [red, green, blue]
+        return None
 ###########################################################################################
 
 class speaker():
@@ -1647,7 +1699,7 @@ class speaker():
             duration (float): The duration of the tone. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [frequency, duration]
+            None: None
         """
 
         if cerr.type_error(float, frequency) == False: log("Argument 'frequency' has to be type float!", "ERROR", "TI Hub", "Speaker")
@@ -1665,7 +1717,7 @@ class speaker():
             
         log("Setting the frequency of the speakers to '" + str(frequency) + "' Hz for a duration of '" + str(duration) + "' seconds", "INFO", "TI Hub", "Speaker")
         print("Setting the speakers frequency to " + str(frequency) + "Hz for " + str(duration) + " seconds")
-        return [frequency, duration]
+        return None
 
     ###########################################################################################
 
@@ -1678,7 +1730,7 @@ class speaker():
             duration (float): The duration of the note in seconds. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [note, duration]
+            None: None
         """
 
         if cerr.type_error(str, note) == False: log("Argument 'note' has to be type string!", "ERROR", "TI Hub", "Speaker")
@@ -1697,7 +1749,7 @@ class speaker():
             
         log("Playing the note '" + note + "' for a duration of '" + duration + "' seconds", "INFO", "TI Hub", "Speaker")
         print("Playing the note '" + note + "' for " + str(duration) + " second(s)")
-        return [note, duration]
+        return None
         
 ###########################################################################################
 class power():
@@ -1746,7 +1798,7 @@ class power():
         Sets the Power level to the specified value, between 0 and 100.
 
         Returns:
-            list: a list containing the following data: [value]
+            None: None
         """
         if cerr.type_error(int, value) == False: log("Argument value has to be type integer!", "ERROR", "TI Hub", "Power")
 
@@ -1758,11 +1810,14 @@ class power():
             
         log("Setting the powerlevel of the power device to '" + str(value) + "'", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '" + str(value) + "'")
-        return [value]
+        return None
 
     def on(self):
         """
         Sets the powerlevel to 100
+
+        Returns:
+            None: None
         """
         log("Setting the powerlevel to 100", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '100'")
@@ -1771,10 +1826,13 @@ class power():
     def off(self):
         """
         Sets the powerlevel to 0
+
+        Returns:
+            None: None
         """
         log("Setting the powerlevel to 0", "INFO", "TI Hub", "Power")
         print("[Power] Setting the powerlevel to '0'")
-        return
+        return None
 
 ###########################################################################################
 class continuous_servo():
@@ -1830,7 +1888,7 @@ class continuous_servo():
             time (float): The duration of how long the continuous servo spins. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [speed, time]
+            None: None
         """
 
         if cerr.type_error(int, speed) == False: log("Argument 'speed' has to be type integer!", "ERROR", "TI Hub", "Continuous Servo")
@@ -1850,7 +1908,7 @@ class continuous_servo():
             
         log("Spinning the continuous servo clockwise for '" + str(time) + "' seconds with a speed of '" + str(speed) + "'", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Spinning the servo clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
-        return [speed, time]
+        return None
 
     def set_xcw(self, speed:int, time:float):
         """
@@ -1861,7 +1919,7 @@ class continuous_servo():
             time (float): The duration of how long the continuous servo spins. Ranges from 0.1 to 100.
 
         Returns:
-            list: a list containing the following data: [speed, time]
+            None: None
         """
 
         if cerr.type_error(int, speed) == False: log("Argument 'speed' has to be type integer!", "ERROR", "TI Hub", "Continuous Servo")
@@ -1881,11 +1939,14 @@ class continuous_servo():
             
         log("Spinning the continuous servo anti-clockwise for '" + str(time) + "' seconds with a speed of '" + str(speed) + "'", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Spinning the servo anti-clockwise for '" + str(time) + "' seconds with speed '" + str(speed) + "'")
-        return [speed, time]
+        return None
 
     def stop(self):
         """
         Stops the continuous servo.
+        
+        Returns:
+            None: None
         """
         log("Stopping the continuous servo", "INFO", "TI Hub", "Continuous Servo")
         print("[Continuous Servo] Stopping the continuous servo")
@@ -1928,6 +1989,9 @@ class analog_out():
     def off(self):
         """
         Setts the output device set as 'analog out' to off.
+
+        Returns:
+            None: None
         """
         log("Turning off the device set as analog out", "INFO", "TI Hub", "Analog Out")
         print("Setting output device for 'analog_out' to 'off'")
@@ -1935,6 +1999,9 @@ class analog_out():
     def on(self):
         """
         Setts the output device set as 'analog out' to on.
+
+        Returns:
+            None: None
         """
         log("Turning on the device set as analog out", "INFO", "TI Hub", "Analog Out")
         print("Setting output device for 'analog_out' to 'on'")
@@ -1943,6 +2010,9 @@ class analog_out():
     def set(self, value:float):
         """
         Setts the value of the output device set as 'analog out'.
+
+        Returns:
+            None: None
         """
         if cerr.type_error(float, value) == False: log("Argument 'value' has to be type float!", "ERROR", "TI Hub", "Analog Out")
         if cerr.range_error(0, None, value) == False: log("Argument 'value' has to be greater then 0!", "ERROR", "TI Hub", "Analog Out")
@@ -1951,7 +2021,7 @@ class analog_out():
         err.range_error(0, None, value)
         log("Setting the value of the output device set as analog out to '" + str(value) + "'", "INFO", "TI Hub", "Analog Out")
         print("Setting the value of output device 'analog_out' to '" + str(value) + "'")
-        return [value]
+        return None
 
 ###########################################################################################
 
@@ -2005,7 +2075,7 @@ class vibration_motor():
             value (int): The intensity of the motor (0 - 255).
 
         Returns:
-            list: a list containing the following data: [value]
+            None: None
         """
         if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "Vibration Motor")
         
@@ -2020,11 +2090,14 @@ class vibration_motor():
 
         log("Setting the intensity of the vibration motor to '" + str(value) + "'", "INFO", "TI Hub", "Vibration Motor")
         print("[Vibration Motor] Setting the intensity of the vibration motor to '" + str(value) + "'")
-        return [value]
+        return None
 
     def off(self):
         """
         Turns the vibration motor off.
+
+        Returns:
+            None: None
         """
         log("Turning the vibration motor off", "INFO", "TI Hub", "Vibration Motor")
         print("[Vibration Motor] Turning the motor off")
@@ -2083,7 +2156,10 @@ class relay():
 
     def on(self):
         """
-        Sets the relay state to the ON state
+        Sets the relay state to the ON state.
+
+        Returns:
+            None: None
         """
         log("Setting the state of the relay to 'on'", "INFO", "TI Hub", "Relay")
         print("[Relay] Setting relay state to 'ON'")
@@ -2091,7 +2167,10 @@ class relay():
 
     def off(self):
         """
-        Sets the relay state to the OFF state
+        Sets the relay state to the OFF state.
+
+        Returns:
+            None: None
         """
         log("Setting the state of the relay to 'off'", "INFO", "TI Hub", "Relay")
         print("[Relay] Setting relay state to 'OFF'")
@@ -2147,7 +2226,7 @@ class servo():
             pos (int): The position to rotate the servo to. Ranges from -90 to 90.
 
         Returns:
-            list: a list containing the following data: [pos]
+            None: None
         """
 
         if cerr.type_error(int, pos) == False: log("Argument 'pos' has to type integer!", "ERROR", "TI Hub", "Servo")
@@ -2163,11 +2242,14 @@ class servo():
             
         log("Setting the servos position to '" + str(pos) + "'", "INFO", "TI Hub", "Servo")
         print("[Servo] Setting the servo position to '" + str(pos) + "'")
-        return [pos]
+        return None
 
     def zero(self):
         """
-        Sets the sweep servo position to 0
+        Sets the sweep servo position to 0.
+
+        Returns:
+            None: None
         """
         log("Setting the position of the servo to 0", "INFO", "TI Hub", "Servo")
         print("[Servo] Setting the servo position to '0'")
@@ -2223,7 +2305,7 @@ class squarewave():
             time (float): The duration of the squarewave (0.1 - 100).
 
         Returns:
-            list: a list containing the following data: [frequency, duty, time]
+            None: None
         """
 
         if cerr.type_error(int, frequency) == False: log("Argument 'frequency' has to be type integer!", "ERROR", "TI Hub", "Squarewave")
@@ -2246,7 +2328,7 @@ class squarewave():
 
         log("Setting the frequency of the squarewave to '" + str(frequency) + "' Hz, the duty to '" + str(duty) + "%' and the duration to '" + str(time) + "' seconds", "INFO", "TI Hub", "Squarewave")
         print("[Square Wave] Setting the frequency to '" + str(frequency) + "Hz', the duty to '" + str(duty) + "%' and the duration to '" + str(time) + "' seconds")
-        return [frequency, duty, time]
+        return None
 
     def off(self):
         """
@@ -2295,9 +2377,14 @@ class digital():
     def measurement(self):
         """
         Returns the value of the digital input device.
+
+        Returns:
+            float: The measured value from the device set at digital
         """
         log("Measuring the value of the input device set to digital", "INFO", "TI Hub", "Digital")
         print("Measuring value of digital input device")
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
 
 
     def set(self, value:int):
@@ -2308,7 +2395,7 @@ class digital():
             value (int): The value to set (0 - 1).
 
         Returns:
-            list: a list containing the following values: [value]
+            None: None
         """
 
         if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "Digital")
@@ -2319,12 +2406,15 @@ class digital():
 
         log("Setting the value of the output device set to digital to '" + str(value) + "'", "INFO", "TI Hub", "Digital")
         print("Setting digital output to '" + str(value) + "'")
-        return [value]
+        return None
 
 
     def on(self):
         """
         Sets the state of the digital output to on (1).
+
+        Returns:
+            None: None
         """
         log("Setting the state / value of the device set to digital to 'on' (1)", "INFO", "TI Hub", "Digital")
         print("Setting state of digital output device to 'on' (1)")
@@ -2333,6 +2423,9 @@ class digital():
     def off(self):
         """
         Sets the state of the digital output to off (0).
+
+        Returns:
+            None: None
         """
         log("Setting the state / value of the device set to digital to 'off' (0)", "INFO", "TI Hub", "Digital")
         print("Setting state of digital output device to 'off' (0)")
@@ -2382,10 +2475,14 @@ class bb_port():
     def read_port(self):
         """
         Reads the current values on the input pins of the BB port.
+
+        Returns:
+            float: The value read from the device set to digital
         """
         log("Reading the ports of the device set to bb port", "INFO", "TI Hub", "BB Port")
         print("[bb_port] reading ports")
-        return
+        retValue = rng.randint(100, 10000) / 100
+        return retValue
     
     def write_port(self, value:int):
         """
@@ -2395,7 +2492,7 @@ class bb_port():
             value (int): The output pin value (0 - 1023).
 
         Returns:
-            list: a list containing the following data: [value]
+            None: None
         """
         if cerr.type_error(int, value) == False: log("Argument 'value' has to be type integer!", "ERROR", "TI Hub", "BB Port")
         if cerr.range_error(0, 1023, value) == False: log("Argument 'value' has to be between the values 0 and 1023!", "ERROR", "TI Hub", "BB Port")
@@ -2406,4 +2503,4 @@ class bb_port():
 
         log("Writing the port value of the device set to bb port to '" + str(value) + "'", "INFO", "TI Hub", "BB Port")
         print("[bb_port] writing value " + str(value))
-        return [value]
+        return None

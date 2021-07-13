@@ -19,9 +19,6 @@ How to use these modules properly:
 
 
 
-If you know a way to solve one of these issues above, just open an issue tracker! Because clearly, I am not a computer, so i don't know everything ;-).
-
-
 ## Recommended IDEs
 
 As an IDE, I personally recommend you choosing between the following two IDEs depending on your use case.
@@ -38,12 +35,32 @@ As an IDE, I personally recommend you choosing between the following two IDEs de
 
 ## FAQ
 
-### I have used the `forward` or `backward` method, but when i copy my file to the calculator it won't work!
+### Why don't the `forward` or `backward` method work?
 Make sure, that if you have specified the speed, that you have also specified the speed unit.
+There are three usecases of the functions, like listed below. It is not possible to set the speed parameter, but not the speed unit.
+```py
+from ti_python_module import ti_rover as rv  # import
+
+# RIGHT USE
+# forward
+rv.forward(1)
+rv.forward(1, "m")
+rv.forward(1, "m", 1, "m/s")
+#backward
+rv.backward(1)
+rv.backward(1, "m")
+rv.backward(1, "m", 1, "m/s")
+
+# WRONG USE
+# forward
+# rv.forward(1, "m", 1)
+# backward
+# rv.backward(1, "m", 1)
+```
 
 
-### I have used a method's returned value, but it won't work on my calculator!
-The returned values of functions are just for your own use for debugging in your IDE. The methods on the calculator don't actually return anything, which is why you are unable to get the value from them.
+### What are the return values of a function?
+As you might have guessed, the functions do not actually measure any values, but they rather return calculated or random values.
 
 
 ### How do I see a functions / class description?

@@ -1,6 +1,8 @@
+import win32api
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
 from ti_python_module.file_handler import create_log as log
+import random as rng
 
 
 """
@@ -25,7 +27,7 @@ def draw_line(x1:float, y1:float, x2:float, y2:float):
         y2 (float): The second y coordinate.
 
     Returns:
-        list: a list containing the following data: [x1, y1, x2, y2]
+        None: None
     """
     if cerr.type_error(float, x1) == False: log("Argument 'x1' has to be type float!", "ERROR", "TI Draw", "Draw Line")
     if cerr.type_error(float, y1) == False: log("Argument 'y1' has to be type float!", "ERROR", "TI Draw", "Draw Line")
@@ -39,7 +41,7 @@ def draw_line(x1:float, y1:float, x2:float, y2:float):
     
     log("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2) + " | " + str(y2) + " )", "INFO", "TI Draw", "Draw Line")
     print("Drawing line from ( " + str(x1) + " | " + str(y1) + " ) to ( " + str(x2) + " | " + str(y2) + " )")
-    return [x1, y1, x2, y2]
+    return None
 
 ###########################################################################################
 
@@ -54,7 +56,7 @@ def draw_rect(x_start:float, y_start:float, width:float, height:float):
         height (float): The height of the rectangle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, width, height]
+        None: None
     """
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
     if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Rectangle")
@@ -69,7 +71,7 @@ def draw_rect(x_start:float, y_start:float, width:float, height:float):
 
     log("Drawing rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'", "INFO", "TI Draw", "Draw Rectangle")
     print("Drawing rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'")
-    return [x_start, y_start, width, height]
+    return None
 
 ###########################################################################################
 
@@ -84,7 +86,7 @@ def fill_rect(x_start:float, y_start:float, width:float, height:float):
         height (float): The height of the rectangle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, width, height]
+        None: None
     """
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Filled Rectangle")
     if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Filled Rectangle")
@@ -99,7 +101,7 @@ def fill_rect(x_start:float, y_start:float, width:float, height:float):
 
     log("Drawing a filled rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'", "INFO", "TI Draw", "Filled Rectangle")
     print("Drawing filled rectangle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'")
-    return [x_start, y_start, width, height]
+    return None
 
 ###########################################################################################
 
@@ -113,7 +115,7 @@ def draw_circle(x_start:float, y_start:float, radius:float):
         radius (float): The radius of the circle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, radius]
+        None: None
     """
 
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Circle")
@@ -126,7 +128,7 @@ def draw_circle(x_start:float, y_start:float, radius:float):
 
     log("Drawing circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'", "INFO", "TI Draw", "Draw Circle")
     print("Drawing circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'")
-    return [x_start, y_start, radius]
+    return None
 
 ###########################################################################################
 
@@ -140,7 +142,7 @@ def fill_circle(x_start:float, y_start:float, radius:float):
         radius (float): The radius of the circle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, radius]
+        None: None
     """
 
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Filled Circle")
@@ -153,7 +155,7 @@ def fill_circle(x_start:float, y_start:float, radius:float):
 
     log("Drawing a filled circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'", "INFO", "TI Draw", "Filled Circle")
     print("Drawing filled circle from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a radius of '" + str(radius) + "'")
-    return [x_start, y_start, radius]
+    return None
 
 ###########################################################################################
 
@@ -167,7 +169,7 @@ def draw_text(x_start:float, y_start:float, text:str):
         text (str): The text to draw.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, text]
+        None: None
     """
 
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Text")
@@ -180,7 +182,7 @@ def draw_text(x_start:float, y_start:float, text:str):
  
     log("Drawing text '" + text + "' from starting point: ( " + str(x_start) + " | " + str(y_start) + " )", "INFO", "TI Draw", "Draw Text")
     print("Drawing text '" + text + "' from starting point: ( " + str(x_start) + " | " + str(y_start) + " )")
-    return [x_start, y_start, text]
+    return None
 
 ###########################################################################################
 
@@ -197,7 +199,7 @@ def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angl
         arc_angle (float): The arc angle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, width, height, start_angle, arc_angle]
+        None: None
     """
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
     if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Draw Arc")
@@ -215,7 +217,7 @@ def draw_arc(x_start:float, y_start:float, width:float, height:float, start_angl
 
     log("Drawing arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'", "INFO", "TI Draw", "Draw Arc")
     print("Drawing arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'")
-    return [x_start, y_start, width, height, start_angle, arc_angle]
+    return None
 
 ###########################################################################################
 
@@ -232,7 +234,7 @@ def fill_arc(x_start:float, y_start:float, width:float, height:float, start_angl
         arc_angle (float): The arc angle.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, width, height, start_angle, arc_angle]
+        None: None
     """
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Filled Arc")
     if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Filled Arc")
@@ -250,7 +252,7 @@ def fill_arc(x_start:float, y_start:float, width:float, height:float, start_angl
 
     log("Drawing a filled arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'", "INFO", "TI Draw", "Filled Arc")
     print("Drawing filled arc from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with start-angle '" + str(start_angle) + " degrees' and arc-angle '" + str(arc_angle) + " degrees' with a height of '" + str(height) + "' and a width of '" + str(width) + "'")
-    return [x_start, y_start, width, height, start_angle, arc_angle]
+    return None
 
 ###########################################################################################
 
@@ -263,7 +265,7 @@ def draw_poly(x_list:list[float], y_list:list[float]):
         y_list (list): The list of values with the y coordinates.
 
     Returns:
-        list: a list containing the following data: [x_list, y_list]
+        None: None
     """
     if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Draw", "Draw Polygon")
     if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Draw", "Draw Polygon")
@@ -273,7 +275,7 @@ def draw_poly(x_list:list[float], y_list:list[float]):
     
     log("Drawing a polygon from the given x and y list", "INFO", "TI Draw", "Draw Polygon")
     print("Drawing Polygon from x-list and y-list")
-    return [x_list, y_list]
+    return None
 
 ###########################################################################################
 
@@ -286,7 +288,7 @@ def fill_poly(x_list:list, y_list:list):
         y_list (list): The list of values with the y coordinates.
 
     Returns:
-        list: a list containing the following data: [x_list, y_list]
+        None: None
     """
     if cerr.type_error(list, x_list) == False: log("Argument 'x_list' has to be type list!", "ERROR", "TI Draw", "Filled Polygon")
     if cerr.type_error(list, y_list) == False: log("Argument 'y_list' has to be type list!", "ERROR", "TI Draw", "Filled Polygon")
@@ -296,7 +298,7 @@ def fill_poly(x_list:list, y_list:list):
     
     log("Drawing a filled polygon from the given x and y list", "INFO", "TI Draw", "Filled Polygon")
     print("Drawing filled Polygon from x-list and y-list")
-    return [x_list, y_list]
+    return None
 
 ###########################################################################################
 
@@ -310,7 +312,7 @@ def plot_xy(x_start:float, y_start:float, form_id:int):
         form_id (int): The id of which form to draw.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, form_id]
+        None: None
     """
 
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Plot XY")
@@ -326,7 +328,7 @@ def plot_xy(x_start:float, y_start:float, form_id:int):
     
     log("Drawing form with id '" + str(form_id) + "' at ( " + str(x_start) + " | " + str(y_start) + " )", "INFO", "TI Draw", "Plot XY")
     print("Drawing form '" + str(form_id) + "' at ( " + str(x_start) + " | " + str(y_start) + " )")
-    return [x_start, y_start, form_id]
+    return None
 
 ###########################################################################################
 
@@ -354,7 +356,7 @@ def clear_rect(x_start:float, y_start:float, width:float, height:float):
         height (float): The height of the rectangle to clear.
 
     Returns:
-        list: a list containing the following data: [x_start, y_start, width, height]
+        None: None
     """
     if cerr.type_error(float, x_start) == False: log("Argument 'x_start' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
     if cerr.type_error(float, y_start) == False: log("Argument 'y_start' has to be type float!", "ERROR", "TI Draw", "Clear Rectangle")
@@ -369,7 +371,7 @@ def clear_rect(x_start:float, y_start:float, width:float, height:float):
 
     log("Clearing a rectangular area from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'", "INFO", "TI Draw", "Clear Rectangle")
     print("Clearing a rectangular area from starting point: ( " + str(x_start) + " | " + str(y_start) + " ) with a width of '" + str(width) + "' and a height of '" + str(height) + "'")
-    return [x_start, y_start, width, height]
+    return None
 
 ###########################################################################################
 
@@ -383,7 +385,7 @@ def set_colour(red:int, green:int, blue:int):
         blue (int): The amount of blue. Ranges from 0 to 255.
 
     Returns:
-        list: a list containing the following data: [red, green, blue]
+        None: None
     """
     if cerr.type_error(int, red) == False: log("Argument 'red' has to be type integer!", "ERROR", "TI Draw", "Set Colour")
     if cerr.type_error(int, green) == False: log("Argument 'green' has to be type integer!", "ERROR", "TI Draw", "Set Colour")
@@ -405,7 +407,7 @@ def set_colour(red:int, green:int, blue:int):
     
     log("Setting drawing colour to red '" +str(red) + "', green '" + str(green) + "', blue '" + str(blue) + "'", "INFO", "TI Draw", "Set Colour")
     print("Setting drawing colour to red '" +str(red) + "', green '" + str(green) + "', blue '" + str(blue) + "'")
-    return [red, green, blue]
+    return None
     
 ###########################################################################################
 
@@ -418,7 +420,7 @@ def set_pen(thickness:str, stile:str):
         stile (str): The stile of the pen. Possible Options: 'solid', 'dotted', 'dashed'.
 
     Returns:
-        list: a list containing the following data: [thickness, stile]
+        None: None
     """
     if cerr.type_error(str, thickness) == False: log("Argument 'thickness' has to be type string!", "ERROR", "TI Draw", "Set Pen")
     if cerr.type_error(str, stile) == False: log("Argument 'stile' has to be type string!", "ERROR", "TI Draw", "Set Pen")
@@ -434,7 +436,7 @@ def set_pen(thickness:str, stile:str):
 
     log("Setting Drawing Pen thickness to '" + thickness + "' and pen stile to '" + stile + "'", "INFO", "TI Draw", "Set Pen")
     print("Setting Drawing Pen thickness to '" + thickness + "' and pen stile to '" + stile + "'")
-    return [thickness, stile]
+    return None
 
 ###########################################################################################
 
@@ -453,7 +455,7 @@ def set_window(x_min:int, x_max:int, y_min:int, y_max:int):
         ValueError: If y_min is greater or equal to y_max.
 
     Returns:
-        list: a list containing the following data: [x_min, x_max, y_min, y_max]
+        None: None
     """
     if cerr.type_error(int, x_min) == False: log("Argument 'x_min' has to be type integer!", "ERROR", "TI Draw", "Set Window")
     if cerr.type_error(int, x_max) == False: log("Argument 'x_max' has to be type integer!", "ERROR", "TI Draw", "Set Window")
@@ -474,7 +476,7 @@ def set_window(x_min:int, x_max:int, y_min:int, y_max:int):
 
     log("Setting Drawing window from (" + str(x_min) + " | " + str(y_min) + " ) to (" + str(x_max) + " | " + str(y_max) + " )", "INFO", "TI Draw", "Set Window")
     print("Setting Drawing window from (" + str(x_min) + " | " + str(y_min) + " ) to (" + str(x_max) + " | " + str(y_max) + " )")
-    return [x_min, x_max, y_min, y_max]
+    return None
 
 ###########################################################################################
 
@@ -483,12 +485,13 @@ def get_screen_dim():
     Returns the x_max and y_max of the screen dimensions.
     
     Returns:
-        None: None
+        tuple (float): The width and the height of the screen
     """
     log("Getting the max coordinates of the screen / window", "INFO", "TI Draw", "Get Screen Dimension")
     print("Getting max coordinates of screen / window")
-    return None
-
+    retWidth:float = win32api.GetSystemMetrics(0)
+    retHeight:float = win32api.GetSystemMetrics(1)
+    return retWidth, retHeight
 ###########################################################################################
 
 def use_buffer():
@@ -513,3 +516,4 @@ def paint_buffer():
     """
     log("Displaying the buffered content", "INFO", "TI Draw", "Paint Buffer")
     print("Displaying buffered output")
+    return None
