@@ -4,14 +4,14 @@ import os
 import io
 
 
-###
-
-VERSION = "0.10.3"
 
 
-SUMMARY = "Texas Instruments python debugging"
+VERSION = "0.10.4"
 
-###
+
+SUMMARY = "Texas Instruments Python Debugging and Programming Support"
+
+
 
 here = os.path.abspath(os.path.dirname(__file__))
 

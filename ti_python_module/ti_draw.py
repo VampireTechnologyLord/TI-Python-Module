@@ -1,4 +1,4 @@
-import win32api
+
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
 from ti_python_module.file_handler import create_log as log
@@ -489,8 +489,8 @@ def get_screen_dim():
     """
     log("Getting the max coordinates of the screen / window", "INFO", "TI Draw", "Get Screen Dimension")
     print("Getting max coordinates of screen / window")
-    retWidth:float = win32api.GetSystemMetrics(0)
-    retHeight:float = win32api.GetSystemMetrics(1)
+    retWidth:float = rng.randint(760, 4096)
+    retHeight:float = rng.randint(760, 4096)
     return retWidth, retHeight
 ###########################################################################################
 

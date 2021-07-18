@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Report a bug / error
-title: "[BUG] "
+title: "[Bug] "
 labels: bug, unconfirmed
 assignees: ''
 
@@ -12,7 +12,7 @@ assignees: ''
 
 - [ ] I am running the latest version.
 - [ ] I checked the Readme file and the wiki to make sure, that my issue is not covered there.
-- [ ] I made sure that **this issue is not a duplicate of any existing issue.**
+- [ ] I made sure that *this issue is not a duplicate of any existing issue.*
 
 ### Context <!-- Exact version you have downloaded. The IDE you are using-->
 

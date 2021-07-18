@@ -1,7 +1,7 @@
 ---
 name: Typo Report
-about: Report a typo / grammatic mistake
-title: "[TYPO]"
+about: Report a typo / grammatical mistake
+title: "[Typo]"
 labels: typo
 assignees: ''
 
@@ -13,4 +13,4 @@ assignees: ''
 ### Solution <!-- What would you write there instead? -->
 
 
-### Occurance <!-- When does this occur? -->
+### Occurrence <!-- When does this occur? -->
