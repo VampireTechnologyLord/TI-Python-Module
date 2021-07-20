@@ -492,7 +492,8 @@ def ranger_measurement():
     """
     log("Fetching the value measured by the ultrasonic sensor", "INFO", "TI Rover", "Ranger Measurement")
     print("Fetching data from ultrasonic sensor")
-    return None
+    retValue = rng.randint(100, 40000) / 100
+    return retValue
 
 ###########################################################################################
 
