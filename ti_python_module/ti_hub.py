@@ -353,7 +353,8 @@ class brightness():
         """
         log("Reading the value currently measured by the brightness sensor", "INFO", "TI Hub", "Brightness")
         print("Reading Brightness Sensor")
-        return None
+        retValue = rng.randint(10, 4500) / 10
+        return retValue
 
     ###########################################################################################
 
