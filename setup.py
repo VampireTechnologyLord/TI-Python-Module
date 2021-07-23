@@ -6,7 +6,7 @@ import io
 
 
 
-VERSION = "0.10.6"
+VERSION = "0.10.7"
 
 
 SUMMARY = "Texas Instruments Python Debugging and Programming Support"

@@ -22,3 +22,7 @@ from ti_python_module.err import *
 ########################################################################
 
 from ti_python_module.file_handler import *
+
+########################################################################
+
+from ti_python_module.ti_plotlib import *
