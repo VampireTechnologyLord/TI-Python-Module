@@ -1,5 +1,10 @@
 """
-Class containing all the TI Plotlib elements.
+TI PLOTLIB
+----------
+
+----------
+
+All the classes and functions from the Texas Instruments TI-Plotlib Module.
 """
 from ti_python_module.file_handler import create_log as log
 from ti_python_module.err import withConsole as err

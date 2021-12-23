@@ -1,11 +1,16 @@
+"""
+TI HUB
+----------
+
+----------
+
+All the classes and functions from the Texas Instruments TI-Innovator Hub.
+"""
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
 from ti_python_module.file_handler import create_log as log
 import time as t
 import random as rng
-"""
-Class containing all TI-Hub commands. Used for debugging
-"""
 
 
 
@@ -13,7 +18,7 @@ Class containing all TI-Hub commands. Used for debugging
 
 def text_at(line: int, text: str, align: str):
     """
-    Displays "text" in plotting area at specified "align".
+    Displays "text" at specified "align".
 
     Args:
         line (int): The line of the text. Possible Options: 'line, 'text', 'align'.

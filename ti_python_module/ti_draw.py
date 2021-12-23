@@ -1,3 +1,17 @@
+"""
+TI DRAW
+----------
+
+----------
+
+All the classes and functions from the Texas Instruments Drawing Module.
+
+---------
+Info:
+
+    • The default configuration has (0,0) in the top left corner of the screen. The positive x-axis points to the right and the positive y-axis points to the bottom This can be modified by using the set_window() function.\n
+    • The functions in ti_draw module are only available on the handheld and in handheld view on desktop
+"""
 
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
@@ -5,12 +19,6 @@ from ti_python_module.file_handler import create_log as log
 import random as rng
 
 
-"""
-Class containing all TI-Draw commands
-
-    • The default configuration has (0,0) in the top left corner of the screen. The positive x-axis points to the right and the positive y-axis points to the bottom This can be modified by using the set_window() function.\n
-    • The functions in ti_draw module are only available on the handheld and in handheld view on desktop
-"""
 
 
 

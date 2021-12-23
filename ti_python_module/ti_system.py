@@ -1,5 +1,10 @@
 """
-A class containing all the TI-System commands
+TI SYSTEM
+----------
+
+----------
+
+All the classes and functions from the Texas Instruments System Module.
 """
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr

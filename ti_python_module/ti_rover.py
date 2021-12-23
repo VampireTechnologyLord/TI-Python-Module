@@ -1,5 +1,10 @@
 """
-Class containing all TI-Rover commands. Used for debugging
+TI ROVER
+----------
+
+----------
+
+All the classes and functions from the Texas Instruments Rover.
 """
 from ti_python_module.err import withConsole as err
 from ti_python_module.err import onlyCheck as cerr
